@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شراكة منصة الضامن مع الوطنية للإسكان NHC - عرض تفاعلي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#5B13B9',
+                            purpleDark: '#3C0B82',
+                            purpleLight: '#8B38F7',
+                            teal: '#00C9B7',
+                            tealLight: '#00E5D1',
+                            tealDark: '#009688',
+                            navy: '#1E105C',
+                            nhcGreen: '#00875A',
+                            nhcDark: '#0A2540',
+                            bgSoft: '#F7F6FD'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background-color: #0d0826;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        .gradient-purple-teal {
+            background: linear-gradient(135deg, #5B13B9 0%, #3C0B82 50%, #00C9B7 100%);
+        }
+
+        .gradient-card-dark {
+            background: linear-gradient(145deg, rgba(30, 16, 92, 0.8) 0%, rgba(15, 8, 48, 0.9) 100%);
+            border: 1px solid rgba(139, 56, 247, 0.2);
+        }
+
+        .gradient-glow {
+            box-shadow: 0 0 35px -5px rgba(0, 201, 183, 0.3);
+        }
+
+        .glow-purple {
+            box-shadow: 0 0 30px -5px rgba(91, 19, 185, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 8, 48, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5B13B9;
+            border-radius: 4px;
+        }
+
+        /* Slide Animation */
+        .slide-content {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-enter {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+        }
+
+        .slide-active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Custom Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+            background: #1E105C;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 201, 183, 0.3);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #00E5D1;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 15px #00E5D1;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col bg-slate-950 text-slate-100">
+
+    <!-- TOP HEADER -->
+    <header class="h-16 bg-slate-900/90 backdrop-blur-md border-b border-purple-900/40 px-4 md:px-8 flex items-center justify-between z-50 sticky top-0">
+        <div class="flex items-center gap-4">
+            <!-- LOGOS COMBINED -->
+            <div class="flex items-center gap-3 bg-slate-950/60 px-4 py-1.5 rounded-full border border-purple-500/30">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg gradient-purple-teal flex items-center justify-center text-white font-bold text-lg shadow-md">
+                        <i class="fa-solid fa-shield-halved text-teal-300"></i>
+                    </div>
+                    <span class="font-bold text-lg tracking-wide text-white">الضــامـن</span>
+                </div>
+                <span class="text-slate-500 text-sm">✕</span>
+                <div class="flex items-center gap-2 border-r border-slate-700 pr-3 mr-1">
+                    <span class="font-extrabold text-sm text-teal-400 tracking-wider">NHC</span>
+                    <span class="text-xs text-slate-300 hidden sm:inline">الشركة الوطنية للإسكان</span>
+                </div>
+            </div>
+            <span class="hidden lg:inline-block px-3 py-1 rounded-full text-xs font-semibold bg-purple-950 text-purple-300 border border-purple-800">
+                شراكة استراتيجية وتطوير الأعمال
+            </span>
+        </div>
+
+        <!-- SLIDE TRACKER & CONTROLS -->
+        <div class="flex items-center gap-3">
+            <span class="text-xs text-slate-400 hidden sm:inline">الشريحة: <span id="currentSlideNum" class="text-teal-400 font-bold">1</span> من <span id="totalSlidesNum">6</span></span>
+            
+            <div class="flex items-center gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700">
+                <button onclick="prevSlide()" class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-purple-900/50 text-slate-300 hover:text-white transition disabled:opacity-30" id="prevBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <button onclick="nextSlide()" class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-purple-900/50 text-slate-300 hover:text-white transition disabled:opacity-30" id="nextBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="w-full bg-slate-900 h-1.5">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-purple-600 via-teal-400 to-cyan-300 transition-all duration-300 w-1/6"></div>
+    </div>
+
+    <!-- MAIN PRESENTATION CANVAS CONTAINER -->
+    <main class="flex-1 relative overflow-hidden flex items-center justify-center p-3 md:p-6">
+
+        <!-- ==================== SLIDE 1: WELCOME & SUMMARY ==================== -->
+        <section id="slide-1" class="slide-content slide-active w-full max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        رؤية التحول الرقمي لما بعد الاستلام
+                    </div>
+                    
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+                        تحويل ضواحي الإسكان إلى <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-purple-300 to-cyan-400">
+                            منظومة أصول وضمانات ذكية
+                        </span>
+                    </h1>
+                    
+                    <p class="text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                        مقترح شراكة بين <strong class="text-purple-300 font-semibold">منصة الضامن</strong> و <strong class="text-teal-300 font-semibold">الشركة الوطنية للإسكان NHC</strong> لتوفير حوكمة شاملة لضمانات الوحدات في البيع على الخريطة (مثل ضاحية الفرسان وضاحية الخزامى)، وتفعيل مصادر دخل جديدة مستدامة.
+                    </p>
+
+                    <!-- QUICK HIGHLIGHT CARDS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-purple-900/50 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-900/50 flex items-center justify-center text-teal-300 text-lg">
+                                <i class="fa-solid fa-coins"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">إيرادات جديدة</div>
+                                <div class="text-sm font-bold text-white">New Revenue Streams</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-purple-900/50 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-teal-900/40 flex items-center justify-center text-teal-300 text-lg">
+                                <i class="fa-solid fa-house-circle-check"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">حماية المستفيد</div>
+                                <div class="text-sm font-bold text-white">Post-Handover Safety</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-purple-900/50 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-900/50 flex items-center justify-center text-indigo-300 text-lg">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">سوق متكامل</div>
+                                <div class="text-sm font-bold text-white">Inspection Marketplace</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap items-center gap-4">
+                        <button onclick="goToSlide(4)" class="px-6 py-3 rounded-xl gradient-purple-teal text-white font-bold shadow-lg glow-purple hover:opacity-90 transition flex items-center gap-2">
+                            <span>استكشف حاسبة الإيرادات</span>
+                            <i class="fa-solid fa-calculator"></i>
+                        </button>
+                        <button onclick="goToSlide(5)" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-300 border border-teal-500/30 font-semibold transition flex items-center gap-2">
+                            <span>تجربة محاكي المنصة</span>
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- DECORATIVE GLOW -->
+                        <div class="absolute -top-10 -bottom-10 -left-10 -right-10 bg-gradient-to-tr from-purple-600/30 to-teal-400/20 blur-3xl rounded-full"></div>
+                        
+                        <div class="relative gradient-card-dark rounded-2xl p-6 border border-purple-500/30 shadow-2xl space-y-4">
+                            <div class="flex justify-between items-center border-b border-purple-900/60 pb-3">
+                                <span class="text-sm font-bold text-teal-300"><i class="fa-solid fa-circle-check ml-1"></i> ملخص القيمة المضافة</span>
+                                <span class="text-xs text-purple-300 bg-purple-900/60 px-2 py-0.5 rounded">NHC Partner</span>
+                            </div>
+
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                                    <span>تحويل رخص البناء والفسوح إلى <strong>سجل رقمي حي موحد لكل وحدة</strong>.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                                    <span>إلزام المطورين بدفع رسم أرشفة وضمان (1,000 ريال) لكل وحدة.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                                    <span>تنبيهات آلية للمستفيد قبل انقضاء ضمان التشطيبات (سنة واحدة).</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-teal-400 mt-1"></i>
+                                    <span>سوق مفتوح (Marketplace) لشركات فحص المباني والأثاث والصيانة.</span>
+                                </li>
+                            </ul>
+
+                            <div class="pt-2 border-t border-purple-900/60 flex justify-between items-center text-xs text-slate-400">
+                                <span>جاهزية الربط: <strong class="text-teal-300">API Standard</strong></span>
+                                <span>نطاق البدء: <strong class="text-purple-300">الفرسان / الخزامى</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 2: THE CHALLENGE ==================== -->
+        <section id="slide-2" class="slide-content slide-enter hidden w-full max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-8 space-y-2">
+                <span class="text-xs font-bold text-red-400 bg-red-950/80 px-3 py-1 rounded-full border border-red-800">التحديات الحالية</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white">فجوة ما بعد الاستلام وتشتت الضمانات</h2>
+                <p class="text-slate-400 text-sm md:text-base">لماذا يحتاج الساكن والمطور والوزارة إلى منصة موحدة بدلاً من الحلول الفردية؟</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                <div class="gradient-card-dark p-5 rounded-2xl border-t-4 border-t-red-500 space-y-3 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-red-950/60 flex items-center justify-center text-red-400 text-xl font-bold">
+                        <i class="fa-solid fa-phone-slash"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">ضياع وتغير أرقام الموردين</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        يتفاجأ المستفيد عند السكن التأخري بتغير أرقام التواصل مع مقاولي السباكة، التكييف، والكهرباء المرفقة في الملفات الورقية أو التطبيقات المنفصلة للمطورين.
+                    </p>
+                    <div class="bg-slate-950/50 p-2.5 rounded-lg text-xs text-slate-400 border border-slate-800">
+                        <strong class="text-red-400">النتيجة:</strong> انقطاع التواصل وصعوبة الإصلاح بعد استلام المفتاح.
+                    </div>
+                </div>
+
+                <div class="gradient-card-dark p-5 rounded-2xl border-t-4 border-t-amber-500 space-y-3 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-amber-950/60 flex items-center justify-center text-amber-400 text-xl font-bold">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">انتهاء ضمان التشطيبات القصير</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        الضمان الإنشائي 10 سنوات، ولكن ضمان التشطيبات (الخرسانة العادية، انسدادات الصرف، التصدعات) مدته سنة واحدة غالباً ما تنتهي قبل أن يسكن المستفيد فعلياً.
+                    </p>
+                    <div class="bg-slate-950/50 p-2.5 rounded-lg text-xs text-slate-400 border border-slate-800">
+                        <strong class="text-amber-400">النتيجة:</strong> تحمل المستفيد تكاليف عيوب البناء الخفية.
+                    </div>
+                </div>
+
+                <div class="gradient-card-dark p-5 rounded-2xl border-t-4 border-t-purple-500 space-y-3 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-purple-950/60 flex items-center justify-center text-purple-300 text-xl font-bold">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">تشتت المنصات وتضييع الفرص</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        بعض المطورين (مثل ريتال) يقدمون تطبيقات خاصة، بينما يغيب الحل عن مطورين آخرين. كما لا تستفيد NHC من عوائد القيمة المضافة ما بعد التسليم.
+                    </p>
+                    <div class="bg-slate-950/50 p-2.5 rounded-lg text-xs text-slate-400 border border-slate-800">
+                        <strong class="text-purple-300">النتيجة:</strong> غياب تجربة موحدة وضياع مصادر دخل جديدة.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COMPARISON INFOGRAPHIC BAR -->
+            <div class="mt-6 bg-slate-900/90 p-4 rounded-xl border border-purple-900/40 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-lightbulb text-amber-400 text-2xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">التحدي الأكبر للشركة الوطنية للإسكان (NHC)</div>
+                        <div class="text-xs text-slate-400">اقتصار المردود المالي حالياً على رسوم إصدار الفسوح ورخص البناء الأولية دون عوائد استدامة المستفيد.</div>
+                    </div>
+                </div>
+                <button onclick="goToSlide(3)" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded-lg transition whitespace-nowrap">
+                    شاهد الحل المقترح ←
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 3: THE STRATEGIC SOLUTION ==================== -->
+        <section id="slide-3" class="slide-content slide-enter hidden w-full max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-6 space-y-2">
+                <span class="text-xs font-bold text-teal-400 bg-teal-950/80 px-3 py-1 rounded-full border border-teal-800">الحل الشامل</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white">منصة الضامن: منظومة الأصول والضمانات الموحدة</h2>
+                <p class="text-slate-400 text-sm">أرشفة آمنة، تنبيهات ذكية، وسوق خدمات متكامل تحت مظلة وزارة الإسكان و NHC</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold text-lg">1</div>
+                    <h3 class="text-base font-bold text-white">سجل رقمي لكل وحدة</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        أرشفة كاملة للمخططات، المخطط الإنشائي، شهادات الضمان، فسح البناء، وبيانات الموردين المعتمدين في مكان واحد.
+                    </p>
+                </div>
+
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-lg">2</div>
+                    <h3 class="text-base font-bold text-white">تنبيهات الانتهاء الذكية</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        نظام تنبيهات آلي يذكّر الساكن بانتهاء ضمانات التشطيبات قبل (60 يوماً و30 يوماً) للقيام بالفحص المبكر.
+                    </p>
+                </div>
+
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-lg">3</div>
+                    <h3 class="text-base font-bold text-white">سوق الموردين والخدمات</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        ربط المستفيد بشركات فحص المباني المعتمدة، شركات الصيانة، ومحلات الأثاث بخصومات خاصة وعمولات للمنصة.
+                    </p>
+                </div>
+
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-lg">4</div>
+                    <h3 class="text-base font-bold text-white">تحديث بيانات الموردين</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        إلزام المطور والموردين بتحديث أرقام التواصل بشكل دائم لضمان استجابة الصيانة طوال فترة الضمان.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ARCHITECTURE FLOW CHART -->
+            <div class="mt-6 bg-slate-900/90 p-5 rounded-2xl border border-purple-900/50">
+                <h4 class="text-xs font-bold text-slate-400 mb-3 text-center uppercase tracking-wider">تدفق المنظومة بين أطراف المشروع</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-city text-purple-400 text-xl mb-1"></i>
+                        <div class="text-xs font-bold text-white">المطور العقاري</div>
+                        <div class="text-[10px] text-slate-400 mt-1">يدفع رسوم الإدراج (1,000 ريال/وحدة) ويفسح المستندات</div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-server text-teal-400 text-xl mb-1"></i>
+                        <div class="text-xs font-bold text-teal-300">منصة الضامن / NHC</div>
+                        <div class="text-[10px] text-slate-400 mt-1">توثيق البيانات، التنبيهات، وحوكمة الـ Marketplace</div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-store text-cyan-400 text-xl mb-1"></i>
+                        <div class="text-xs font-bold text-white">شركات الفحص/الموردين</div>
+                        <div class="text-[10px] text-slate-400 mt-1">تقديم خدمات الفحص والصيانة مقابل اشتراكات وعمولات</div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <i class="fa-solid fa-user-shield text-indigo-400 text-xl mb-1"></i>
+                        <div class="text-xs font-bold text-white">المستفيد (الساكن)</div>
+                        <div class="text-[10px] text-slate-400 mt-1">تطبيق موحد، متابعة الضمانات، وطلب الفحص المبكر</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 4: INTERACTIVE REVENUE CALCULATOR ==================== -->
+        <section id="slide-4" class="slide-content slide-enter hidden w-full max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                <!-- CONTROLS COLUMN -->
+                <div class="lg:col-span-6 space-y-5">
+                    <div>
+                        <span class="text-xs font-bold text-teal-400 bg-teal-950/80 px-3 py-1 rounded-full border border-teal-800">النموذج المالي</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-2">حاسبة العوائد المالية الجديدة</h2>
+                        <p class="text-xs md:text-sm text-slate-400">تحريك المؤشرات لتقدير الأرباح والمداخيل السنوية المتوقعة لـ NHC والمنصة</p>
+                    </div>
+
+                    <!-- SLIDER 1: NUMBER OF UNITS -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-300 font-semibold">عدد الوحدات السكنية (الضواحي):</span>
+                            <span id="unitsValueText" class="text-teal-300 font-extrabold text-base">25,000 وحدة</span>
+                        </div>
+                        <input type="range" id="unitsRange" min="5000" max="100000" step="5000" value="25000" oninput="calculateRevenues()" class="w-full">
+                        <div class="flex justify-between text-[10px] text-slate-500">
+                            <span>5,000 وحدة</span>
+                            <span>50,000 وحدة</span>
+                            <span>100,000 وحدة</span>
+                        </div>
+                    </div>
+
+                    <!-- SLIDER 2: INSPECTION CONVERSION % -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-300 font-semibold">نسبة طلب فحص المباني قبل السكن:</span>
+                            <span id="inspectionRateText" class="text-cyan-300 font-bold">35%</span>
+                        </div>
+                        <input type="range" id="inspectionRateRange" min="10" max="80" step="5" value="35" oninput="calculateRevenues()" class="w-full">
+                    </div>
+
+                    <!-- TOGGLE OPTIONS -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-purple-900/30 flex items-center justify-between">
+                            <span class="text-xs text-slate-300">رسوم المطور (1,000 ريال/وحدة)</span>
+                            <i class="fa-solid fa-check-circle text-teal-400"></i>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-purple-900/30 flex items-center justify-between">
+                            <span class="text-xs text-slate-300">اشتراكات الـ Vendors السنوية</span>
+                            <i class="fa-solid fa-check-circle text-teal-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DISPLAY DYNAMIC REVENUE SUMMARY -->
+                <div class="lg:col-span-6">
+                    <div class="gradient-card-dark p-6 rounded-2xl border border-teal-500/40 shadow-2xl relative overflow-hidden space-y-4">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-teal-500/10 rounded-full blur-2xl"></div>
+
+                        <div class="flex justify-between items-center border-b border-purple-900/60 pb-3">
+                            <span class="text-xs font-bold text-slate-300">إجمالي العوائد السنوية المتوقعة</span>
+                            <span class="text-xs bg-teal-900/50 text-teal-300 px-2.5 py-1 rounded-full border border-teal-700">تقدير ديناميكي</span>
+                        </div>
+
+                        <!-- TOTAL BIG NUMBER -->
+                        <div class="text-center py-2">
+                            <div class="text-xs text-slate-400 mb-1">صافي الإيراد التقديري المباشر</div>
+                            <div id="totalRevenueDisplay" class="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+                                29,375,000
+                            </div>
+                            <div class="text-xs font-semibold text-teal-400 mt-1">ريال سعودي</div>
+                        </div>
+
+                        <!-- DETAILED BREAKDOWN -->
+                        <div class="space-y-2.5 pt-2 border-t border-purple-900/60 text-xs">
+                            <div class="flex justify-between items-center p-2 rounded bg-slate-950/60">
+                                <span class="text-slate-300"><i class="fa-solid fa-building text-purple-400 ml-1.5"></i>رسوم إدراج الوحدات (1,000 ريال/وحدة):</span>
+                                <span id="onboardingFeeDisplay" class="font-bold text-white">25,000,000 ريال</span>
+                            </div>
+
+                            <div class="flex justify-between items-center p-2 rounded bg-slate-950/60">
+                                <span class="text-slate-300"><i class="fa-solid fa-magnifying-glass-chart text-teal-400 ml-1.5"></i>عمولة فحص المباني (200 ريال/طلب):</span>
+                                <span id="inspectionCommissionDisplay" class="font-bold text-teal-300">1,750,000 ريال</span>
+                            </div>
+
+                            <div class="flex justify-between items-center p-2 rounded bg-slate-950/60">
+                                <span class="text-slate-300"><i class="fa-solid fa-store text-indigo-400 ml-1.5"></i>رسوم الـ Marketplace والمتاجر:</span>
+                                <span id="marketplaceFeeDisplay" class="font-bold text-indigo-300">2,625,000 ريال</span>
+                            </div>
+                        </div>
+
+                        <p class="text-[11px] text-slate-400 text-center italic pt-1">
+                            * تحسب رسوم الإدراج مرة واحدة عند الترخيص، وتتكرر عوائد الفحص والـ Marketplace سنوياً.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 5: INTERACTIVE PLATFORM SIMULATOR ==================== -->
+        <section id="slide-5" class="slide-content slide-enter hidden w-full max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                <!-- LEFT CONTENT INFO -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div>
+                        <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">محاكي التطبيق التفاعلي</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-2">تجربة المستفيد والـ Marketplace</h2>
+                        <p class="text-xs text-slate-300">جرب التفاعل مع واجهة الوحدة السكنية للساكن وكيفية استعراض الضمانات والـ Marketplace.</p>
+                    </div>
+
+                    <div class="space-y-2 text-xs text-slate-300">
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-purple-900/40 flex items-start gap-2.5">
+                            <i class="fa-solid fa-bell text-amber-400 text-base mt-0.5"></i>
+                            <div>
+                                <strong class="text-white block mb-0.5">التنبيهات الاستباقية</strong>
+                                إشعار الساكن بوشوك انتهاء ضمان التشطيبات لتفادي دفع تكاليف الصيانة بنفسه.
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-purple-900/40 flex items-start gap-2.5">
+                            <i class="fa-solid fa-file-contract text-teal-400 text-base mt-0.5"></i>
+                            <div>
+                                <strong class="text-white block mb-0.5">سجل الموردين المحدث</strong>
+                                الوصول السريع لأرقام التواصل مع الموردين والمقاولين المعتمدين وتحديثها آلياً.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 pt-1">
+                        <button onclick="switchSimTab('warranties')" id="btn-tab-warranties" class="px-3 py-1.5 rounded-lg bg-purple-600 text-white text-xs font-bold transition">الضمانات والموردين</button>
+                        <button onclick="switchSimTab('marketplace')" id="btn-tab-marketplace" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition">سوق الخدمات Marketplace</button>
+                    </div>
+                </div>
+
+                <!-- RIGHT MOCKUP INTERFACE -->
+                <div class="lg:col-span-7 flex justify-center">
+                    <div class="w-full max-w-md bg-slate-900 rounded-3xl border-4 border-slate-800 p-4 shadow-2xl space-y-4">
+                        
+                        <!-- APP TOP HEADER -->
+                        <div class="flex justify-between items-center bg-slate-950 p-3 rounded-2xl border border-purple-900/30">
+                            <div>
+                                <div class="text-[10px] text-slate-400">الوحدة السكنية المسجلة</div>
+                                <div class="text-xs font-bold text-teal-300"><i class="fa-solid fa-location-dot ml-1"></i>ضاحية الفرسان - فيلا 402</div>
+                            </div>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] bg-teal-950 text-teal-300 border border-teal-800">مكتملة الاستلام</span>
+                        </div>
+
+                        <!-- TAB CONTENT 1: WARRANTIES & SUPPLIERS -->
+                        <div id="simTabWarranties" class="space-y-3">
+                            <!-- ALERT BANNER -->
+                            <div class="bg-amber-950/60 border border-amber-500/40 p-2.5 rounded-xl flex items-center justify-between text-xs">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-triangle-exclamation text-amber-400 text-sm animate-bounce"></i>
+                                    <span class="text-slate-200 text-[11px]">ضمان التشطيبات ينتهي خلال <strong>42 يوماً</strong></span>
+                                </div>
+                                <button onclick="switchSimTab('marketplace')" class="text-[10px] bg-amber-500 text-slate-950 font-bold px-2 py-1 rounded hover:bg-amber-400">احجز فحص</button>
+                            </div>
+
+                            <!-- WARRANTY CARDS LIST -->
+                            <div class="space-y-2">
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                                    <div>
+                                        <div class="font-bold text-white">الهيكل الإنشائي (10 سنوات)</div>
+                                        <div class="text-[10px] text-slate-400">شركة البناء المتحدة - المورد المعتمد</div>
+                                    </div>
+                                    <a href="tel:920000000" class="px-2 py-1 bg-purple-900/50 text-purple-300 rounded border border-purple-700 text-[10px] font-bold">
+                                        <i class="fa-solid fa-phone ml-1"></i>اتصال
+                                    </a>
+                                </div>
+
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                                    <div>
+                                        <div class="font-bold text-white">السباكة والصرف الصحي (سنة)</div>
+                                        <div class="text-[10px] text-amber-400">ينتهي قريباً • أرقام التواصل محدثة</div>
+                                    </div>
+                                    <a href="tel:920000000" class="px-2 py-1 bg-purple-900/50 text-purple-300 rounded border border-purple-700 text-[10px] font-bold">
+                                        <i class="fa-solid fa-phone ml-1"></i>اتصال
+                                    </a>
+                                </div>
+
+                                <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                                    <div>
+                                        <div class="font-bold text-white">التكييف والأجهزة الكهربائية</div>
+                                        <div class="text-[10px] text-teal-300">ساري الضمان</div>
+                                    </div>
+                                    <a href="tel:920000000" class="px-2 py-1 bg-purple-900/50 text-purple-300 rounded border border-purple-700 text-[10px] font-bold">
+                                        <i class="fa-solid fa-phone ml-1"></i>اتصال
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB CONTENT 2: MARKETPLACE -->
+                        <div id="simTabMarketplace" class="space-y-3 hidden">
+                            <div class="text-xs font-bold text-slate-300 flex justify-between items-center">
+                                <span>شركات فحص المباني والخدمات المعتمدة</span>
+                                <span class="text-[10px] text-teal-400">خصم حصر لمستفيدي NHC</span>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="bg-slate-950 p-3 rounded-xl border border-teal-500/30 flex justify-between items-center text-xs">
+                                    <div class="space-y-0.5">
+                                        <div class="font-bold text-white">شركة الفحص الدقيق للمباني</div>
+                                        <div class="text-[10px] text-slate-400">فحص كهروميكانيكي + انشائي شامل</div>
+                                        <div class="text-teal-300 font-bold text-[11px]">2,100 ريال <span class="line-through text-slate-500 text-[9px]">2,500 ريال</span></div>
+                                    </div>
+                                    <button onclick="alert('تم إرسال طلب الفحص بنجاح، سيتواصل معك الفاحص خلال 24 ساعة.')" class="px-3 py-1.5 gradient-purple-teal text-white rounded-lg font-bold text-[10px] shadow">
+                                        طلب فحص
+                                    </button>
+                                </div>
+
+                                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                                    <div class="space-y-0.5">
+                                        <div class="font-bold text-white">مجموعة الصيانة المتكاملة</div>
+                                        <div class="text-[10px] text-slate-400">عقود صيانة سنوية مابعد الضمان</div>
+                                        <div class="text-purple-300 font-bold text-[11px]">1,500 ريال / سنوياً</div>
+                                    </div>
+                                    <button onclick="alert('شراكة معتمدة لضمان استدامة الوحدة.')" class="px-3 py-1.5 bg-slate-800 text-slate-300 rounded-lg font-bold text-[10px]">
+                                        التفاصيل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 6: PILOT PROJECT & ACTION PLAN ==================== -->
+        <section id="slide-6" class="slide-content slide-enter hidden w-full max-w-6xl mx-auto space-y-6">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-bold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800">خطة العمل والتنفيذ</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white">مقترح المشروع التجريبي (Pilot Project)</h2>
+                <p class="text-slate-400 text-sm">خارطة طريق واضحة للتطبيق الفوري بضواحي الإسكان كمرحلة أولى</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2 relative">
+                    <span class="absolute top-3 left-3 text-xs bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded font-bold">المرحلة 1</span>
+                    <i class="fa-solid fa-handshake text-teal-300 text-2xl mb-1"></i>
+                    <h3 class="text-sm font-bold text-white">الاتفاقية والتكامل</h3>
+                    <p class="text-slate-300 text-[11px] leading-relaxed">
+                        توقيع مذكرة التفاهم مع NHC والربط البرمجي السلس (APIs) لتداول بيانات البيع على الخريطة.
+                    </p>
+                </div>
+
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2 relative">
+                    <span class="absolute top-3 left-3 text-xs bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded font-bold">المرحلة 2</span>
+                    <i class="fa-solid fa-map-location-dot text-teal-300 text-2xl mb-1"></i>
+                    <h3 class="text-sm font-bold text-white">الإطلاق في الضاحية التجريبية</h3>
+                    <p class="text-slate-300 text-[11px] leading-relaxed">
+                        تطبيق المنصة على <strong>ضاحية الفرسان</strong> أو <strong>ضاحية الخزامى</strong> كإطلاق تجريبي حي.
+                    </p>
+                </div>
+
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2 relative">
+                    <span class="absolute top-3 left-3 text-xs bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded font-bold">المرحلة 3</span>
+                    <i class="fa-solid fa-store text-teal-300 text-2xl mb-1"></i>
+                    <h3 class="text-sm font-bold text-white">تفعيل الـ Marketplace</h3>
+                    <p class="text-slate-300 text-[11px] leading-relaxed">
+                        دعوة شركات الفحص المعماري المعتمدة، شركات الصيانة، والأثاث للانضمام للمنصة.
+                    </p>
+                </div>
+
+                <div class="gradient-card-dark p-4 rounded-xl border border-purple-500/20 space-y-2 relative">
+                    <span class="absolute top-3 left-3 text-xs bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded font-bold">المرحلة 4</span>
+                    <i class="fa-solid fa-chart-line text-teal-300 text-2xl mb-1"></i>
+                    <h3 class="text-sm font-bold text-white">التوسع والتطوير</h3>
+                    <p class="text-slate-300 text-[11px] leading-relaxed">
+                        تعميم النموذج على جميع ضواحي ومشاريع البيع على الخريطة بالمملكة وتوزيع الإيرادات.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CALL TO ACTION FINAL BANNER -->
+            <div class="gradient-purple-teal p-6 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 text-white">
+                <div>
+                    <h3 class="text-xl font-bold">جاهزون للبدء الفوري وتخصيص المنصة</h3>
+                    <p class="text-xs text-purple-100 mt-1">نسعد ببدء الخطوات التنفيذية لتطوير التجربة التجريبية وتفعيل الموردين فوراً.</p>
+                </div>
+                <button onclick="alert('شكراً لكم! فريق الضامن جاهز للبدء في خطوات التنسيق والتنفيذ.')" class="px-6 py-3 bg-slate-950 hover:bg-slate-900 text-teal-300 font-bold text-xs rounded-xl border border-teal-500/40 shadow-lg whitespace-nowrap">
+                    تأكيد رغبة الشراكة التجريبية
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION MENU -->
+    <footer class="bg-slate-900/90 border-t border-purple-900/40 py-2.5 px-4 z-50">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            
+            <div class="flex items-center gap-1 overflow-x-auto py-1 text-xs">
+                <button onclick="goToSlide(1)" class="slide-nav-btn px-3 py-1.5 rounded-lg bg-purple-900/60 text-white font-semibold transition" id="nav-btn-1">الملخص Exec</button>
+                <button onclick="goToSlide(2)" class="slide-nav-btn px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-400 font-semibold transition" id="nav-btn-2">التحديات</button>
+                <button onclick="goToSlide(3)" class="slide-nav-btn px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-400 font-semibold transition" id="nav-btn-3">الحل الاستراتيجي</button>
+                <button onclick="goToSlide(4)" class="slide-nav-btn px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-400 font-semibold transition" id="nav-btn-4">الحاسبة المالية</button>
+                <button onclick="goToSlide(5)" class="slide-nav-btn px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-400 font-semibold transition" id="nav-btn-5">المحاكي والـ Market</button>
+                <button onclick="goToSlide(6)" class="slide-nav-btn px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-400 font-semibold transition" id="nav-btn-6">المشروع التجريبي</button>
+            </div>
+
+            <div class="text-[11px] text-slate-400 flex items-center gap-3">
+                <span><i class="fa-solid fa-shield-halved text-teal-400 ml-1"></i>منصة الضامن</span>
+                <span>•</span>
+                <span class="text-teal-300">اجتماع وزارة الإسكان و NHC</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // PRESENTATION SLIDE CONTROLLER STATE
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function updateSlideUI() {
+            // Update slide visibility
+            for (let i = 1; i <= totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                const navBtn = document.getElementById(`nav-btn-${i}`);
+                
+                if (i === currentSlide) {
+                    slide.classList.remove('hidden');
+                    setTimeout(() => {
+                        slide.classList.remove('slide-enter');
+                        slide.classList.add('slide-active');
+                    }, 50);
+
+                    navBtn.className = 'slide-nav-btn px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold transition shadow';
+                } else {
+                    slide.classList.add('hidden');
+                    slide.classList.remove('slide-active');
+                    slide.classList.add('slide-enter');
+
+                    navBtn.className = 'slide-nav-btn px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-400 font-semibold transition';
+                }
+            }
+
+            // Update Progress Bar
+            const progressPercent = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+            // Update Slide Counter
+            document.getElementById('currentSlideNum').innerText = currentSlide;
+
+            // Buttons state
+            document.getElementById('prevBtn').disabled = (currentSlide === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlideUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlideUI();
+            }
+        }
+
+        function goToSlide(slideNum) {
+            if (slideNum >= 1 && slideNum <= totalSlides) {
+                currentSlide = slideNum;
+                updateSlideUI();
+            }
+        }
+
+        // KEYBOARD ARROW NAVIGATION
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                nextSlide(); // RTL Direction: Left means next
+            } else if (e.key === 'ArrowRight') {
+                prevSlide(); // RTL Direction: Right means previous
+            }
+        });
+
+        // REVENUE CALCULATOR DYNAMIC LOGIC
+        function calculateRevenues() {
+            const units = parseInt(document.getElementById('unitsRange').value) || 25000;
+            const inspectionRate = parseInt(document.getElementById('inspectionRateRange').value) || 35;
+
+            // Display Slider Values
+            document.getElementById('unitsValueText').innerText = units.toLocaleString('ar-SA') + ' وحدة';
+            document.getElementById('inspectionRateText').innerText = inspectionRate + '%';
+
+            // Calculations
+            // 1. Developer Onboarding Fee: 1,000 SAR per unit
+            const onboardingRevenue = units * 1000;
+
+            // 2. Inspection Commission: 200 SAR per inspection (Assume average inspection fee is 2,000 SAR)
+            const numberOfInspections = units * (inspectionRate / 100);
+            const inspectionRevenue = numberOfInspections * 200;
+
+            // 3. Vendor Marketplace Subscriptions & Furniture commission (estimated at 105 SAR per unit annually)
+            const marketplaceRevenue = units * 105;
+
+            // Total Revenue
+            const totalRevenue = onboardingRevenue + inspectionRevenue + marketplaceRevenue;
+
+            // Update UI Elements
+            document.getElementById('onboardingFeeDisplay').innerText = onboardingRevenue.toLocaleString('en-US') + ' ريال';
+            document.getElementById('inspectionCommissionDisplay').innerText = Math.round(inspectionRevenue).toLocaleString('en-US') + ' ريال';
+            document.getElementById('marketplaceFeeDisplay').innerText = Math.round(marketplaceRevenue).toLocaleString('en-US') + ' ريال';
+            
+            document.getElementById('totalRevenueDisplay').innerText = Math.round(totalRevenue).toLocaleString('en-US');
+        }
+
+        // SIMULATOR TAB SWITCHER
+        function switchSimTab(tab) {
+            const tabWarranties = document.getElementById('simTabWarranties');
+            const tabMarketplace = document.getElementById('simTabMarketplace');
+            const btnWarranties = document.getElementById('btn-tab-warranties');
+            const btnMarketplace = document.getElementById('btn-tab-marketplace');
+
+            if (tab === 'warranties') {
+                tabWarranties.classList.remove('hidden');
+                tabMarketplace.classList.add('hidden');
+                btnWarranties.className = 'px-3 py-1.5 rounded-lg bg-purple-600 text-white text-xs font-bold transition';
+                btnMarketplace.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition';
+            } else {
+                tabWarranties.classList.add('hidden');
+                tabMarketplace.classList.remove('hidden');
+                btnMarketplace.className = 'px-3 py-1.5 rounded-lg bg-teal-600 text-white text-xs font-bold transition';
+                btnWarranties.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition';
+            }
+        }
+
+        // INITIALIZATION
+        window.onload = function() {
+            updateSlideUI();
+            calculateRevenues();
+        };
+    </script>
+</body>
+</html>
