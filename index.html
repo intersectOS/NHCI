@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شراكة منصة الضامن مع الشركة الوطنية للإسكان NHC</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#6a1b9a',
+                            purpleDark: '#3b0a5e',
+                            purpleLight: '#8e24aa',
+                            teal: '#00bcd4',
+                            tealGlow: '#00e5ff',
+                            tealDark: '#00838f',
+                            navyBg: '#090514',
+                            cardBg: '#120b24',
+                            nhcGreen: '#00875A'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background-color: #090514;
+            color: #f1f5f9;
+            overflow-y: auto !important; /* Force native smooth scrolling */
+        }
+
+        .gradient-purple-teal {
+            background: linear-gradient(135deg, #6a1b9a 0%, #3b0a5e 50%, #00bcd4 100%);
+        }
+
+        .glass-card {
+            background: rgba(18, 11, 36, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(142, 36, 170, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 229, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+        }
+
+        .glow-teal {
+            box-shadow: 0 0 25px -3px rgba(0, 229, 255, 0.3);
+        }
+
+        .glow-purple {
+            box-shadow: 0 0 25px -3px rgba(106, 27, 154, 0.5);
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #1d0f38;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #00e5ff;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 12px #00e5ff;
+        }
+
+        /* Active Navigation Link Styling */
+        .nav-link.active {
+            background-color: rgba(106, 27, 154, 0.6);
+            color: #00e5ff;
+            border-right: 3px solid #00e5ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-black">
+
+    <header class="fixed top-0 left-0 right-0 h-16 bg-brand-navyBg/90 backdrop-blur-md border-b border-purple-900/40 px-4 md:px-8 flex items-center justify-between z-50">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 bg-purple-950/80 px-3 py-1.5 rounded-full border border-purple-500/30">
+                <div class="w-7 h-7 rounded-lg gradient-purple-teal flex items-center justify-center text-white text-xs font-bold shadow">
+                    <i class="fa-solid fa-shield-halved text-cyan-300"></i>
+                </div>
+                <span class="font-extrabold text-white text-sm md:text-base tracking-wide">الضــامـن</span>
+                <span class="text-purple-400 text-xs">✕</span>
+                <span class="font-black text-xs md:text-sm text-cyan-400">NHC</span>
+            </div>
+            <span class="hidden md:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-purple-900/40 text-purple-200 border border-purple-700/50">
+                شراكة استراتيجية وتطوير الأعمال
+            </span>
+        </div>
+
+        <!-- QUICK NAV BUTTONS -->
+        <div class="flex items-center gap-2">
+            <a href="#calculator" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-700 to-cyan-600 text-white text-xs font-bold hover:opacity-90 transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-calculator"></i>
+                <span class="hidden sm:inline">حاسبة الإيرادات</span>
+            </a>
+            <a href="#simulator" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span class="hidden sm:inline">المحاكي</span>
+            </a>
+        </div>
+    </header>
+
+    <nav class="fixed right-3 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-2 p-2 bg-brand-cardBg/80 backdrop-blur-md rounded-2xl border border-purple-800/40 shadow-xl text-xs">
+        <a href="#hero" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="الرئيسية">
+            <i class="fa-solid fa-house w-4 text-center"></i>
+            <span class="hidden xl:inline">الرئيسية</span>
+        </a>
+        <a href="#challenges" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="التحديات">
+            <i class="fa-solid fa-triangle-exclamation w-4 text-center"></i>
+            <span class="hidden xl:inline">التحديات</span>
+        </a>
+        <a href="#solution" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="الحل المقترح">
+            <i class="fa-solid fa-shield-cat w-4 text-center"></i>
+            <span class="hidden xl:inline">منصة الضامن</span>
+        </a>
+        <a href="#calculator" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="الحاسبة المالية">
+            <i class="fa-solid fa-coins w-4 text-center"></i>
+            <span class="hidden xl:inline">مصادر الدخل</span>
+        </a>
+        <a href="#marketplace" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="السوق المفتوح">
+            <i class="fa-solid fa-store w-4 text-center"></i>
+            <span class="hidden xl:inline">Marketplace</span>
+        </a>
+        <a href="#simulator" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="محاكي المنصة">
+            <i class="fa-solid fa-mobile-button w-4 text-center"></i>
+            <span class="hidden xl:inline">تطبيق المستفيد</span>
+        </a>
+        <a href="#roadmap" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="خطة التنفيذ">
+            <i class="fa-solid fa-map-location-dot w-4 text-center"></i>
+            <span class="hidden xl:inline">المشروع التجريبي</span>
+        </a>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER WITH NATURAL SCROLL -->
+    <main class="flex-1 pt-16">
+
+        <section id="hero" class="min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
+            <!-- Glow Background Effect -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-12">
+                
+                <div class="lg:col-span-7 space-y-6 text-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                        شراكة استراتيجية مبتكرة لحوكمة البيع على الخريطة
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
+                        منظومة الضامن الذكية وتكاملها مع <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-cyan-400">
+                            الشركة الوطنية للإسكان (NHC)
+                        </span>
+                    </h1>
+
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+                        منصة موحدة تحول أصول وضمانات ضواحي الإسكان (مثل ضاحية الفرسان والخزامى) إلى **منظومة رقمية متكاملة ما بعد الاستلام**، تضمن حقوق المستفيد وتصنع **مصادر دخل جديدة مستدامة (New Revenue Streams)** للوزارة وNHC.
+                    </p>
+
+                    <!-- Feature Badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="glass-card p-3.5 rounded-xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-900/60 flex items-center justify-center text-cyan-300 text-lg">
+                                <i class="fa-solid fa-sack-dollar"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400">إيرادات إضافية</div>
+                                <div class="text-xs font-bold text-white">New Revenue Streams</div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3.5 rounded-xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-950/80 flex items-center justify-center text-cyan-300 text-lg">
+                                <i class="fa-solid fa-house-circle-check"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400">حماية المستفيد</div>
+                                <div class="text-xs font-bold text-white">Post-Handover Safety</div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3.5 rounded-xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-950/80 flex items-center justify-center text-purple-300 text-lg">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400">سوق خدمات</div>
+                                <div class="text-xs font-bold text-white">Marketplace Ecosystem</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap items-center gap-4">
+                        <a href="#calculator" class="px-6 py-3 rounded-xl gradient-purple-teal text-white font-bold shadow-lg glow-purple hover:opacity-90 transition flex items-center gap-2 text-sm">
+                            <span>استكشف نموذج الإيرادات</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#simulator" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 font-semibold transition flex items-center gap-2 text-sm">
+                            <span>معاينة محاكي التطبيق</span>
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <div class="glass-card rounded-2xl p-6 space-y-4 glow-teal">
+                            <div class="flex justify-between items-center border-b border-purple-900/60 pb-3">
+                                <span class="text-sm font-bold text-cyan-300"><i class="fa-solid fa-award ml-1"></i> أهداف الشراكة الوطنية</span>
+                                <span class="text-[10px] text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-700">NHC Partner</span>
+                            </div>
+
+                            <ul class="space-y-3 text-xs md:text-sm text-slate-300">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                                    <span>تحويل رخص البناء والفسوح لـ <strong>سجل أصول رقمي حي</strong> لكل وحدة.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                                    <span>تحصيل 1,000 ريال عن كل وحدة من المطور مقابل الأرشفة والضمان.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                                    <span>تنبيهات استباقية للساكن قبل انقضاء مهلة ضمان التشطيبات.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                                    <span>إتاحة سوق فحص المباني والأثاث لزيادة الإيرادات المستمرة.</span>
+                                </li>
+                            </ul>
+
+                            <div class="pt-3 border-t border-purple-900/60 flex justify-between items-center text-xs text-slate-400">
+                                <span>الربط البرمجي: <strong class="text-cyan-300">API جاهز</strong></span>
+                                <span>نطاق البدء: <strong class="text-purple-300">الفرسان / الخزامى</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="challenges" class="py-16 px-4 md:px-8 border-t border-purple-950 bg-brand-navyBg/60">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold text-red-400 bg-red-950/80 px-3 py-1 rounded-full border border-red-800">التحديات الواقعية</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">فجوة ما بعد الاستلام وتشتت البيانات</h2>
+                    <p class="text-slate-400 text-xs md:text-sm">المشاكل الجوهرية التي يواجهها المستفيد بعد استلام المفتاح في البيع على الخريطة</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="glass-card p-6 rounded-2xl border-t-4 border-t-red-500 space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-red-950/60 flex items-center justify-center text-red-400 text-xl">
+                            <i class="fa-solid fa-phone-slash"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">تغير وتوقف أرقام الموردين</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            يسكن المستفيد غالباً بعد سنة أو سنتين من الاستلام، وعند ظهور عيوب في الصرف الصحي أو الكهرباء، يكتشف أن أرقام المقاولين بالملف الورقي مقفلة أو متغيرة.
+                        </p>
+                        <div class="bg-slate-950/60 p-2.5 rounded-lg text-[11px] text-slate-400 border border-slate-800">
+                            <strong class="text-red-400 block mb-0.5">الأثر:</strong> ضياع الدعم الفني وتضرر سمعة المشروع.
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-t-4 border-t-amber-500 space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-amber-950/60 flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">انقضاء ضمان التشطيبات دون علم</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            الضمان الهيكلي 10 سنوات، لكن ضمان التشطيبات (انسداد الصرف، التصدعات) سنة واحدة غالباً تنتهي قبل السكن دون تنبيه المستفيد بفحص بيته مبكراً.
+                        </p>
+                        <div class="bg-slate-950/60 p-2.5 rounded-lg text-[11px] text-slate-400 border border-slate-800">
+                            <strong class="text-amber-400 block mb-0.5">الأثر:</strong> تحمل المستفيد تكاليف الإصلاح الباهظة.
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-t-4 border-t-purple-500 space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-purple-950/60 flex items-center justify-center text-purple-300 text-xl">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">تشتت الحلول واقتصار الرسوم</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            تطبيقات منفصلة لكل مطور (مثل ريتال) تسبب تشتتاً للمستفيد. كما تقتصر عوائد الوزارة على رسوم الفسوح ورخص البناء الأولية دون عوائد مستمرة.
+                        </p>
+                        <div class="bg-slate-950/60 p-2.5 rounded-lg text-[11px] text-slate-400 border border-slate-800">
+                            <strong class="text-purple-300 block mb-0.5">الأثر:</strong> غياب تجربة موحدة وضياع فرص ربحية.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="solution" class="py-16 px-4 md:px-8 border-t border-purple-950">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">الحل الشامل والموحد</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">منصة الضامن: تجربة سكنية آمنة ومحوكمة</h2>
+                    <p class="text-slate-400 text-xs md:text-sm">أرشفة رقمية، تنبيهات ذكية، وسوق خدمات يضمن جودة الاستثمار السكني</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-base">1</div>
+                        <h3 class="text-base font-bold text-white">السجل الرقمي الموحد</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            أرشفة كاملة للمخططات الإنشائية، الفسوح، شهادات الضمان، وبيانات المقاولين مع تحديثها تلقائياً.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-base">2</div>
+                        <h3 class="text-base font-bold text-white">التنبيهات الذكية للضمان</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            إشعارات آلية تتنبه المستفيد قبل انتهاء ضمان التشطيبات (بـ 60 و 30 يوماً) لإجراء الفحص قبل فوات الأوان.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-base">3</div>
+                        <h3 class="text-base font-bold text-white">سوق الفحص والصيانة</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            ربط المستفيد بشركات فحص المباني المعتمدة (Home Inspection) للكشف عن التصدعات والانسدادات.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-base">4</div>
+                        <h3 class="text-base font-bold text-white">تفعيل الـ Vendors</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            إتاحة منظومة تجارية متاحة لمحلات الأثاث والتجهيزات تقدم عروضاً حصرياً لساكني الضواحي.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="calculator" class="py-16 px-4 md:px-8 border-t border-purple-950 bg-brand-navyBg/80">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">الاستدامة المالية</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">حاسبة مصادر الدخل التفاعلية (New Revenue Streams)</h2>
+                    <p class="text-slate-400 text-xs md:text-sm">حرك المؤشرات لتقدير العوائد المالية المتوقعة من تطبيق منصة الضامن بضواحي الإسكان</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- INPUT CONTROLS -->
+                    <div class="lg:col-span-6 space-y-6">
+                        
+                        <!-- SLIDER 1 -->
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-200 font-bold">إجمالي عدد الوحدات السكنية المستهدفة:</span>
+                                <span id="unitsText" class="text-cyan-300 font-black text-sm">25,000 وحدة</span>
+                            </div>
+                            <input type="range" id="unitsInput" min="5000" max="100000" step="5000" value="25000" oninput="updateCalculator()" class="w-full">
+                            <div class="flex justify-between text-[10px] text-slate-500">
+                                <span>5,000 وحدة</span>
+                                <span>50,000 وحدة</span>
+                                <span>100,000 وحدة</span>
+                            </div>
+                        </div>
+
+                        <!-- SLIDER 2 -->
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-200 font-bold">رسوم أرشفة وضمان الوحدة من المطور:</span>
+                                <span id="feeText" class="text-purple-300 font-black text-sm">1,000 ريال / وحدة</span>
+                            </div>
+                            <input type="range" id="feeInput" min="500" max="2500" step="100" value="1000" oninput="updateCalculator()" class="w-full">
+                        </div>
+
+                        <!-- SLIDER 3 -->
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-200 font-bold">نسبة طلب فحص المباني والشراء من السوق:</span>
+                                <span id="conversionText" class="text-emerald-300 font-black text-sm">35% من السكان</span>
+                            </div>
+                            <input type="range" id="conversionInput" min="10" max="80" step="5" value="35" oninput="updateCalculator()" class="w-full">
+                        </div>
+
+                    </div>
+
+                    <!-- DYNAMIC DISPLAY RESULTS -->
+                    <div class="lg:col-span-6">
+                        <div class="glass-card p-6 md:p-8 rounded-3xl border border-cyan-500/40 relative overflow-hidden space-y-6 glow-teal">
+                            
+                            <div class="flex justify-between items-center border-b border-purple-900/60 pb-3">
+                                <span class="text-xs font-bold text-slate-300">صافي الإيرادات المالية المقدرة</span>
+                                <span class="text-[10px] bg-cyan-950 text-cyan-300 px-2.5 py-1 rounded-full border border-cyan-700">تقدير فوري</span>
+                            </div>
+
+                            <div class="text-center py-2">
+                                <div class="text-xs text-slate-400 mb-1">إجمالي المداخيل المباشرة للشركة والمنصة</div>
+                                <div id="totalRevenue" class="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-purple-300">
+                                    29,375,000
+                                </div>
+                                <div class="text-xs font-bold text-cyan-400 mt-1">ريال سعودي</div>
+                            </div>
+
+                            <div class="space-y-3 pt-2 border-t border-purple-900/60 text-xs">
+                                <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                                    <span class="text-slate-300"><i class="fa-solid fa-building text-purple-400 ml-2"></i>رسوم إدراج المطورين المباشرة:</span>
+                                    <span id="devRevenue" class="font-bold text-white">25,000,000 ريال</span>
+                                </div>
+
+                                <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                                    <span class="text-slate-300"><i class="fa-solid fa-magnifying-glass-chart text-cyan-400 ml-2"></i>عمولات فحص المباني (200 ريال/طلب):</span>
+                                    <span id="inspectRevenue" class="font-bold text-cyan-300">1,750,000 ريال</span>
+                                </div>
+
+                                <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                                    <span class="text-slate-300"><i class="fa-solid fa-store text-emerald-400 ml-2"></i>اشتراكات وعمولات الـ Marketplace:</span>
+                                    <span id="marketRevenue" class="font-bold text-emerald-300">2,625,000 ريال</span>
+                                </div>
+                            </div>
+
+                            <p class="text-[11px] text-slate-400 text-center italic">
+                                * تعتمد رسوم المطور عند فتح ملف البيع على الخريطة، بينما تتكرر عوائد الفحص والـ Marketplace سنوياً.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="marketplace" class="py-16 px-4 md:px-8 border-t border-purple-950">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800">السوق الرقمي المتكامل</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">منظومة الخدمات والـ Marketplace للساكن</h2>
+                    <p class="text-slate-400 text-xs md:text-sm">ربط المستفيد بأجود الشركات المعتمدة مع تحصيل عمولات ورسوم انضمام للمنصة</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="glass-card p-6 rounded-2xl space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-950 text-cyan-300 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">شركات فحص المباني</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            شركات معتمدة تقوم بفحص التصدعات الخرسانية، تسريبات الصرف، والأعمال الكهروميكانيكية برسوم (2,000 - 2,500 ريال) قبل انتهاء الضمان.
+                        </p>
+                        <div class="text-xs text-cyan-300 font-bold bg-cyan-950/50 p-2 rounded-lg">
+                            عمولة المنصة: 200 ريال لكل طلب فحص
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-950 text-purple-300 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">متاجر الأثاث والديكور</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            خصومات موحدة وحصرية لساكني الضواحي (كالفرسان والخزامى) لشراء الأثاث والتكييف والتجهيزات مع تسهيلات دفع.
+                        </p>
+                        <div class="text-xs text-purple-300 font-bold bg-purple-950/50 p-2 rounded-lg">
+                            عمولة مبيعات + رسوم اشتراك سنوياً
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950 text-emerald-300 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">عقود الصيانة والتشغيل</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            مزودو خدمات الصيانة الدورية لما بعد انتهاء فترة الضمانات للسباكة والكهرباء والتكييف بعقود سنوية محوكمة.
+                        </p>
+                        <div class="text-xs text-emerald-300 font-bold bg-emerald-950/50 p-2 rounded-lg">
+                            اشتراكات سنوية للشركات كـ Vendors
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="simulator" class="py-16 px-4 md:px-8 border-t border-purple-950 bg-brand-navyBg/80">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">محاكي الواجهة</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">تجربة المستفيد داخل تطبيق "الضامن"</h2>
+                    <p class="text-slate-400 text-xs md:text-sm">اضغط على التبويبات لاستعراض كيف يتفاعل الساكن مع ضماناته والخدمات</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- LEFT CONTROL INFO -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="glass-card p-5 rounded-2xl space-y-3">
+                            <h3 class="text-base font-bold text-white">مميزات الواجهة الموحدة:</h3>
+                            <ul class="space-y-2.5 text-xs text-slate-300">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-cyan-400"></i>
+                                    <span>عداد تنازلي آلي لضمان التشطيبات والضمان الهيكلي.</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-cyan-400"></i>
+                                    <span>سجل محدث للاتصال بالموردين المعتمدين بضغطة زر.</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-cyan-400"></i>
+                                    <span>حجز فوري لخدمات فحص المباني المعتمدة قبل السكن.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- TAB CONTROLS -->
+                        <div class="flex gap-2">
+                            <button onclick="setSimTab('tab-warranties')" id="btn-tab-warranties" class="flex-1 py-2.5 px-3 rounded-xl bg-purple-600 text-white font-bold text-xs transition shadow">
+                                الضمانات والموردين
+                            </button>
+                            <button onclick="setSimTab('tab-market')" id="btn-tab-market" class="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs hover:bg-slate-700 transition">
+                                سوق الخدمات Marketplace
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MOCKUP DISPLAY -->
+                    <div class="lg:col-span-7 flex justify-center">
+                        <div class="w-full max-w-sm bg-slate-900 rounded-3xl border-4 border-slate-800 p-4 shadow-2xl space-y-4">
+                            
+                            <!-- APP HEADER -->
+                            <div class="bg-slate-950 p-3 rounded-2xl border border-purple-900/40 flex justify-between items-center text-xs">
+                                <div>
+                                    <div class="text-[10px] text-slate-400">الوحدة المسجلة</div>
+                                    <div class="font-bold text-cyan-300"><i class="fa-solid fa-location-dot ml-1"></i>ضاحية الفرسان - فيلا 204</div>
+                                </div>
+                                <span class="bg-cyan-950 text-cyan-300 text-[10px] px-2 py-0.5 rounded-full border border-cyan-800">مستلمة</span>
+                            </div>
+
+                            <!-- CONTENT TAB 1: WARRANTIES -->
+                            <div id="sim-content-warranties" class="space-y-3">
+                                
+                                <div class="bg-amber-950/70 border border-amber-500/40 p-2.5 rounded-xl flex items-center justify-between text-xs">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-triangle-exclamation text-amber-400 animate-bounce"></i>
+                                        <span class="text-[11px] text-slate-200">ينتهي ضمان السباكة خلال <strong>45 يوماً</strong></span>
+                                    </div>
+                                    <button onclick="setSimTab('tab-market')" class="text-[10px] bg-amber-500 text-black font-bold px-2 py-1 rounded hover:bg-amber-400">احجز فحص</button>
+                                </div>
+
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
+                                        <div>
+                                            <div class="font-bold text-white">الهيكل الإنشائي (10 سنوات)</div>
+                                            <div class="text-[10px] text-slate-400">شركة الإنشاءات المتقدمة</div>
+                                        </div>
+                                        <a href="tel:920000000" class="px-2.5 py-1 bg-purple-900/60 text-purple-200 rounded border border-purple-700 text-[10px] font-bold">
+                                            <i class="fa-solid fa-phone ml-1"></i>اتصال
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
+                                        <div>
+                                            <div class="font-bold text-white">أعمال السباكة والصرف (سنة)</div>
+                                            <div class="text-[10px] text-amber-400">أرقام التواصل محدثة</div>
+                                        </div>
+                                        <a href="tel:920000000" class="px-2.5 py-1 bg-purple-900/60 text-purple-200 rounded border border-purple-700 text-[10px] font-bold">
+                                            <i class="fa-solid fa-phone ml-1"></i>اتصال
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
+                                        <div>
+                                            <div class="font-bold text-white">التكييف والأجهزة الكهربائية</div>
+                                            <div class="text-[10px] text-cyan-300">ساري الضمان</div>
+                                        </div>
+                                        <a href="tel:920000000" class="px-2.5 py-1 bg-purple-900/60 text-purple-200 rounded border border-purple-700 text-[10px] font-bold">
+                                            <i class="fa-solid fa-phone ml-1"></i>اتصال
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- CONTENT TAB 2: MARKETPLACE -->
+                            <div id="sim-content-market" class="space-y-3 hidden">
+                                <div class="text-xs font-bold text-slate-300 flex justify-between items-center">
+                                    <span>شركات الفحص والصيانة المعتمدة</span>
+                                    <span class="text-[10px] text-cyan-400">خصومات NHC</span>
+                                </div>
+
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-cyan-500/30 flex justify-between items-center">
+                                        <div>
+                                            <div class="font-bold text-white">شركة الفحص الدقيق للمباني</div>
+                                            <div class="text-[10px] text-slate-400">فحص شامل للفيلا قبل السكن</div>
+                                            <div class="text-cyan-300 font-bold text-[11px] mt-0.5">2,100 ريال <span class="line-through text-slate-500 text-[9px]">2,500</span></div>
+                                        </div>
+                                        <button onclick="alert('تم حجز موعد الفحص بنجاح، سيتواصل معك المهندس خلال 24 ساعة.')" class="px-3 py-1.5 gradient-purple-teal text-white rounded-lg font-bold text-[10px]">
+                                            طلب فحص
+                                        </button>
+                                    </div>
+
+                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
+                                        <div>
+                                            <div class="font-bold text-white">مؤسسة الصيانة الشاملة</div>
+                                            <div class="text-[10px] text-slate-400">عقد صيانة سنوي للوحدة</div>
+                                            <div class="text-purple-300 font-bold text-[11px] mt-0.5">1,500 ريال / سنوياً</div>
+                                        </div>
+                                        <button onclick="alert('تفاصيل عقد الصيانة المعتمد من الضامن.')" class="px-3 py-1.5 bg-slate-800 text-slate-300 rounded-lg font-bold text-[10px]">
+                                            التفاصيل
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-16 px-4 md:px-8 border-t border-purple-950">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800">التطبيق الميداني</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">خارطة طريق المشروع التجريبي (Pilot Roadmap)</h2>
+                    <p class="text-slate-400 text-xs md:text-sm">خطوات واضحة للبدء في ضاحية الفرسان وضاحية الخزامى كنموذج أولي</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
+                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 1</span>
+                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">الاتفاقية والتكامل البرمجي</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            توقيع الشراكة والاستئذان بالربط مع بوابات NHC لإتاحة رفع المستندات الموحدة.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
+                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 2</span>
+                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">إطلاق الضاحية التجريبية</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            تفعيل المنصة في <strong>ضاحية الفرسان</strong> أو <strong>ضاحية الخزامى</strong> وإلزام المطورين بالرفع.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
+                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 3</span>
+                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">تفعيل الـ Marketplace</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            دعوة الشركات المعتمدة لفحص المباني ومزودي خدمات الصيانة والأثاث للانضمام.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
+                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 4</span>
+                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">التوسع الشامل وتوزيع الأرباح</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            تعميم المنصة على كافة المشاريع وتحصيل العوائد المالية المستدامة بانتظام.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- CALL TO ACTION BANNER -->
+                <div class="gradient-purple-teal p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 text-white glow-purple mt-8">
+                    <div class="space-y-1 text-center md:text-right">
+                        <h3 class="text-xl md:text-2xl font-black">جاهزون لإطلاق تجربة "الضامن" مع الوطنية للإسكان</h3>
+                        <p class="text-xs md:text-sm text-purple-100">فريق العمل مستعد للبدء المباشر وتنسيق ورشة العمل التنفيذية فوراً.</p>
+                    </div>
+                    <button onclick="alert('شكراً لكم! سيتم البدء في إجراءات التنسيق الفني والمالي فوراً.')" class="px-6 py-3.5 bg-brand-navyBg hover:bg-slate-900 text-cyan-300 font-bold text-xs md:text-sm rounded-xl border border-cyan-500/40 shadow-xl whitespace-nowrap">
+                        تأكيد خيار الشراكة التجريبية
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-brand-navyBg border-t border-purple-900/40 py-4 px-4 text-center text-xs text-slate-400">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+                جميع الحقوق محفوظة © منصة الضامن وشراكة الشركة الوطنية للإسكان (NHC)
+            </div>
+            <div class="flex items-center gap-4 text-cyan-400 font-semibold">
+                <a href="#hero" class="hover:underline">الرئيسية</a>
+                <span>•</span>
+                <a href="#calculator" class="hover:underline">الحاسبة المالية</a>
+                <span>•</span>
+                <a href="#simulator" class="hover:underline">المحاكي</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // REVENUE CALCULATOR FUNCTION
+        function updateCalculator() {
+            const units = parseInt(document.getElementById('unitsInput').value);
+            const fee = parseInt(document.getElementById('feeInput').value);
+            const conversion = parseInt(document.getElementById('conversionInput').value);
+
+            // Update Labels
+            document.getElementById('unitsText').innerText = units.toLocaleString('ar-SA') + ' وحدة';
+            document.getElementById('feeText').innerText = fee.toLocaleString('ar-SA') + ' ريال / وحدة';
+            document.getElementById('conversionText').innerText = conversion + '% من السكان';
+
+            // Calculations
+            const devRev = units * fee; // Developer onboarding revenue
+            const inspectCount = units * (conversion / 100);
+            const inspectRev = inspectCount * 200; // 200 SAR commission per inspection
+            const marketRev = units * 105; // Estimated 105 SAR annual avg vendor fee/commission per unit
+
+            const total = devRev + inspectRev + marketRev;
+
+            // Render Output Text
+            document.getElementById('devRevenue').innerText = devRev.toLocaleString('en-US') + ' ريال';
+            document.getElementById('inspectRevenue').innerText = Math.round(inspectRev).toLocaleString('en-US') + ' ريال';
+            document.getElementById('marketRevenue').innerText = Math.round(marketRev).toLocaleString('en-US') + ' ريال';
+            document.getElementById('totalRevenue').innerText = Math.round(total).toLocaleString('en-US');
+        }
+
+        // SIMULATOR TAB SWITCHER
+        function setSimTab(tabName) {
+            const tabWarranties = document.getElementById('sim-content-warranties');
+            const tabMarket = document.getElementById('sim-content-market');
+            const btnWarranties = document.getElementById('btn-tab-warranties');
+            const btnMarket = document.getElementById('btn-tab-market');
+
+            if (tabName === 'tab-warranties') {
+                tabWarranties.classList.remove('hidden');
+                tabMarket.classList.add('hidden');
+                btnWarranties.className = 'flex-1 py-2.5 px-3 rounded-xl bg-purple-600 text-white font-bold text-xs transition shadow';
+                btnMarket.className = 'flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs hover:bg-slate-700 transition';
+            } else {
+                tabWarranties.classList.add('hidden');
+                tabMarket.classList.remove('hidden');
+                btnMarket.className = 'flex-1 py-2.5 px-3 rounded-xl bg-cyan-600 text-white font-bold text-xs transition shadow';
+                btnWarranties.className = 'flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs hover:bg-slate-700 transition';
+            }
+        }
+
+        // HIGHLIGHT ACTIVE SIDEBAR LINK ON SCROLL
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // INIT ON LOAD
+        window.onload = function() {
+            updateCalculator();
+        };
+    </script>
+</body>
+</html>
