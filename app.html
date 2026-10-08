@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الضامن | منصة المستفيد التجريبية</title>
+<meta name="theme-color" content="#2A1680">
+<link rel="icon" href="dhamn-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --g:#3B1F9E;--g2:#5B33D6;--g3:#EEEAFD;--sage:#B8C2BE;
+  --gold:#0FB3A6;--gold2:#D9F4F1;--mint:#12A37F;--mint2:#E2F6EF;
+  --red:#D9534F;--red2:#FBE9E8;--amber:#D98E1F;--amber2:#FDF1DD;
+  --bg:#F4F4FA;--card:#fff;--t:#1A1838;--m:#6B6A8C;--d:#A3A2BC;--line:#E8E7F3;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;color:var(--t);min-height:100vh;display:flex;align-items:center;justify-content:center;gap:48px;padding:20px;
+  background:radial-gradient(900px 500px at 80% 0%,rgba(123,63,242,.25),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(22,209,194,.14),transparent 60%),#08071C}
+h1,h2,h3,h4,.kufi{font-family:'Noto Kufi Arabic',sans-serif;line-height:1.5}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+
+/* side panel (desktop) */
+.side{max-width:330px;color:#EEEDFB}
+.side .back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#A3A1C6;margin-bottom:26px}
+.side .back:hover{color:#8BF5EA}
+.side h1{font-size:26px;font-weight:900;margin-bottom:10px}
+.side h1 span{background:linear-gradient(100deg,#B79CFF,#16D1C2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side p{font-size:14px;color:#A3A1C6;line-height:1.8;margin-bottom:22px}
+.modebox{background:rgba(255,255,255,.04);border:1px solid rgba(140,118,255,.25);border-radius:18px;padding:16px}
+.modebox h4{font-size:13px;margin-bottom:10px;color:#8BF5EA}
+.modes{display:grid;gap:8px}
+.mode{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.08);font-size:13.5px;text-align:start;color:#d6d4f0;transition:.2s}
+.mode.on{background:linear-gradient(120deg,#7B3FF2,#16D1C2);color:#fff;border-color:transparent;font-weight:700}
+.tips{margin-top:18px;font-size:12.5px;color:#7F7CAB;line-height:1.9}
+.tips b{color:#d6d4f0}
+
+/* phone */
+.phone{width:400px;height:min(860px,calc(100vh - 40px));border-radius:46px;border:11px solid #0c1714;background:var(--bg);position:relative;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 0 1px rgba(140,118,255,.35),0 0 80px -20px rgba(123,63,242,.6);display:flex;flex-direction:column;flex-shrink:0}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:110px;height:28px;background:#0c1714;border-radius:20px;z-index:30}
+@media(max-width:820px){.side{display:none}body{padding:0;display:block;background:var(--bg)}
+  .phone{width:100%;height:100vh;height:100dvh;border:0;border-radius:0;box-shadow:none}.notch{display:none}}
+
+/* app header */
+.top{background:linear-gradient(135deg,#2A1680,#4F46E5 55%,#0E9C93);color:#fff;padding:44px 18px 16px;position:relative;flex-shrink:0}
+@media(max-width:820px){.top{padding-top:calc(14px + env(safe-area-inset-top))}}
+.tbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:8px}
+.brand .sh{width:36px;height:36px;display:grid;place-items:center}.brand .sh img{width:100%;height:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.brand b{font-family:'Noto Kufi Arabic';font-size:15px;display:block;line-height:1.2}
+.brand small{font-size:10.5px;opacity:.75;display:flex;align-items:center;gap:5px}
+.nchip{display:inline-flex;align-items:center;background:#B8C2BE;border-radius:7px;padding:1px 6px;height:20px}
+.nchip img{height:15px;width:auto;display:block}
+.nchip b{display:none;color:#1F4537;font-size:10px;font-weight:900;font-family:'Noto Kufi Arabic'}
+.ibtn{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;position:relative;font-size:15px}
+.ibtn .badge{position:absolute;top:-3px;left:-3px;min-width:18px;height:18px;border-radius:9px;background:#E85D4F;font-size:10px;font-weight:700;display:grid;place-items:center;padding:0 4px;border:2px solid #3B1F9E}
+.tacts{display:flex;gap:8px}
+.mpill{display:none;margin-top:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:4px;gap:4px}
+.mpill button{flex:1;padding:7px;border-radius:9px;font-size:12px;color:#d6e3dc}
+.mpill button.on{background:#fff;color:#3B1F9E;font-weight:700}
+@media(max-width:820px){.mpill{display:flex}}
+
+/* content */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 16px 100px;scroll-behavior:smooth}
+.content::-webkit-scrollbar{width:0}
+.sec-t{display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px}
+.sec-t h3{font-size:15px;font-weight:800}
+.sec-t a,.sec-t button{font-size:12.5px;color:var(--mint);font-weight:600}
+.card{background:var(--card);border-radius:20px;padding:16px;border:1px solid var(--line)}
+.hello{font-size:13px;color:var(--m)}
+.hello b{display:block;font-family:'Noto Kufi Arabic';font-size:19px;color:var(--t)}
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* unit hero */
+.uhero{border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);margin-top:14px}
+.uimg{position:relative;height:178px;background:#cfe2ea}
+.uimg svg{width:100%;height:100%;display:block}
+.uimg .st{position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.92)}
+.uimg .loc{position:absolute;bottom:10px;right:12px;left:12px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.uimg .loc b{font-family:'Noto Kufi Arabic';font-size:16px;display:block}
+.uimg .loc span{font-size:12px;opacity:.95}
+.ubody{padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.ring{width:78px;height:78px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Noto Kufi Arabic';font-size:17px;font-weight:900;color:var(--g)}
+.ring b small{display:block;font-size:9px;color:var(--m);font-weight:600;margin-top:-30px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12px}
+.kv span{color:var(--m)}.kv b{font-weight:700;color:var(--t)}
+
+/* stepper */
+.steps{display:flex;justify-content:space-between;position:relative;padding:4px 2px 0}
+.steps::before{content:"";position:absolute;top:17px;right:16px;left:16px;height:3px;background:var(--line);border-radius:3px}
+.steps .fill{position:absolute;top:17px;right:16px;height:3px;background:var(--mint);border-radius:3px;transition:width .6s}
+.step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;width:56px;text-align:center}
+.step .c{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:#fff;border:2px solid var(--line);color:var(--d)}
+.step.done .c{background:var(--mint);border-color:var(--mint);color:#fff}
+.step.now .c{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 0 0 5px rgba(15,179,166,.2)}
+.step span{font-size:10px;color:var(--m);line-height:1.35}
+.step.now span{color:var(--t);font-weight:700}
+
+/* advice */
+.advice{border-radius:20px;padding:16px;background:linear-gradient(150deg,#ECFBF8,#DDF4F0);border:1px solid #A9E3DA;margin-top:14px}
+.advice .h{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.advice .h i{width:36px;height:36px;border-radius:11px;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.advice h4{font-size:14.5px}
+.advice p{font-size:12.5px;color:#2C5A54;line-height:1.75}
+.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0 12px}
+.checks li{font-size:11.5px;display:flex;gap:6px;align-items:center;color:#24504A}
+.checks li i{color:var(--gold)}
+.cbtn{width:100%;padding:13px;border-radius:14px;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+.cbtn.pri{background:var(--g);color:#fff}
+.cbtn.pri:active{transform:scale(.98)}
+.cbtn.gold{background:var(--gold);color:#fff}
+.cbtn.out{border:1.5px solid var(--line);background:#fff;color:var(--t)}
+.cbtn.red{background:var(--red);color:#fff}
+.countdown{display:flex;gap:8px;margin-top:12px}
+.cd{flex:1;background:#fff;border-radius:12px;padding:8px;text-align:center;border:1px solid var(--line)}
+.cd b{font-family:'Noto Kufi Arabic';font-size:20px;color:var(--g);display:block;line-height:1.3}
+.cd span{font-size:10.5px;color:var(--m)}
+
+/* alert */
+.walert{border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center;margin-top:14px;background:var(--amber2);border:1px solid #F3D29B}
+.walert.r{background:var(--red2);border-color:#F2C2BF}
+.walert .ic{width:40px;height:40px;border-radius:12px;background:var(--amber);color:#fff;display:grid;place-items:center;flex-shrink:0;animation:ring 2.5s infinite}
+.walert.r .ic{background:var(--red)}
+@keyframes ring{0%,90%,100%{transform:none}93%{transform:rotate(12deg)}96%{transform:rotate(-12deg)}}
+.walert h4{font-size:13.5px}
+.walert p{font-size:12px;color:var(--m)}
+.walert .go{margin-inline-start:auto;background:#fff;border-radius:10px;padding:7px 10px;font-size:11.5px;font-weight:700;white-space:nowrap}
+
+/* quick grid */
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.q{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;font-weight:600;text-align:center;transition:.2s}
+.q:active{transform:scale(.96)}
+.q i{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:17px}
+.c1{background:var(--g3);color:var(--g)}.c2{background:var(--mint2);color:var(--mint)}.c3{background:var(--gold2);color:#0E7C74}.c4{background:var(--red2);color:var(--red)}.c5{background:#E8EEFB;color:#4466B0}.c6{background:#F1E9F7;color:#7A4B9C}
+
+/* lists */
+.li{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.li:last-child{border:0;padding-bottom:2px}
+.li .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;font-size:15px}
+.li .tx{flex:1;min-width:0}
+.li .tx b{font-size:13.5px;display:block}
+.li .tx span{font-size:11.5px;color:var(--m)}
+.li .ar{color:var(--d);font-size:12px}
+.pill{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.p-ok{background:var(--mint2);color:var(--mint)}.p-soon{background:var(--amber2);color:var(--amber)}.p-exp{background:var(--red2);color:var(--red)}.p-pend{background:#EEF1EF;color:var(--m)}.p-gold{background:var(--gold2);color:#0E7C74}
+
+/* specs */
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.spec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 6px;text-align:center}
+.spec i{color:var(--gold);font-size:15px}
+.spec b{display:block;font-family:'Noto Kufi Arabic';font-size:14.5px;margin-top:4px;line-height:1.4}
+.spec span{font-size:10.5px;color:var(--m)}
+.mapbox{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.mapbox svg{display:block;width:100%;height:auto}
+.mapbox .cap{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.ms{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 0;font-size:12.5px}
+.ms .dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:10px;color:#fff;background:var(--mint)}
+.ms .dot.p{background:var(--gold)}.ms .dot.w{background:#D5DCD8}
+.mbar{grid-column:2/3;height:5px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:4px}
+.mbar i{display:block;height:100%;background:var(--mint);border-radius:5px}
+.gal{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.gal::-webkit-scrollbar{height:0}
+.gimg{flex:0 0 130px;height:92px;border-radius:14px;overflow:hidden;position:relative;background:#dde5e0}
+.gimg svg{width:100%;height:100%;display:block}
+.gimg span{position:absolute;bottom:5px;right:7px;font-size:10px;color:#fff;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+
+/* warranty */
+.wsum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.ws{border-radius:14px;padding:10px;text-align:center;background:#fff;border:1px solid var(--line)}
+.ws b{font-family:'Noto Kufi Arabic';font-size:20px;display:block;line-height:1.3}
+.ws span{font-size:11px;color:var(--m)}
+.wc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px}
+.wc.soon{border-color:#F0CF94;box-shadow:0 0 0 3px rgba(217,142,31,.08)}
+.wc.exp{opacity:.8}
+.wc .hd{display:flex;gap:11px;align-items:center}
+.wc .hd .ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:16px;background:var(--g3);color:var(--g);flex-shrink:0}
+.wc .hd b{font-size:14px;display:block}
+.wc .hd span{font-size:11.5px;color:var(--m)}
+.wbar{height:6px;border-radius:6px;background:var(--line);margin:12px 0 6px;overflow:hidden}
+.wbar i{display:block;height:100%;border-radius:6px}
+.wmeta{display:flex;justify-content:space-between;font-size:11px;color:var(--m)}
+.wft{display:flex;gap:8px;margin-top:12px;align-items:center}
+.wft a,.wft button{flex:1;padding:9px;border-radius:11px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+.call{background:var(--g);color:#fff}
+.sec2{background:var(--g3);color:var(--g)}
+.verif{font-size:10.5px;color:var(--mint);display:flex;align-items:center;gap:4px;margin-top:8px}
+
+/* market */
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px;color:var(--d);font-size:13px}
+.cats{display:flex;gap:8px;overflow-x:auto;margin:12px -16px 4px;padding:0 16px 4px}
+.cats::-webkit-scrollbar{height:0}
+.cat{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 13px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--m)}
+.cat.on{background:var(--g);color:#fff;border-color:var(--g)}
+.banner{border-radius:18px;padding:14px 16px;background:linear-gradient(135deg,#3B1F9E,#4F46E5 60%,#0FB3A6);color:#fff;display:flex;gap:12px;align-items:center;margin-top:12px}
+.banner i{font-size:24px;color:#8BF5EA}
+.banner b{font-size:13.5px;display:block}
+.banner span{font-size:11.5px;opacity:.85}
+.pv{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px}
+.pv .hd{display:flex;gap:12px}
+.pv .logo{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.pv .nm{font-size:14px;font-weight:700}
+.pv .rt{font-size:11.5px;color:var(--m);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pv .rt i{color:#E9A92A}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tg{font-size:10.5px;padding:3px 8px;border-radius:7px;background:#F1F4F2;color:var(--m);font-weight:600}
+.tg.v{background:var(--mint2);color:var(--mint)}
+.pv .ft{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.price b{font-family:'Noto Kufi Arabic';font-size:16px;color:var(--g)}
+.price s{font-size:11px;color:var(--d);margin-inline-start:6px}
+.price small{display:block;font-size:10.5px;color:var(--mint);font-weight:700}
+.book{background:var(--gold);color:#fff;padding:9px 16px;border-radius:12px;font-size:12.5px;font-weight:700}
+
+/* reports */
+.signal{border-radius:18px;padding:14px;background:#EEF3FB;border:1px solid #D3DFF3;display:flex;gap:12px;margin-bottom:12px}
+.signal i{color:#4466B0;font-size:18px;margin-top:3px}
+.signal b{font-size:13px}
+.signal p{font-size:12px;color:#4f5e78;line-height:1.7}
+.rc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px}
+.track{display:flex;justify-content:space-between;margin-top:12px;position:relative}
+.track::before{content:"";position:absolute;top:8px;right:8px;left:8px;height:2px;background:var(--line)}
+.tk{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px;width:25%;font-size:10px;color:var(--m);text-align:center}
+.tk i{width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--line);display:block}
+.tk.d i{background:var(--mint);border-color:var(--mint)}
+.tk.d{color:var(--t);font-weight:600}
+.empty{text-align:center;padding:28px 10px;color:var(--m);font-size:13px}
+.empty i{font-size:30px;color:var(--sage);display:block;margin-bottom:10px}
+
+/* bottom nav */
+.bnav{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;padding:8px 6px calc(10px + env(safe-area-inset-bottom));z-index:20}
+.bnav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;color:var(--d);padding:4px 0;font-weight:600;position:relative}
+.bnav button i{font-size:18px}
+.bnav button.on{color:var(--g)}
+.bnav button.on::before{content:"";position:absolute;top:-9px;width:26px;height:3px;border-radius:3px;background:var(--gold)}
+.bnav .dotn{position:absolute;top:0;left:calc(50% - 16px);width:8px;height:8px;border-radius:50%;background:#E85D4F}
+
+/* sheet */
+.scrim{position:absolute;inset:0;background:rgba(10,20,16,.45);opacity:0;pointer-events:none;transition:.3s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:88%;background:var(--bg);border-radius:26px 26px 0 0;transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:41;display:flex;flex-direction:column}
+.sheet.on{transform:none}
+.grab{width:42px;height:5px;border-radius:5px;background:#C9D2CD;margin:10px auto 4px;flex-shrink:0}
+.sbody{overflow-y:auto;padding:8px 18px calc(22px + env(safe-area-inset-bottom))}
+.sbody h3{font-size:17px;margin-bottom:4px}
+.sub{font-size:12.5px;color:var(--m);margin-bottom:14px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;margin-bottom:8px;width:100%;text-align:start;font-size:13px}
+.opt.on{border-color:var(--g);background:var(--g3)}
+.opt b{display:block;font-size:13.5px}
+.opt span{font-size:11.5px;color:var(--m)}
+.slots{display:flex;gap:8px;overflow-x:auto;margin-bottom:10px;padding-bottom:4px}
+.slots::-webkit-scrollbar{height:0}
+.slot{flex-shrink:0;width:62px;padding:9px 0;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:center;font-size:11px;color:var(--m)}
+.slot b{display:block;font-size:17px;color:var(--t);font-family:'Noto Kufi Arabic';line-height:1.4}
+.slot.on{border-color:var(--g);background:var(--g);color:#d7e6de}.slot.on b{color:#fff}
+.times{display:flex;gap:8px;margin-bottom:16px}
+.time{flex:1;padding:10px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:12.5px;font-weight:600}
+.time.on{border-color:var(--g);background:var(--g3);color:var(--g)}
+.lbl{font-size:12.5px;font-weight:700;margin:14px 0 8px;display:block}
+textarea,select{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:12px;font-family:inherit;font-size:13px;background:#fff;color:var(--t);resize:none;outline:none}
+textarea:focus,select:focus{border-color:var(--g)}
+.ok-big{text-align:center;padding:10px 0 4px}
+.ok-big .ck{width:76px;height:76px;border-radius:50%;background:var(--mint2);color:var(--mint);display:grid;place-items:center;font-size:32px;margin:0 auto 14px;animation:pop .5s}
+@keyframes pop{0%{transform:scale(.3)}70%{transform:scale(1.1)}100%{transform:none}}
+.refbox{background:#fff;border:1px dashed var(--sage);border-radius:14px;padding:12px;margin:14px 0;font-size:12.5px;display:grid;gap:6px;text-align:start}
+.refbox div{display:flex;justify-content:space-between}
+.refbox span{color:var(--m)}
+.doc-prev{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#16324F;margin-bottom:12px}
+.doc-prev svg{display:block;width:100%;height:auto}
+.stars{display:flex;gap:6px;justify-content:center;margin:10px 0}
+.stars button{font-size:26px;color:#D5DCD8}
+.stars button.on{color:#E9A92A}
+.toast{position:absolute;top:56px;left:50%;transform:translate(-50%,-20px);background:var(--t);color:#fff;font-size:12.5px;padding:10px 16px;border-radius:12px;opacity:0;transition:.3s;z-index:60;white-space:nowrap;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.note{font-size:11.5px;color:var(--m);background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;line-height:1.7;display:flex;gap:8px}
+.note i{color:var(--gold);margin-top:4px}
+</style>
+</head>
+<body>
+
+<aside class="side">
+  <a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i>العودة إلى عرض الفرصة</a>
+  <h1>أنت الآن <span>مالك وحدة</span><br>في ضاحية الخزامى</h1>
+  <p>تصفح المنصة كما سيراها المستفيد: وحدتك، نسبة إنجازها، ضماناتها وأرقام الموردين، التنبيهات، وسوق الخدمات. بدّل مرحلة الرحلة لترى كيف تتغير التجربة.</p>
+  <div class="modebox">
+    <h4><i class="fa-solid fa-route"></i> مرحلة رحلة المستفيد</h4>
+    <div class="modes">
+      <button class="mode" data-m="pre" onclick="setMode('pre')"><i class="fa-solid fa-helmet-safety"></i>قبل استلام المفتاح (الإنشاء 94%)</button>
+      <button class="mode" data-m="post" onclick="setMode('post')"><i class="fa-solid fa-house-circle-check"></i>بعد الاستلام بـ 10 أشهر</button>
+    </div>
+  </div>
+  <a href="admin.html" class="mode" style="margin-top:12px;justify-content:center;border-color:rgba(95,211,165,.4);color:#9FE3C6"><i class="fa-solid fa-chart-pie"></i>شاهد نفس البيانات في لوحة تحكم NHC</a>
+  <div class="tips"><b>جرّب:</b> نصيحة الفحص قبل الاستلام ← حجز فحص · تبويب الضمانات وتنبيهات الانتهاء · فتح بلاغ صيانة ومشاهدة إشارة الحي.<br>جميع الأسماء والأرقام توضيحية لأغراض العرض.</div>
+</aside>
+
+<div class="phone" id="phone">
+  <div class="notch"></div>
+  <div class="top">
+    <div class="tbar">
+      <div class="tacts">
+        <a href="index.html" class="ibtn" title="العودة للعرض"><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="brand">
+        <div class="sh"><img src="dhamn-icon.png" alt=""></div>
+        <div><b>الضامن</b><small>بالشراكة مع <span class="nchip"><img src="nhc-logo.png" alt="NHC" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><b>NHC</b></span></small></div>
+      </div>
+      <div class="tacts">
+        <button class="ibtn" onclick="openNotifs()"><i class="fa-regular fa-bell"></i><span class="badge" id="nbadge">2</span></button>
+      </div>
+    </div>
+    <div class="mpill">
+      <button data-m="pre" onclick="setMode('pre')">قبل الاستلام</button>
+      <button data-m="post" onclick="setMode('post')">بعد الاستلام</button>
+    </div>
+  </div>
+
+  <div class="content" id="content"></div>
+
+  <nav class="bnav" id="bnav">
+    <button data-t="home" onclick="go('home')"><i class="fa-solid fa-house"></i>الرئيسية</button>
+    <button data-t="unit" onclick="go('unit')"><i class="fa-solid fa-building"></i>وحدتي</button>
+    <button data-t="war" onclick="go('war')"><i class="fa-solid fa-shield-halved"></i>الضمانات<span class="dotn" id="wdot" style="display:none"></span></button>
+    <button data-t="mkt" onclick="go('mkt')"><i class="fa-solid fa-store"></i>السوق</button>
+    <button data-t="rep" onclick="go('rep')"><i class="fa-solid fa-screwdriver-wrench"></i>البلاغات</button>
+  </nav>
+
+  <div class="scrim" id="scrim" onclick="closeSheet()"></div>
+  <div class="sheet" id="sheet"><div class="grab"></div><div class="sbody" id="sbody"></div></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const DAY=864e5, NOW=new Date();
+const S={mode:'pre',tab:'home',cat:'inspection',reports:[],bookings:[],rated:0};
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const dstr=d=>d.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{day:'numeric',month:'long',year:'numeric'});
+const addY=(d,y)=>{const x=new Date(d);x.setFullYear(x.getFullYear()+y);return x};
+
+const UNIT={
+  owner:'عبدالله',id:'B-214',type:'فيلا دورين + ملحق',suburb:'ضاحية الخزامى',city:'الرياض',
+  zone:'المرحلة B – المجموعة 3',street:'شارع 18',dev:'المطور الثلاثي',contract:'بيع على الخريطة',
+  land:312,built:385,rooms:5,baths:5,park:2,
+};
+function handover(){return S.mode==='pre'?new Date(NOW.getTime()+21*DAY):new Date(NOW.getTime()-318*DAY)}
+function progress(){return S.mode==='pre'?94:100}
+
+const MILES=[
+  {n:'الأساسات والقواعد',p:100},{n:'الهيكل الخرساني',p:100},{n:'المباني والعزل',p:100},
+  {n:'التمديدات الكهروميكانيكية',p:100},{n:'اللياسة والتشطيبات الداخلية',p:88},{n:'الواجهات',p:92},{n:'الأعمال الخارجية والأسوار',p:70}
+];
+
+const W=[
+  {id:'str',n:'الهيكل الإنشائي',i:'fa-building-columns',y:10,co:'شركة البنيان المتين للمقاولات',ph:'920011223',cov:['الأساسات والقواعد','الأعمدة والجسور والأسقف','التصدعات والهبوط الإنشائي']},
+  {id:'wp',n:'العزل المائي والحراري',i:'fa-umbrella',y:5,co:'مؤسسة الحاجز للعوازل',ph:'920022334',cov:['عزل الأسطح','عزل الحمامات والمطابخ','التسربات من الأسقف']},
+  {id:'fire',n:'السلامة والإنذار من الحريق',i:'fa-fire-extinguisher',y:2,co:'شركة درع الأمان',ph:'920033445',cov:['كواشف الدخان','لوحة الإنذار','طفايات الحريق']},
+  {id:'ac',n:'التكييف',i:'fa-snowflake',y:2,co:'شركة النسيم للتكييف',ph:'920044556',cov:['الوحدات الداخلية والخارجية','الضاغط (كمبروسر)','التمديدات النحاسية']},
+  {id:'door',n:'الأبواب والنوافذ والألمنيوم',i:'fa-door-open',y:2,co:'مصنع الإطار للألمنيوم',ph:'920055667',cov:['النوافذ والإحكام','الأبواب الداخلية والخارجية','الأقفال والمفصلات']},
+  {id:'plb',n:'السباكة والصرف الصحي',i:'fa-faucet-drip',y:1,co:'مؤسسة الجريان للسباكة',ph:'920066778',cov:['تمديدات المياه','الصرف والبالوعات','الأدوات الصحية والسخانات']},
+  {id:'ele',n:'الأعمال الكهربائية',i:'fa-bolt',y:1,co:'شركة الوميض للكهرباء',ph:'920077889',cov:['اللوحات والقواطع','الأفياش والإنارة','التمديدات الداخلية']},
+  {id:'fin',n:'التشطيبات',i:'fa-paint-roller',y:1,co:'مؤسسة اللمسة الأخيرة',ph:'920088990',cov:['الدهانات والجبس','البلاط والرخام','التشققات السطحية']},
+];
+function wInfo(w){
+  const h=handover(),end=addY(h,w.y);
+  if(S.mode==='pre')return{st:'pend',end,left:null,pct:0,start:h};
+  const left=Math.ceil((end-NOW)/DAY),total=(end-h)/DAY,pct=Math.min(100,Math.max(0,(NOW-h)/DAY/total*100));
+  return{st:left<0?'exp':left<=60?'soon':'ok',end,left,pct,start:h};
+}
+
+const CATS=[
+  {id:'inspection',n:'فحص قبل الاستلام',i:'fa-magnifying-glass'},
+  {id:'maint',n:'صيانة',i:'fa-screwdriver-wrench'},
+  {id:'clean',n:'تنظيف',i:'fa-broom'},
+  {id:'ac',n:'تكييف',i:'fa-snowflake'},
+  {id:'pest',n:'مكافحة حشرات',i:'fa-bug'},
+  {id:'furn',n:'أثاث ومطابخ',i:'fa-couch'},
+  {id:'smart',n:'منزل ذكي',i:'fa-house-signal'},
+];
+const DEFAULT_P=[
+  {id:1,c:'inspection',n:'مكتب الفحص الهندسي الدقيق',r:4.9,rv:312,pr:2500,dc:15,t:'4–5 ساعات',tags:['تصوير حراري','تقرير معتمد','مهندس مرخّص'],col:'c1',i:'fa-clipboard-check',pk:true},
+  {id:2,c:'inspection',n:'بيت بلا عيوب لفحص المباني',r:4.8,rv:208,pr:2200,dc:10,t:'3–4 ساعات',tags:['فحص الصرف بالكاميرا','تقرير خلال 24 ساعة'],col:'c2',i:'fa-house-circle-check',pk:true},
+  {id:3,c:'inspection',n:'فاحص للخدمات الهندسية',r:4.7,rv:155,pr:1900,dc:10,t:'3 ساعات',tags:['فحص كهربائي','قياس الرطوبة'],col:'c3',i:'fa-ruler-combined',pk:true},
+  {id:4,c:'inspection',n:'المهندس المعتمد',r:4.6,rv:97,pr:2000,dc:12,t:'4 ساعات',tags:['متابعة إصلاح الملاحظات'],col:'c5',i:'fa-helmet-safety',pk:true},
+  {id:5,c:'maint',n:'مؤسسة الصيانة الشاملة',r:4.8,rv:421,pr:1500,dc:20,t:'عقد سنوي',tags:['سباكة','كهرباء','زيارات دورية'],col:'c1',i:'fa-toolbox',u:'سنوياً'},
+  {id:6,c:'maint',n:'فني السباكة السريع',r:4.6,rv:289,pr:150,dc:0,t:'زيارة خلال 3 ساعات',tags:['طوارئ 24/7'],col:'c5',i:'fa-faucet-drip',u:'للزيارة'},
+  {id:7,c:'maint',n:'العزل الذهبي',r:4.7,rv:132,pr:3200,dc:10,t:'يومان',tags:['عزل أسطح','ضمان 5 سنوات'],col:'c3',i:'fa-umbrella'},
+  {id:8,c:'clean',n:'لمعة لتنظيف ما بعد البناء',r:4.9,rv:510,pr:1200,dc:15,t:'يوم كامل',tags:['إزالة بقايا الأسمنت','تنظيف البالوعات'],col:'c2',i:'fa-broom'},
+  {id:9,c:'clean',n:'نظافة بيتي',r:4.5,rv:198,pr:350,dc:10,t:'5 ساعات',tags:['تنظيف دوري'],col:'c6',i:'fa-spray-can-sparkles',u:'للزيارة'},
+  {id:10,c:'ac',n:'شركة النسيم – صيانة التكييف',r:4.7,rv:240,pr:600,dc:10,t:'ساعتان',tags:['غسيل وحدات','تعبئة فريون'],col:'c5',i:'fa-snowflake'},
+  {id:11,c:'pest',n:'درع لمكافحة الحشرات',r:4.6,rv:176,pr:450,dc:15,t:'ساعة واحدة',tags:['معتمد من البلدية','ضمان 3 أشهر'],col:'c4',i:'fa-bug'},
+  {id:12,c:'furn',n:'مطابخ الدار',r:4.8,rv:88,pr:18000,dc:12,t:'تركيب خلال 30 يوماً',tags:['تصميم مجاني','تقسيط'],col:'c3',i:'fa-kitchen-set'},
+  {id:13,c:'furn',n:'معرض بيت الأناقة للأثاث',r:4.5,rv:143,pr:0,dc:15,t:'توصيل وتركيب',tags:['خصم ساكني الضواحي'],col:'c6',i:'fa-couch',u:'خصم'},
+  {id:14,c:'smart',n:'ذكي للأنظمة المنزلية',r:4.7,rv:66,pr:2900,dc:10,t:'يوم واحد',tags:['كاميرات','أقفال ذكية','تحكم بالإنارة'],col:'c5',i:'fa-house-signal'},
+];
+let P=DEFAULT_P;
+function loadP(){try{const v=localStorage.getItem('dhamn_vendors_v1');P=v?JSON.parse(v):DEFAULT_P}catch(e){P=DEFAULT_P}P=P.filter(p=>p.active!==false)}
+loadP();
+addEventListener('storage',e=>{if(e.key==='dhamn_vendors_v1'){loadP();if(S.tab==='mkt'){render();toast('تم تحديث مقدمي الخدمة من لوحة NHC')}}});
+
+/* ================= SVG ART ================= */
+function villaSVG(done){
+  const scaffold=done?'':`<g stroke="#8a6b3a" stroke-width="2" opacity=".8"><line x1="232" y1="60" x2="232" y2="150"/><line x1="290" y1="60" x2="290" y2="150"/><line x1="226" y1="88" x2="296" y2="88"/><line x1="226" y1="120" x2="296" y2="120"/></g><g transform="translate(320 40)"><line x1="0" y1="0" x2="0" y2="110" stroke="#C79A3B" stroke-width="4"/><line x1="-40" y1="4" x2="20" y2="4" stroke="#C79A3B" stroke-width="4"/><line x1="-34" y1="4" x2="-34" y2="30" stroke="#555" stroke-width="1.5"/></g>`;
+  return `<svg viewBox="0 0 360 178" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9CC9DE"/><stop offset="1" stop-color="#F2E6CF"/></linearGradient><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EBDD"/><stop offset="1" stop-color="#E2D6C0"/></linearGradient><linearGradient id="win" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E4A55"/><stop offset="1" stop-color="#4E7480"/></linearGradient><linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient></defs>
+  <rect width="360" height="178" fill="url(#sky)"/><circle cx="64" cy="40" r="20" fill="#FFF3D1" opacity=".9"/>
+  <rect y="146" width="360" height="32" fill="#D8C7A6"/><rect y="146" width="360" height="5" fill="#C7B18B"/>
+  <rect x="96" y="58" width="150" height="90" fill="url(#wall)"/><rect x="150" y="34" width="110" height="26" fill="#E9DFCC"/>
+  <rect x="90" y="54" width="162" height="6" fill="#CBB998"/><rect x="146" y="30" width="118" height="6" fill="#CBB998"/>
+  <rect x="246" y="86" width="56" height="62" fill="#E5D9C3"/><rect x="242" y="82" width="64" height="6" fill="#CBB998"/>
+  <rect x="104" y="70" width="40" height="30" rx="2" fill="url(#win)"/><rect x="152" y="70" width="40" height="30" rx="2" fill="url(#win)"/><rect x="200" y="70" width="38" height="30" rx="2" fill="url(#win)"/>
+  <rect x="104" y="112" width="40" height="36" rx="2" fill="url(#win)"/><rect x="200" y="112" width="38" height="36" rx="2" fill="url(#win)"/>
+  <rect x="158" y="108" width="30" height="40" rx="2" fill="#7A5634"/><rect x="161" y="111" width="24" height="34" fill="#8E6640"/>
+  <rect x="254" y="98" width="40" height="22" rx="2" fill="url(#win)"/>
+  <rect x="168" y="40" width="30" height="16" rx="2" fill="url(#win)" opacity=".9"/>
+  <rect x="104" y="70" width="40" height="30" fill="#F3DCA2" opacity="${done?.25:0}"/><rect x="200" y="112" width="38" height="36" fill="#F3DCA2" opacity="${done?.2:0}"/>
+  <g transform="translate(40 92)"><rect x="-3" y="10" width="6" height="46" fill="#7B5B3A"/><path d="M0 10 C-26 -2 -34 10 -36 18 C-22 6 -10 8 0 12 C10 8 22 6 36 18 C34 10 26 -2 0 10Z" fill="#3F7A55"/><path d="M0 8 C-14 -14 -6 -20 0 -18 C6 -20 14 -14 0 8Z" fill="#4E8D62"/></g>
+  <rect x="308" y="128" width="40" height="20" rx="10" fill="#5C8E62"/><rect x="0" y="138" width="80" height="10" rx="5" fill="#5C8E62" opacity=".8"/>
+  ${scaffold}<rect width="360" height="178" fill="url(#shade)"/></svg>`;
+}
+function siteSVG(k){
+  const sets=[
+    ['#B7A98E','#8C7B62',`<rect x="20" y="30" width="90" height="50" fill="#D9CDB6"/><rect x="20" y="30" width="90" height="6" fill="#8C7B62"/><g stroke="#6b5a42" stroke-width="2"><line x1="30" y1="36" x2="30" y2="80"/><line x1="65" y1="36" x2="65" y2="80"/><line x1="100" y1="36" x2="100" y2="80"/></g>`],
+    ['#cfdfe6','#C9B79A',`<rect x="15" y="25" width="100" height="60" fill="#EFE6D6"/><rect x="25" y="35" width="30" height="20" fill="#3d5d68"/><rect x="70" y="35" width="30" height="20" fill="#3d5d68"/><rect x="50" y="60" width="20" height="25" fill="#7A5634"/>`],
+    ['#E9E3D7','#cdbfa5',`<rect x="0" y="60" width="130" height="32" fill="#D9CBB0"/><rect x="10" y="10" width="110" height="50" fill="#F6F1E8"/><rect x="20" y="20" width="40" height="30" fill="#A9C4CC"/><rect x="72" y="20" width="38" height="40" fill="#E5DACB"/><circle cx="91" cy="40" r="2" fill="#8a6b3a"/>`],
+  ][k];
+  return `<svg viewBox="0 0 130 92" preserveAspectRatio="xMidYMid slice"><rect width="130" height="92" fill="${sets[0]}"/><rect y="80" width="130" height="12" fill="${sets[1]}"/>${sets[2]}</svg>`;
+}
+function mapSVG(){
+  let plots='';
+  for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+    const x=14+c*56+(c>2?18:0),y=14+r*40+(r>1?16:0),me=(r===1&&c===4);
+    plots+=`<rect x="${x}" y="${y}" width="50" height="34" rx="5" fill="${me?'#6D35E8':'#E9E8F3'}" stroke="${me?'#3B1F9E':'#D6D4EA'}"/>`;
+    if(me)plots+=`<text x="${x+25}" y="${y+22}" font-size="11" font-weight="700" fill="#fff" text-anchor="middle" font-family="IBM Plex Sans Arabic">B-214</text>`;
+  }
+  return `<svg viewBox="0 0 364 210"><rect width="364" height="210" fill="#F6F8F5"/>
+  <rect x="0" y="92" width="364" height="16" fill="#D7DED9"/><rect x="178" y="0" width="16" height="210" fill="#D7DED9"/>
+  <line x1="0" y1="100" x2="364" y2="100" stroke="#fff" stroke-dasharray="8 6" stroke-width="2"/><line x1="186" y1="0" x2="186" y2="210" stroke="#fff" stroke-dasharray="8 6" stroke-width="2"/>
+  ${plots}
+  <rect x="14" y="186" width="70" height="16" rx="4" fill="#CFE6D8"/><text x="49" y="198" font-size="9" fill="#2E9E74" text-anchor="middle" font-family="IBM Plex Sans Arabic">حديقة الحي</text>
+  <g transform="translate(275 40)"><path d="M0 -26 C-11 -26 -16 -17 -16 -11 C-16 0 0 12 0 12 C0 12 16 0 16 -11 C16 -17 11 -26 0 -26Z" fill="#3B1F9E"/><circle cy="-12" r="5.5" fill="#16D1C2"/></g>
+  <text x="270" y="206" font-size="9" fill="#5F7268" font-family="IBM Plex Sans Arabic">شارع 18</text></svg>`;
+}
+function blueprintSVG(t){
+  return `<svg viewBox="0 0 340 210"><defs><pattern id="gp" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M14 0H0V14" fill="none" stroke="#2A4D6E" stroke-width=".6"/></pattern></defs><rect width="340" height="210" fill="url(#gp)"/>
+  <g fill="none" stroke="#BFD9F2" stroke-width="2"><rect x="40" y="30" width="200" height="140"/><line x1="140" y1="30" x2="140" y2="110"/><line x1="40" y1="110" x2="240" y2="110"/><line x1="190" y1="110" x2="190" y2="170"/><rect x="240" y="70" width="60" height="100"/></g>
+  <g fill="none" stroke="#BFD9F2" stroke-width="1" stroke-dasharray="3 3"><path d="M140 80 A20 20 0 0 1 160 100"/><path d="M190 140 A18 18 0 0 0 208 158"/></g>
+  <g font-family="IBM Plex Sans Arabic" font-size="10" fill="#E3F0FC" text-anchor="middle"><text x="90" y="72">مجلس</text><text x="190" y="72">صالة</text><text x="115" y="144">غرفة نوم</text><text x="215" y="144">مطبخ</text><text x="270" y="124">ملحق</text></g>
+  <text x="170" y="200" font-family="IBM Plex Sans Arabic" font-size="10" fill="#9DBEDD" text-anchor="middle">${t} · وحدة B-214 · نسخة معتمدة</text></svg>`;
+}
+
+/* ================= UI HELPERS ================= */
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2200)}
+function openSheet(h){$('sbody').innerHTML=h;$('sbody').scrollTop=0;$('sheet').classList.add('on');$('scrim').classList.add('on')}
+function closeSheet(){$('sheet').classList.remove('on');$('scrim').classList.remove('on')}
+function go(t,opt){S.tab=t;if(opt&&opt.cat)S.cat=opt.cat;render();$('content').scrollTop=0}
+function setMode(m){S.mode=m;render();toast(m==='pre'?'وضع: قبل استلام المفتاح':'وضع: بعد الاستلام بـ 10 أشهر')}
+function ringSVG(p){const C=2*Math.PI*33;return `<svg width="78" height="78"><circle cx="39" cy="39" r="33" fill="none" stroke="#ECEAF7" stroke-width="8"/><circle cx="39" cy="39" r="33" fill="none" stroke="${p>=100?'#12A37F':'#0FB3A6'}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-p/100)}"/></svg>`}
+function soonest(){return W.map(w=>({w,...wInfo(w)})).filter(x=>x.st==='soon'||x.st==='exp').sort((a,b)=>a.left-b.left)}
+const stPill={ok:'<span class="pill p-ok">ساري</span>',soon:'<span class="pill p-soon">ينتهي قريباً</span>',exp:'<span class="pill p-exp">منتهٍ</span>',pend:'<span class="pill p-pend">يبدأ عند الاستلام</span>'};
+
+/* ================= SCREENS ================= */
+function stagesHTML(){
+  const st=[{n:'توقيع العقد',i:'fa-file-signature'},{n:'الإنشاء',i:'fa-helmet-safety'},{n:'الفحص قبل الاستلام',i:'fa-magnifying-glass'},{n:'تسليم المفتاح',i:'fa-key'},{n:'فترة الضمان',i:'fa-shield-halved'}];
+  const cur=S.mode==='pre'?2:4;
+  return `<div class="card" style="margin-top:14px"><div style="font-size:12.5px;font-weight:700;margin-bottom:10px">رحلة وحدتك</div><div class="steps"><div class="fill" style="width:calc(${cur/(st.length-1)*100}% - ${cur/(st.length-1)*32}px)"></div>${st.map((s,i)=>`<div class="step ${i<cur?'done':i===cur?'now':''}"><div class="c"><i class="fa-solid ${i<cur?'fa-check':s.i}"></i></div><span>${s.n}</span></div>`).join('')}</div></div>`;
+}
+function home(){
+  const p=progress(),h=handover(),pre=S.mode==='pre';
+  const days=Math.ceil((h-NOW)/DAY);
+  let mid='';
+  if(pre){
+    mid=`<div class="advice"><div class="h"><i class="fa-solid fa-lightbulb"></i><h4>نصيحة الضامن: افحص قبل أن تستلم</h4></div>
+    <p>بقي <b>${days} يوماً</b> على تسليم المفتاح. الملاحظات التي يرصدها فاحص معتمد <b>قبل الاستلام</b> يلتزم المطور بإصلاحها وتُوثَّق في سجل وحدتك — أما بعد الاستلام فالعبء يقع عليك.</p>
+    <ul class="checks"><li><i class="fa-solid fa-circle-check"></i>الصرف والبالوعات</li><li><i class="fa-solid fa-circle-check"></i>التسربات والعزل</li><li><i class="fa-solid fa-circle-check"></i>التشققات والميول</li><li><i class="fa-solid fa-circle-check"></i>اللوحات الكهربائية</li><li><i class="fa-solid fa-circle-check"></i>النوافذ والإحكام</li><li><i class="fa-solid fa-circle-check"></i>ضغط المياه والسخانات</li></ul>
+    <button class="cbtn gold" onclick="go('mkt',{cat:'inspection'})"><i class="fa-solid fa-magnifying-glass"></i>استعرض شركات الفحص المعتمدة</button>
+    <div class="countdown"><div class="cd"><b>${days}</b><span>يوماً للتسليم</span></div><div class="cd"><b>${p}%</b><span>نسبة الإنجاز</span></div><div class="cd"><b>${W.length}</b><span>ضمانات جاهزة</span></div></div></div>`;
+  }else{
+    const s=soonest()[0];
+    if(s)mid=`<div class="walert ${s.left<=30?'r':''}" onclick="openWarranty('${s.w.id}')" style="cursor:pointer"><div class="ic"><i class="fa-solid fa-bell"></i></div><div><h4>ينتهي ضمان ${s.w.n} خلال ${s.left} يوماً</h4><p>افحص قبل الانتهاء — ${soonest().length} ضمانات تنتهي قريباً</p></div><span class="go">التفاصيل</span></div>`;
+    if(!S.rated)mid+=`<div class="card" style="margin-top:12px"><div style="display:flex;gap:10px;align-items:center"><i class="fa-solid fa-star-half-stroke" style="color:#E9A92A;font-size:20px"></i><div style="flex:1"><b style="font-size:13.5px">كيف كانت تجربة الاستلام؟</b><div style="font-size:11.5px;color:var(--m)">رأيك يُرفع لـ NHC ضمن مؤشر جودة المطور</div></div><button class="book" style="background:var(--g)" onclick="openRate()">قيّم</button></div></div>`;
+  }
+  return `<div class="fade">
+  <div class="hello">مساء الخير،<b>${UNIT.owner} 👋</b></div>
+  <div class="uhero" onclick="go('unit')" style="cursor:pointer">
+    <div class="uimg">${villaSVG(!pre)}<span class="st" style="color:${pre?'#8a6620':'#2E9E74'}">${pre?'قيد الإنشاء':'مستلمة'}</span>
+    <div class="loc"><b>فيلا ${UNIT.id} · ${UNIT.suburb}</b><span><i class="fa-solid fa-location-dot"></i> ${UNIT.zone} · ${UNIT.dev}</span></div></div>
+    <div class="ubody"><div class="ring">${ringSVG(p)}<b>${p}%</b></div>
+    <div class="kv"><span>${pre?'التسليم المتوقع':'تاريخ الاستلام'}</span><b>${dstr(h)}</b><span>المساحة</span><b>${UNIT.land} م² أرض</b><span>نوع العقد</span><b>${UNIT.contract}</b></div></div>
+  </div>
+  ${mid}
+  ${stagesHTML()}
+  <div class="sec-t"><h3>خدمات سريعة</h3></div>
+  <div class="qgrid">
+    <button class="q" onclick="go('unit')"><i class="fa-solid fa-folder-open c1"></i>ملف الوحدة</button>
+    <button class="q" onclick="go('war')"><i class="fa-solid fa-shield-halved c2"></i>ضماناتي</button>
+    <button class="q" onclick="go('mkt',{cat:'inspection'})"><i class="fa-solid fa-magnifying-glass c3"></i>احجز فحصاً</button>
+    <button class="q" onclick="go('rep')"><i class="fa-solid fa-screwdriver-wrench c4"></i>بلاغ صيانة</button>
+    <button class="q" onclick="openDocs()"><i class="fa-solid fa-file-lines c5"></i>المستندات</button>
+    <button class="q" onclick="go('mkt',{cat:'clean'})"><i class="fa-solid fa-store c6"></i>سوق الخدمات</button>
+  </div>
+  ${S.bookings.length?`<div class="sec-t"><h3>حجوزاتي</h3></div><div class="card">${S.bookings.map(b=>`<div class="li"><div class="ic c2"><i class="fa-solid fa-calendar-check"></i></div><div class="tx"><b>${b.n}</b><span>${b.d} · ${b.t}</span></div><span class="pill p-ok">مؤكد</span></div>`).join('')}</div>`:''}
+  </div>`;
+}
+
+function docsList(){
+  const pre=S.mode==='pre';
+  const D=[
+    {n:'عقد البيع على الخريطة',i:'fa-file-signature',s:'موقّع إلكترونياً'},
+    {n:'رخصة البناء (الفسح)',i:'fa-stamp',s:'صادرة ومعتمدة'},
+    {n:'المخطط المعماري',i:'fa-compass-drafting',s:'نسخة معتمدة'},
+    {n:'المخطط الإنشائي',i:'fa-building-columns',s:'نسخة معتمدة'},
+    {n:'مخططات الكهرباء والسباكة',i:'fa-diagram-project',s:'نسخة معتمدة'},
+    {n:'شهادة إتمام البناء',i:'fa-certificate',s:pre?'تصدر عند الاكتمال':'صادرة'},
+    {n:'محضر تسليم الوحدة',i:'fa-key',s:pre?'يُوقّع عند الاستلام':'موقّع'},
+  ];
+  return D.map(d=>{const na=d.s.startsWith('تصدر')||d.s.startsWith('يُوقّع');return `<div class="li" onclick="${na?`toast('سيتوفر المستند بعد الاستلام')`:`openDoc('${d.n}')`}" style="cursor:pointer"><div class="ic c1"><i class="fa-solid ${d.i}"></i></div><div class="tx"><b>${d.n}</b><span>${d.s}</span></div>${na?'<span class="pill p-pend">لاحقاً</span>':'<i class="fa-solid fa-chevron-left ar"></i>'}</div>`}).join('');
+}
+function unit(){
+  const pre=S.mode==='pre',p=progress();
+  return `<div class="fade">
+  <div class="uhero" style="margin-top:0"><div class="uimg" style="height:196px">${villaSVG(!pre)}<span class="st" style="color:${pre?'#8a6620':'#2E9E74'}">${pre?'قيد الإنشاء':'مستلمة'}</span><div class="loc"><b>فيلا ${UNIT.id}</b><span>${UNIT.type}</span></div></div></div>
+  <div class="sec-t"><h3>مواصفات الوحدة</h3></div>
+  <div class="specs">
+    <div class="spec"><i class="fa-solid fa-vector-square"></i><b>${UNIT.land} م²</b><span>مساحة الأرض</span></div>
+    <div class="spec"><i class="fa-solid fa-ruler-combined"></i><b>${UNIT.built} م²</b><span>مسطحات البناء</span></div>
+    <div class="spec"><i class="fa-solid fa-bed"></i><b>${UNIT.rooms}</b><span>غرف نوم</span></div>
+    <div class="spec"><i class="fa-solid fa-bath"></i><b>${UNIT.baths}</b><span>دورات مياه</span></div>
+    <div class="spec"><i class="fa-solid fa-car"></i><b>${UNIT.park}</b><span>مواقف</span></div>
+    <div class="spec"><i class="fa-solid fa-layer-group"></i><b>2 + ملحق</b><span>الأدوار</span></div>
+  </div>
+  <div class="sec-t"><h3>الموقع</h3><button onclick="toast('سيفتح الموقع في الخرائط')">فتح في الخرائط</button></div>
+  <div class="mapbox">${mapSVG()}<div class="cap"><span><i class="fa-solid fa-location-dot" style="color:var(--gold)"></i> ${UNIT.suburb}، ${UNIT.city} · ${UNIT.zone}</span></div></div>
+  <div class="sec-t"><h3>المطور العقاري</h3></div>
+  <div class="card"><div class="li" style="padding-top:0"><div class="ic c3"><i class="fa-solid fa-city"></i></div><div class="tx"><b>${UNIT.dev}</b><span>مطور معتمد لدى NHC · ${UNIT.zone}</span></div><a href="tel:920000000" class="pill p-gold"><i class="fa-solid fa-phone"></i> تواصل</a></div>
+  <div class="note"><i class="fa-solid fa-circle-info"></i><span>بيانات هذه الوحدة رفعها المطور إلزامياً على منصة الضامن، وتُحدَّث مع كل مرحلة إنجاز.</span></div></div>
+  <div class="sec-t"><h3>نسبة إنجاز البناء</h3><span class="pill ${p>=100?'p-ok':'p-gold'}">${p}%</span></div>
+  <div class="card">${MILES.map(m=>{const v=pre?m.p:100;return `<div class="ms"><span class="dot ${v>=100?'':v>0?'p':'w'}"><i class="fa-solid ${v>=100?'fa-check':'fa-hourglass-half'}"></i></span><div><div style="display:flex;justify-content:space-between"><span>${m.n}</span><b style="font-size:12px">${v}%</b></div><div class="mbar"><i style="width:${v}%;background:${v>=100?'var(--mint)':'var(--gold)'}"></i></div></div></div>`}).join('')}</div>
+  <div class="sec-t"><h3>صور تحديثات الموقع</h3></div>
+  <div class="gal">${['الهيكل الخرساني','الواجهة الأمامية','التشطيبات الداخلية'].map((n,i)=>`<div class="gimg">${siteSVG(i)}<span>${n}</span></div>`).join('')}</div>
+  <div class="sec-t"><h3>المستندات والمخططات</h3></div>
+  <div class="card" style="padding-top:4px;padding-bottom:6px">${docsList()}</div>
+  </div>`;
+}
+
+function war(){
+  const pre=S.mode==='pre';
+  const list=W.map(w=>({w,...wInfo(w)}));
+  const c={ok:0,soon:0,exp:0};list.forEach(x=>{if(c[x.st]!==undefined)c[x.st]++});
+  const order={soon:0,ok:1,exp:2,pend:1};
+  list.sort((a,b)=>order[a.st]-order[b.st]||(a.left??0)-(b.left??0));
+  return `<div class="fade">
+  ${pre?`<div class="note" style="margin-bottom:12px"><i class="fa-solid fa-circle-info"></i><span>تبدأ ضماناتك من تاريخ الاستلام المتوقع <b>${dstr(handover())}</b>. ستصلك تنبيهات تلقائية قبل انتهاء كل ضمان بـ 60 و30 و7 أيام.</span></div>`
+  :`<div class="wsum"><div class="ws"><b style="color:var(--mint)">${c.ok}</b><span>ساري</span></div><div class="ws"><b style="color:var(--amber)">${c.soon}</b><span>ينتهي خلال 60 يوماً</span></div><div class="ws"><b style="color:var(--red)">${c.exp}</b><span>منتهٍ</span></div></div>`}
+  <div class="sec-t" style="margin-top:12px"><h3>ضمانات الوحدة (${W.length})</h3></div>
+  ${list.map(x=>{const w=x.w;const col=x.st==='soon'?'var(--amber)':x.st==='exp'?'var(--red)':'var(--mint)';
+    return `<div class="wc ${x.st}"><div class="hd" onclick="openWarranty('${w.id}')" style="cursor:pointer"><div class="ic"><i class="fa-solid ${w.i}"></i></div><div style="flex:1;min-width:0"><b>${w.n}</b><span>${w.co} · ${w.y===1?'سنة واحدة':w.y===2?'سنتان':w.y+' سنوات'}</span></div>${stPill[x.st]}</div>
+    ${pre?`<div class="wmeta" style="margin-top:10px"><span>يبدأ: ${dstr(x.start)}</span><span>ينتهي: ${dstr(x.end)}</span></div>`
+    :`<div class="wbar"><i style="width:${x.pct}%;background:${col}"></i></div><div class="wmeta"><span>ينتهي: ${dstr(x.end)}</span><b style="color:${col}">${x.left<0?'انتهى':'متبقٍ '+fmt(x.left)+' يوماً'}</b></div>`}
+    <div class="verif"><i class="fa-solid fa-circle-check"></i>رقم التواصل موثّق — آخر تحقق قبل 3 أيام</div>
+    <div class="wft"><a class="call" href="tel:${w.ph}"><i class="fa-solid fa-phone"></i>${w.ph}</a><button class="sec2" onclick="${pre?`toast('بلاغات الضمان تتاح بعد الاستلام')`:`openReport('${w.id}')`}"><i class="fa-solid fa-triangle-exclamation"></i>بلاغ ضمان</button></div></div>`}).join('')}
+  </div>`;
+}
+
+function mkt(){
+  const list=P.filter(p=>p.c===S.cat).sort((a,b)=>b.r-a.r),pre=S.mode==='pre';
+  const cn=CATS.find(c=>c.id===S.cat);
+  let banner='';
+  if(S.cat==='inspection')banner=`<div class="banner"><i class="fa-solid fa-user-shield"></i><div><b>${pre?'افحص وحدتك قبل استلام المفتاح':'افحص قبل انتهاء ضمان السنة'}</b><span>${pre?'ملاحظات الفحص تُرسل للمطور تلقائياً ويلتزم بإصلاحها قبل التسليم':'الملاحظات المكتشفة تُرفع كبلاغات ضمان مباشرة للمقاول المسؤول'}</span></div></div>`;
+  else banner=`<div class="banner"><i class="fa-solid fa-tags"></i><div><b>خصومات حصرية لساكني ضواحي الإسكان</b><span>مقدمو خدمة معتمدون ومقيّمون من جيرانك</span></div></div>`;
+  return `<div class="fade">
+  <div class="search"><i class="fa-solid fa-magnifying-glass"></i>ابحث عن خدمة أو شركة…</div>
+  <div class="cats">${CATS.map(c=>`<button class="cat ${c.id===S.cat?'on':''}" onclick="go('mkt',{cat:'${c.id}'})"><i class="fa-solid ${c.i}"></i>${c.n}</button>`).join('')}</div>
+  ${banner}
+  <div class="sec-t"><h3>${cn.n} · ${list.length} مقدم خدمة</h3><span style="font-size:11.5px;color:var(--m)">الأعلى تقييماً</span></div>
+  ${list.length?'':`<div class="card empty"><i class="fa-solid fa-store-slash"></i>لا يوجد مقدمو خدمة في هذه الفئة حالياً</div>`}${list.map(p=>{const after=p.pr*(1-p.dc/100);return `<div class="pv"><div class="hd"><div class="logo ${p.col}"><i class="fa-solid ${p.i}"></i></div><div style="flex:1;min-width:0"><div class="nm">${p.n}</div><div class="rt"><span><i class="fa-solid fa-star"></i> ${p.r}</span><span>(${fmt(p.rv)} تقييم)</span><span>· ${p.t}</span></div></div></div>
+  <div class="tags"><span class="tg v"><i class="fa-solid fa-circle-check"></i> معتمد من الضامن</span>${(p.tags||[]).map(t=>`<span class="tg">${t}</span>`).join('')}</div>
+  <div class="ft"><div class="price">${p.pr?`<b>${fmt(after)} ﷼</b>${p.dc?`<s>${fmt(p.pr)}</s>`:''}${p.u?` <span style="font-size:11px;color:var(--m)">/ ${p.u}</span>`:''}`:'<b>حتى 15%</b>'}${p.dc?`<small>خصم ساكني الضواحي ${p.dc}%</small>`:''}</div><button class="book" onclick="openBook(${p.id})">${p.c==='inspection'?'احجز الفحص':'اطلب الخدمة'}</button></div></div>`}).join('')}
+  <div class="note"><i class="fa-solid fa-circle-info"></i><span>مقدمو الخدمة يشتركون سنوياً للظهور في المنصة، وتخضع تقييماتهم لمراجعة دورية من الضامن.</span></div>
+  </div>`;
+}
+
+function rep(){
+  const pre=S.mode==='pre';
+  const sig=!pre?`<div class="signal"><i class="fa-solid fa-tower-broadcast"></i><div><b>إشارة من حيّك</b><p>14 من جيرانك في ${UNIT.zone} رفعوا بلاغات «سباكة وصرف» خلال آخر 30 يوماً. تم رفع مؤشر جودة إلى NHC تلقائياً دون أي بيانات شخصية. صوتك مسموع.</p></div></div>`:'';
+  return `<div class="fade">
+  ${sig}
+  <button class="cbtn pri" onclick="${pre?`openSnag()`:`openReport()`}"><i class="fa-solid fa-plus"></i>${pre?'تسجيل ملاحظة قبل الاستلام':'فتح بلاغ صيانة جديد'}</button>
+  ${pre?`<div class="note" style="margin-top:10px"><i class="fa-solid fa-circle-info"></i><span>قبل الاستلام: كل ملاحظة تسجلها تُرسل للمطور ويُلزم بإصلاحها قبل توقيع محضر التسليم، وتبقى موثقة في سجل وحدتك.</span></div>`:''}
+  <div class="sec-t"><h3>${pre?'ملاحظاتي':'بلاغاتي'}</h3></div>
+  ${S.reports.length?S.reports.map(r=>`<div class="rc"><div style="display:flex;justify-content:space-between;gap:10px"><div><b style="font-size:13.5px">${r.n}</b><div style="font-size:11.5px;color:var(--m)">${r.ref} · ${r.date}</div></div>${r.cov?'<span class="pill p-ok">ضمن الضمان</span>':'<span class="pill p-gold">خارج الضمان</span>'}</div>
+    <div style="font-size:12px;color:var(--m);margin-top:6px">${r.to}</div>
+    <div class="track">${r.stages.map((s,i)=>`<div class="tk ${i<=r.at?'d':''}"><i></i>${s}</div>`).join('')}</div></div>`).join('')
+  :`<div class="card empty"><i class="fa-solid fa-clipboard-list"></i>لا توجد ${pre?'ملاحظات':'بلاغات'} حتى الآن</div>`}
+  </div>`;
+}
+
+/* ================= SHEETS ================= */
+function openWarranty(id){
+  const w=W.find(x=>x.id===id),x=wInfo(w),pre=S.mode==='pre';
+  openSheet(`<h3>${w.n}</h3><div class="sub">${w.co} · مدة الضمان ${w.y===1?'سنة واحدة':w.y===2?'سنتان':w.y+' سنوات'}</div>
+  <div class="card" style="margin-bottom:10px"><div class="li" style="padding-top:0"><div class="ic c1"><i class="fa-solid fa-calendar"></i></div><div class="tx"><b>من ${dstr(x.start)}</b><span>إلى ${dstr(x.end)}</span></div>${stPill[x.st]}</div>
+  ${!pre?`<div class="wbar"><i style="width:${x.pct}%;background:${x.st==='soon'?'var(--amber)':x.st==='exp'?'var(--red)':'var(--mint)'}"></i></div><div class="wmeta"><span>مضى ${Math.round(x.pct)}%</span><b>${x.left<0?'انتهى':'متبقٍ '+fmt(x.left)+' يوماً'}</b></div>`:''}</div>
+  <span class="lbl">يشمل الضمان</span><div class="card" style="padding:6px 16px">${w.cov.map(c=>`<div class="li"><div class="ic c2" style="width:30px;height:30px;font-size:12px"><i class="fa-solid fa-check"></i></div><div class="tx"><b style="font-size:13px">${c}</b></div></div>`).join('')}</div>
+  <span class="lbl">التنبيهات</span><div class="card" style="padding:6px 16px">${[60,30,7].map(d=>`<div class="li"><div class="ic c3" style="width:30px;height:30px;font-size:12px"><i class="fa-solid fa-bell"></i></div><div class="tx"><b style="font-size:13px">قبل الانتهاء بـ ${d} يوماً</b><span>إشعار في التطبيق + رسالة نصية</span></div><span class="pill p-ok">مفعّل</span></div>`).join('')}</div>
+  <div style="display:grid;gap:8px;margin-top:14px"><a class="cbtn pri" href="tel:${w.ph}"><i class="fa-solid fa-phone"></i>اتصال بـ ${w.co} · ${w.ph}</a>
+  ${!pre&&x.st!=='exp'?`<button class="cbtn out" onclick="openReport('${w.id}')"><i class="fa-solid fa-triangle-exclamation"></i>فتح بلاغ ضمان</button>`:''}
+  ${x.st==='soon'?`<button class="cbtn gold" onclick="closeSheet();go('mkt',{cat:'inspection'})"><i class="fa-solid fa-magnifying-glass"></i>احجز فحصاً قبل انتهاء الضمان</button>`:''}
+  ${x.st==='exp'?`<button class="cbtn gold" onclick="closeSheet();go('mkt',{cat:'maint'})"><i class="fa-solid fa-toolbox"></i>عقود صيانة ما بعد الضمان</button>`:''}</div>`);
+}
+let bk={};
+function openBook(id){
+  const p=P.find(x=>x.id===id);bk={p,pkg:0,day:0,time:0};drawBook();
+}
+function drawBook(){
+  const p=bk.p,base=p.pr*(1-p.dc/100);
+  const pk=p.pk?[{n:'فحص أساسي',d:'الإنشائي والسباكة والكهرباء',a:0},{n:'فحص شامل',d:'+ العزل والتشطيبات والنوافذ',a:400},{n:'شامل + تصوير حراري',d:'+ كشف التسربات المخفية',a:800}]:[{n:'الخدمة القياسية',d:p.t,a:0}];
+  const days=[...Array(6)].map((_,i)=>new Date(NOW.getTime()+(i+1)*DAY));
+  const times=['9:00 ص','1:00 م','4:30 م'];
+  const total=(base||0)+pk[bk.pkg].a;
+  openSheet(`<h3>${p.n}</h3><div class="sub"><i class="fa-solid fa-star" style="color:#E9A92A"></i> ${p.r} · فيلا ${UNIT.id}، ${UNIT.suburb}</div>
+  <span class="lbl">اختر الباقة</span>${pk.map((k,i)=>`<button class="opt ${i===bk.pkg?'on':''}" onclick="bk.pkg=${i};drawBook()"><div><b>${k.n}</b><span>${k.d}</span></div><b>${base?fmt(base+k.a)+' ﷼':'حسب الطلب'}</b></button>`).join('')}
+  <span class="lbl">اختر اليوم</span><div class="slots">${days.map((d,i)=>`<button class="slot ${i===bk.day?'on':''}" onclick="bk.day=${i};drawBook()">${d.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{weekday:'short'})}<b>${d.getDate()}</b></button>`).join('')}</div>
+  <span class="lbl">الوقت</span><div class="times">${times.map((t,i)=>`<button class="time ${i===bk.time?'on':''}" onclick="bk.time=${i};drawBook()">${t}</button>`).join('')}</div>
+  ${p.c==='inspection'?`<div class="note" style="margin-bottom:12px"><i class="fa-solid fa-share-nodes"></i><span>سيُرفق تقرير الفحص بسجل وحدتك، وتُرسل الملاحظات ${S.mode==='pre'?'للمطور لإصلاحها قبل التسليم':'كبلاغات ضمان للمقاولين المسؤولين'}.</span></div>`:''}
+  <button class="cbtn pri" onclick="confirmBook()"><i class="fa-solid fa-lock"></i>تأكيد الحجز${total?' · '+fmt(total)+' ﷼':''}</button>`);
+  bk.days=days;bk.times=times;bk.total=total;bk.pkn=pk[bk.pkg].n;
+}
+function confirmBook(){
+  const ref='DH-'+Math.floor(100000+Math.random()*899999);
+  const d=bk.days[bk.day].toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long'});
+  S.bookings.unshift({n:bk.p.n,d,t:bk.times[bk.time]});
+  openSheet(`<div class="ok-big"><div class="ck"><i class="fa-solid fa-check"></i></div><h3>تم تأكيد الحجز</h3><div class="sub">سيتواصل معك ${bk.p.n} لتأكيد الموعد خلال ساعتين</div></div>
+  <div class="refbox"><div><span>رقم الحجز</span><b>${ref}</b></div><div><span>الخدمة</span><b>${bk.pkn}</b></div><div><span>الموعد</span><b>${d} · ${bk.times[bk.time]}</b></div><div><span>الموقع</span><b>فيلا ${UNIT.id}</b></div>${bk.total?`<div><span>المبلغ</span><b>${fmt(bk.total)} ﷼</b></div>`:''}</div>
+  <button class="cbtn pri" onclick="closeSheet();go('home')">العودة للرئيسية</button>`);
+}
+const RCATS=[{id:'plb',n:'تسرب أو انسداد في السباكة والصرف'},{id:'ele',n:'عطل كهربائي'},{id:'fin',n:'تشققات أو عيوب في التشطيبات'},{id:'wp',n:'تسرب مياه من السقف أو الجدران'},{id:'ac',n:'عطل في التكييف'},{id:'door',n:'خلل في الأبواب أو النوافذ'},{id:'str',n:'تصدع إنشائي'}];
+function openReport(wid){
+  openSheet(`<h3>بلاغ صيانة جديد</h3><div class="sub">فيلا ${UNIT.id} · سيُحدد النظام تلقائياً إن كان ضمن الضمان</div>
+  <span class="lbl">نوع المشكلة</span><select id="rcat">${RCATS.map(c=>`<option value="${c.id}" ${c.id===wid?'selected':''}>${c.n}</option>`).join('')}</select>
+  <span class="lbl">وصف المشكلة</span><textarea id="rdesc" rows="3" placeholder="مثال: البالوعة في دورة المياه العلوية بطيئة التصريف، ويظهر فيها بقايا أسمنت…"></textarea>
+  <span class="lbl">صور</span><button class="opt" onclick="this.innerHTML='<div><b>تم إرفاق صورتين</b><span>IMG_2041.jpg · IMG_2042.jpg</span></div><i class=&quot;fa-solid fa-circle-check&quot; style=&quot;color:var(--mint)&quot;></i>'"><div><b>إرفاق صور</b><span>تساعد المقاول على التشخيص المسبق</span></div><i class="fa-solid fa-camera" style="color:var(--m)"></i></button>
+  <button class="cbtn pri" style="margin-top:8px" onclick="submitReport()"><i class="fa-solid fa-paper-plane"></i>إرسال البلاغ</button>`);
+}
+function submitReport(){
+  const id=$('rcat').value,w=W.find(x=>x.id===id),x=wInfo(w),cov=x.st!=='exp';
+  const r={n:RCATS.find(c=>c.id===id).n,ref:'RP-'+Math.floor(10000+Math.random()*89999),date:dstr(NOW),cov,
+    to:cov?`أُحيل إلى ${w.co} (المقاول الضامن) — بدون تكلفة عليك`:`الضمان منتهٍ — أرسلنا طلبك لـ 3 مقدمي خدمة في السوق لتقديم عروض`,
+    stages:cov?['تم الاستلام','أُحيل للمقاول','زيارة مجدولة','تم الإصلاح']:['تم الاستلام','عروض الأسعار','اختيار المزود','تم الإصلاح'],at:1};
+  S.reports.unshift(r);
+  openSheet(`<div class="ok-big"><div class="ck"><i class="fa-solid fa-paper-plane"></i></div><h3>تم إرسال البلاغ</h3><div class="sub">${r.to}</div></div>
+  <div class="refbox"><div><span>رقم البلاغ</span><b>${r.ref}</b></div><div><span>الحالة</span><b>${cov?'ضمن الضمان ✓':'خارج الضمان'}</b></div><div><span>مدة الاستجابة المتوقعة</span><b>خلال 72 ساعة</b></div></div>
+  <div class="note" style="margin-bottom:12px"><i class="fa-solid fa-tower-broadcast"></i><span>بلاغك يُضاف (دون بياناتك الشخصية) إلى مؤشر جودة ${UNIT.zone} الذي تطّلع عليه الشركة الوطنية للإسكان.</span></div>
+  <button class="cbtn pri" onclick="closeSheet();go('rep')">متابعة البلاغ</button>`);
+}
+function openSnag(){
+  openSheet(`<h3>ملاحظة قبل الاستلام</h3><div class="sub">تُرسل إلى ${UNIT.dev} للإصلاح قبل توقيع محضر التسليم</div>
+  <span class="lbl">الموقع في الوحدة</span><select id="sloc"><option>دورة المياه العلوية</option><option>المطبخ</option><option>المجلس</option><option>السطح</option><option>الواجهة الخارجية</option></select>
+  <span class="lbl">الملاحظة</span><textarea id="sdesc" rows="3" placeholder="مثال: ميول الأرضية لا تتجه نحو البالوعة، وتتجمع المياه في الزاوية…"></textarea>
+  <button class="cbtn pri" style="margin-top:12px" onclick="submitSnag()"><i class="fa-solid fa-paper-plane"></i>إرسال للمطور</button>`);
+}
+function submitSnag(){
+  S.reports.unshift({n:'ملاحظة: '+$('sloc').value,ref:'SN-'+Math.floor(1000+Math.random()*8999),date:dstr(NOW),cov:true,to:`أُرسلت إلى ${UNIT.dev} — يلتزم بإصلاحها قبل التسليم`,stages:['مسجلة','عند المطور','تم الإصلاح','تحقق المالك'],at:1});
+  closeSheet();go('rep');toast('تم إرسال الملاحظة للمطور');
+}
+function openDocs(){openSheet(`<h3>المستندات والمخططات</h3><div class="sub">نسخ رسمية رفعها المطور ومحفوظة طوال عمر الوحدة</div><div class="card" style="padding-top:4px;padding-bottom:6px">${docsList()}</div>`)}
+function openDoc(n){openSheet(`<h3>${n}</h3><div class="sub">فيلا ${UNIT.id} · ${UNIT.dev}</div><div class="doc-prev">${blueprintSVG(n)}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="cbtn out" onclick="toast('جارٍ التنزيل…')"><i class="fa-solid fa-download"></i>تنزيل PDF</button><button class="cbtn out" onclick="toast('تم نسخ رابط المشاركة')"><i class="fa-solid fa-share-nodes"></i>مشاركة</button></div><button class="cbtn pri" style="margin-top:8px" onclick="openDocs()">رجوع للمستندات</button>`)}
+function openNotifs(){
+  const pre=S.mode==='pre';
+  const N=pre?[
+    {i:'fa-magnifying-glass',c:'c3',t:'افحص وحدتك قبل الاستلام',s:'بقي 21 يوماً على التسليم — احجز فاحصاً معتمداً الآن',a:"closeSheet();go('mkt',{cat:'inspection'})"},
+    {i:'fa-chart-line',c:'c2',t:'تحديث نسبة الإنجاز: 94%',s:'اكتملت التمديدات الكهروميكانيكية',a:"closeSheet();go('unit')"},
+    {i:'fa-file-circle-check',c:'c1',t:'رُفع مستند جديد',s:'مخططات الكهرباء والسباكة المعتمدة',a:"openDocs()"},
+  ]:soonest().slice(0,3).map(x=>({i:'fa-bell',c:x.left<=30?'c4':'c3',t:`ضمان ${x.w.n} ينتهي خلال ${x.left} يوماً`,s:'افحص قبل الانتهاء وارفع أي ملاحظة كبلاغ ضمان',a:`openWarranty('${x.w.id}')`})).concat([{i:'fa-tower-broadcast',c:'c5',t:'إشارة من حيّك',s:'بلاغات سباكة متكررة في المرحلة B — رُفعت لـ NHC',a:"closeSheet();go('rep')"}]);
+  openSheet(`<h3>التنبيهات</h3><div class="sub">${N.length} تنبيهات جديدة</div><div class="card" style="padding-top:4px;padding-bottom:6px">${N.map(n=>`<div class="li" style="cursor:pointer" onclick="${n.a}"><div class="ic ${n.c}"><i class="fa-solid ${n.i}"></i></div><div class="tx"><b>${n.t}</b><span>${n.s}</span></div><i class="fa-solid fa-chevron-left ar"></i></div>`).join('')}</div>`);
+  $('nbadge').style.display='none';
+}
+let rateV=0;
+function openRate(){rateV=0;drawRate()}
+function drawRate(){
+  openSheet(`<h3>قيّم تجربة استلام وحدتك</h3><div class="sub">يُجمع تقييمك مع تقييمات جيرانك ضمن مؤشر جودة ${UNIT.dev} لدى NHC</div>
+  <div class="stars">${[1,2,3,4,5].map(i=>`<button class="${i<=rateV?'on':''}" onclick="rateV=${i};drawRate()"><i class="fa-solid fa-star"></i></button>`).join('')}</div>
+  <span class="lbl">ما أبرز ما لاحظته؟</span>${['جودة التشطيبات','الالتزام بموعد التسليم','سرعة الاستجابة للملاحظات','نظافة الوحدة عند التسليم'].map(o=>`<button class="opt" onclick="this.classList.toggle('on')"><b>${o}</b><i class="fa-regular fa-square-check"></i></button>`).join('')}
+  <button class="cbtn pri" style="margin-top:6px" onclick="if(!rateV){toast('اختر عدد النجوم');return}S.rated=rateV;closeSheet();render();toast('شكراً، تم إرسال تقييمك')">إرسال التقييم</button>`);
+}
+
+/* ================= RENDER ================= */
+function render(){
+  const V={home,unit,war,mkt,rep};
+  $('content').innerHTML=V[S.tab]();
+  document.querySelectorAll('.bnav button').forEach(b=>b.classList.toggle('on',b.dataset.t===S.tab));
+  document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===S.mode));
+  $('wdot').style.display=S.mode==='post'&&soonest().length?'block':'none';
+  const nb=$('nbadge');nb.textContent=S.mode==='pre'?3:soonest().slice(0,3).length+1;
+}
+render();
+</script>
+</body>
+</html>

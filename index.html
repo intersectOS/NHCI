@@ -1,833 +1,699 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شراكة منصة الضامن مع الشركة الوطنية للإسكان NHC</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cairo & Tajawal -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الضامن × NHC | فرصة شراكة بإيراد مشترك</title>
+<meta name="description" content="مقترح شراكة بين منصة الضامن والشركة الوطنية للإسكان لتحويل كل وحدة في البيع على الخريطة إلى أصل رقمي يدرّ دخلاً ويحوكم الجودة.">
+<meta name="theme-color" content="#08071C">
+<link rel="icon" href="dhamn-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#08071C;--bg2:#0E0C2A;--bg3:#151238;
+  --card:rgba(255,255,255,.035);--card2:rgba(255,255,255,.065);
+  --line:rgba(140,118,255,.2);--line2:rgba(255,255,255,.08);
+  --p:#7B3FF2;--p2:#A88BFF;--p3:#4B0FA8;--blue:#3D5AFE;--t:#16D1C2;--t2:#8BF5EA;
+  --nhc:#1F4537;--sage:#B8C2BE;--mint:#5FD3A5;
+  --grad:linear-gradient(120deg,#7B3FF2 0%,#4F46E5 45%,#16D1C2 100%);
+  --text:#EEEDFB;--muted:#A3A1C6;--dim:#6F6C99;
+  --red:#FF7A8A;--amber:#FFC066;
+  --r:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.kufi{font-family:'Noto Kufi Arabic',sans-serif;line-height:1.45}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--t);color:#0b0b20}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.aura{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1000px 600px at 90% -10%,rgba(123,63,242,.22),transparent 60%),
+  radial-gradient(800px 600px at -10% 40%,rgba(22,209,194,.10),transparent 60%),
+  radial-gradient(900px 500px at 50% 120%,rgba(31,69,55,.55),transparent 60%)}
+.spot{position:fixed;width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:0;left:0;top:0;
+  background:radial-gradient(circle,rgba(123,63,242,.13),transparent 65%);transform:translate(-50%,-50%);transition:opacity .4s}
+main,header,footer{position:relative;z-index:2}
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            purple: '#6a1b9a',
-                            purpleDark: '#3b0a5e',
-                            purpleLight: '#8e24aa',
-                            teal: '#00bcd4',
-                            tealGlow: '#00e5ff',
-                            tealDark: '#00838f',
-                            navyBg: '#090514',
-                            cardBg: '#120b24',
-                            nhcGreen: '#00875A'
-                        }
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                        tajawal: ['Tajawal', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+/* INTRO */
+#intro{position:fixed;inset:0;z-index:200;background:var(--bg);display:grid;place-items:center;transition:opacity .8s ease,visibility .8s}
+#intro.done{opacity:0;visibility:hidden}
+.intro-in{display:flex;flex-direction:column;align-items:center;gap:22px}
+.intro-logos{display:flex;align-items:center;gap:26px}
+.intro-logos img{height:78px;opacity:0}
+.intro-logos .a{animation:inR 1s cubic-bezier(.2,.8,.2,1) .15s forwards}
+.intro-logos .b{height:60px;animation:inL 1s cubic-bezier(.2,.8,.2,1) .35s forwards}
+.intro-x{font-size:22px;color:var(--dim);opacity:0;animation:fadeIn .6s .8s forwards}
+@keyframes inR{from{opacity:0;transform:translateX(-60px) scale(.8)}to{opacity:1;transform:none}}
+@keyframes inL{from{opacity:0;transform:translateX(60px) scale(.8)}to{opacity:1;transform:none}}
+@keyframes fadeIn{to{opacity:1}}
+.intro-line{width:0;height:2px;background:var(--grad);border-radius:2px;animation:grow 1.1s .9s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes grow{to{width:240px}}
+.intro-t{font-family:'Noto Kufi Arabic';font-size:15px;color:var(--muted);opacity:0;animation:fadeUp .7s 1.3s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.skip{position:absolute;bottom:26px;font-size:12px;color:var(--dim);cursor:pointer;background:none;border:0;font-family:inherit}
 
-    <style>
-        body {
-            font-family: 'Cairo', 'Tajawal', sans-serif;
-            background-color: #090514;
-            color: #f1f5f9;
-            overflow-y: auto !important; /* Force native smooth scrolling */
-        }
+/* NAV */
+.nav{position:fixed;top:0;inset-inline:0;z-index:50;transition:.3s}
+.nav.scrolled{background:rgba(8,7,28,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:12px}
+.brands{display:flex;align-items:center;gap:12px}
+.dh{display:flex;align-items:center;gap:8px;font-family:'Noto Kufi Arabic';font-weight:800;font-size:18px}
+.dh img{height:36px;width:auto}
+.x{color:var(--dim);font-size:13px}
+.nhc-w{height:30px;width:auto;opacity:.95}
+.navlinks{display:flex;gap:2px}
+.navlinks a{font-size:13px;color:var(--muted);padding:7px 11px;border-radius:9px;transition:.2s}
+.navlinks a:hover{color:var(--text);background:var(--card2)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;border:0;transition:transform .25s,box-shadow .25s,border-color .25s;font-family:inherit;white-space:nowrap;overflow:hidden}
+.btn-p{background:var(--grad);background-size:160% 100%;color:#fff;box-shadow:0 12px 34px -12px rgba(123,63,242,.8)}
+.btn-p::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(120%);transition:transform .8s}
+.btn-p:hover::after{transform:translateX(-120%)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 18px 44px -12px rgba(22,209,194,.6)}
+.btn-g{background:var(--card2);color:var(--text);border:1px solid var(--line2)}
+.btn-g:hover{border-color:var(--t);transform:translateY(-2px)}
+.btn-n{background:linear-gradient(135deg,#2B6A50,var(--nhc));color:#fff;border:1px solid rgba(95,211,165,.35)}
+.btn-n:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(95,211,165,.6)}
+.btn-sm{padding:9px 14px;font-size:13px;border-radius:11px}
+.nav-acts{display:flex;gap:8px}
+@media(max-width:1060px){.navlinks{display:none}}
+@media(max-width:560px){.nav .btn-sm span{display:none}.dh span{display:none}.nhc-w{height:24px}}
 
-        .gradient-purple-teal {
-            background: linear-gradient(135deg, #6a1b9a 0%, #3b0a5e 50%, #00bcd4 100%);
-        }
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:center}
+.hero .wrap>*{min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--t2);border:1px solid rgba(22,209,194,.3);background:rgba(22,209,194,.07);padding:7px 14px;border-radius:99px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--t);box-shadow:0 0 0 4px rgba(22,209,194,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(22,209,194,0)}}
+.hero h1{font-size:clamp(30px,4.6vw,56px);font-weight:900;margin:22px 0 18px;letter-spacing:-.5px}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+body.ready .hero h1 .ln>span{transform:none}
+body.ready .hero h1 .ln:nth-child(2)>span{transition-delay:.12s}
+body.ready .hero h1 .ln:nth-child(3)>span{transition-delay:.24s}
+.gtxt{background:linear-gradient(100deg,#B79CFF,#7B8CFF 30%,#16D1C2 60%,#B79CFF 90%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 7s linear infinite}
+@keyframes flow{to{background-position:-220% 0}}
+.hero p.lead{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:620px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 34px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:660px}
+.stat{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:12px}
+.stat b{display:block;font-family:'Noto Kufi Arabic';font-size:21px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:11.5px;color:var(--muted);line-height:1.5;display:block}
+.fade-in{opacity:0;transform:translateY(16px);transition:1s cubic-bezier(.2,.8,.2,1)}
+body.ready .fade-in{opacity:1;transform:none}
+body.ready .d1{transition-delay:.35s}body.ready .d2{transition-delay:.5s}body.ready .d3{transition-delay:.65s}body.ready .d4{transition-delay:.8s}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
 
-        .glass-card {
-            background: rgba(18, 11, 36, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(142, 36, 170, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
+/* CORE ORBIT */
+.core-wrap{position:relative;aspect-ratio:1;max-width:460px;width:100%;margin:0 auto}
+.ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--line)}
+.ring.r2{inset:13%;border-style:dashed;border-color:rgba(22,209,194,.25);animation:spin 60s linear infinite reverse}
+.ring.r3{inset:26%;border-color:rgba(123,63,242,.3)}
+.ring.r1{background:conic-gradient(from 0deg,transparent 0 70%,rgba(22,209,194,.5) 80%,transparent 81%);-webkit-mask:radial-gradient(circle,transparent 69.6%,#000 70%);mask:radial-gradient(circle,transparent 69.6%,#000 70%);border:0;animation:spin 6s linear infinite;inset:0;opacity:.0}
+.ring.sweep{border:0;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(22,209,194,.0),rgba(22,209,194,.18) 12%,transparent 13%);animation:spin 7s linear infinite}
+.core{position:absolute;inset:30%;border-radius:50%;
+  background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.18),rgba(123,63,242,.25) 45%,rgba(14,12,42,.95) 75%);
+  border:1px solid rgba(168,139,255,.45);
+  box-shadow:0 0 0 10px rgba(123,63,242,.07),0 0 80px -6px rgba(123,63,242,.65),0 0 140px -20px rgba(22,209,194,.5),inset 0 0 40px rgba(22,209,194,.15);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{50%{box-shadow:0 0 0 16px rgba(123,63,242,.04),0 0 100px -6px rgba(123,63,242,.75),0 0 160px -20px rgba(22,209,194,.6),inset 0 0 40px rgba(22,209,194,.2)}}
+.core img{width:44%;height:auto;filter:drop-shadow(0 8px 20px rgba(22,209,194,.45));animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px)}}
+.core b{font-family:'Noto Kufi Arabic';font-size:clamp(11px,1.25vw,14px);font-weight:800;line-height:1.5;padding:0 10%}
+.core small{font-size:10.5px;color:var(--t2)}
+.orbit{position:absolute;inset:0;animation:spin 44s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.node{position:absolute;width:122px;margin:-30px -61px;text-align:center}
+.node .in{animation:spin 44s linear infinite reverse;background:rgba(14,12,42,.9);border:1px solid var(--line);border-radius:14px;padding:8px 6px;backdrop-filter:blur(6px);box-shadow:0 10px 30px -12px rgba(0,0,0,.6)}
+.node i{font-size:16px;display:block;margin-bottom:2px;color:var(--t)}
+.node span{font-size:11.5px;font-weight:600;line-height:1.4;display:block}
+.n1{top:0;left:50%}.n2{top:50%;left:100%}.n3{top:100%;left:50%}.n4{top:50%;left:0}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--t);box-shadow:0 0 12px var(--t);top:50%;left:50%}
+@media(max-width:600px){.core-wrap{max-width:calc(100% - 100px)}.node{width:98px;margin:-26px -49px}.node span{font-size:10px}}
 
-        .glass-card:hover {
-            border-color: rgba(0, 229, 255, 0.4);
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
-        }
+/* MARQUEE */
+.marq{border-block:1px solid var(--line2);background:rgba(255,255,255,.015);overflow:hidden;padding:16px 0;position:relative;z-index:2}
+.marq .lab{position:absolute;inset-inline-start:0;top:0;bottom:0;display:flex;align-items:center;padding:0 20px;background:linear-gradient(90deg,transparent,var(--bg) 30%);z-index:2;font-size:12px;color:var(--muted);font-weight:600}
+.mtrack{display:flex;gap:44px;width:max-content;animation:marq 38s linear infinite}
+.mtrack span{display:inline-flex;align-items:center;gap:10px;font-family:'Noto Kufi Arabic';font-weight:700;font-size:15px;color:#cfcdee;white-space:nowrap}
+.mtrack i{color:var(--t);font-size:14px}
+@keyframes marq{to{transform:translateX(50%)}}
 
-        .glow-teal {
-            box-shadow: 0 0 25px -3px rgba(0, 229, 255, 0.3);
-        }
+/* SECTIONS */
+section.s{padding:100px 0}
+.s-head{max-width:780px;margin-bottom:46px}
+.s-head.c{text-align:center;margin-inline:auto}
+.tag{font-size:12px;font-weight:700;letter-spacing:.3px;color:var(--t);display:inline-flex;align-items:center;gap:8px;margin-bottom:12px}
+.tag::before{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+.s-head.c .tag::after{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+h2{font-size:clamp(25px,3.2vw,40px);font-weight:900;margin-bottom:12px}
+.s-head p{color:var(--muted);font-size:16px}
+.card{background:var(--card);border:1px solid var(--line2);border-radius:var(--r);padding:24px;transition:border-color .3s,transform .3s,background .3s}
+.card:hover{border-color:var(--line)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.tilt{transform-style:preserve-3d;will-change:transform}
 
-        .glow-purple {
-            box-shadow: 0 0 25px -3px rgba(106, 27, 154, 0.5);
-        }
+/* compare */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cmp{border-radius:24px;padding:28px}
+.cmp.old{background:rgba(255,122,138,.04);border:1px solid rgba(255,122,138,.18)}
+.cmp.new{background:linear-gradient(160deg,rgba(123,63,242,.13),rgba(22,209,194,.06));border:1px solid var(--line)}
+.cmp h3{font-size:19px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.cmp ul{list-style:none;display:grid;gap:14px}
+.cmp li{display:flex;gap:12px;font-size:14.5px;color:#d6d4f0}
+.cmp li i{margin-top:6px;font-size:13px}
+.cmp.old li i{color:var(--red)}.cmp.new li i{color:var(--t)}
+.cmp li b{color:var(--text)}
+@media(max-width:860px){.compare{grid-template-columns:1fr}}
 
-        /* Custom Range Slider */
-        input[type=range] {
-            -webkit-appearance: none;
-            background: transparent;
-        }
-        input[type=range]:focus {
-            outline: none;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 8px;
-            cursor: pointer;
-            background: #1d0f38;
-            border-radius: 4px;
-            border: 1px solid rgba(0, 229, 255, 0.3);
-        }
-        input[type=range]::-webkit-slider-thumb {
-            height: 22px;
-            width: 22px;
-            border-radius: 50%;
-            background: #00e5ff;
-            cursor: pointer;
-            -webkit-appearance: none;
-            margin-top: -7px;
-            box-shadow: 0 0 12px #00e5ff;
-        }
+/* story */
+.story{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
+.story .track{position:absolute;top:31px;inset-inline:6%;height:2px;background:var(--line2);overflow:hidden;border-radius:2px}
+.story .track i{position:absolute;inset:0;background:linear-gradient(270deg,var(--t),var(--amber),var(--red));transform:scaleX(0);transform-origin:right;transition:transform 2.2s cubic-bezier(.6,0,.2,1)}
+.story.in .track i{transform:scaleX(1)}
+.st{position:relative;text-align:center}
+.st .ic{width:62px;height:62px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;background:var(--bg2);border:1px solid var(--line2);font-size:21px;position:relative;z-index:1}
+.st .when{font-size:11.5px;color:var(--t);font-weight:700}
+.st h4{font-size:15px;margin:4px 0 6px}
+.st p{font-size:13px;color:var(--muted);line-height:1.65}
+.st.bad .ic{border-color:rgba(255,122,138,.4);color:var(--red);background:rgba(255,122,138,.08)}
+.verdict{margin-top:34px;padding:18px 22px;border-radius:16px;border:1px dashed rgba(255,122,138,.35);background:rgba(255,122,138,.05);font-size:15px;display:flex;gap:12px;align-items:center}
+.verdict i{color:var(--red);font-size:20px}
+@media(max-width:860px){.story{grid-template-columns:1fr;gap:0}.story .track{top:0;bottom:0;inset-inline-start:30px;inset-inline-end:auto;width:2px;height:auto}.story .track i{transform:scaleY(0);transform-origin:top;background:linear-gradient(180deg,var(--red),var(--amber),var(--t))}.story.in .track i{transform:scaleY(1)}
+.st{display:grid;grid-template-columns:62px 1fr;gap:16px;text-align:start;padding-bottom:22px}.st .ic{margin:0}}
 
-        /* Active Navigation Link Styling */
-        .nav-link.active {
-            background-color: rgba(106, 27, 154, 0.6);
-            color: #00e5ff;
-            border-right: 3px solid #00e5ff;
-        }
-    </style>
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.pl{padding:22px 18px;position:relative;overflow:hidden}
+.pl::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(22,209,194,.14),transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pl:hover::before{opacity:1}
+.pl .num{position:absolute;top:10px;inset-inline-end:14px;font-family:'Noto Kufi Arabic';font-size:42px;font-weight:900;color:rgba(255,255,255,.045)}
+.pl .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:19px;margin-bottom:14px;background:rgba(123,63,242,.15);color:var(--p2)}
+.pl.hl{border-color:rgba(22,209,194,.45);background:linear-gradient(160deg,rgba(22,209,194,.12),rgba(123,63,242,.06))}
+.pl.hl .ic{background:rgba(22,209,194,.15);color:var(--t)}
+.pl h3{font-size:16px;margin-bottom:6px}
+.pl p{font-size:13px;color:var(--muted);line-height:1.7}
+.new-b{display:inline-block;font-size:10.5px;background:var(--t);color:#0a0a20;font-weight:800;border-radius:6px;padding:1px 7px;margin-inline-start:6px;vertical-align:middle}
+@media(max-width:1060px){.pillars{grid-template-columns:repeat(2,1fr)}.pl.hl{grid-column:span 2}}
+@media(max-width:560px){.pillars{grid-template-columns:1fr}.pl.hl{grid-column:auto}}
+
+/* quality */
+.qi-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:28px}
+.qf{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:9px 13px;font-size:13px;font-weight:600;transition:.4s}
+.qf i{color:var(--p2)}
+.qf.on{border-color:var(--t);background:rgba(22,209,194,.1);box-shadow:0 0 24px -8px rgba(22,209,194,.6)}
+.qf.on i{color:var(--t)}
+.qi-arrow{color:var(--dim);font-size:12px}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.effect{padding:26px;border-radius:22px;background:linear-gradient(135deg,rgba(31,69,55,.65),rgba(123,63,242,.08));border:1px solid rgba(95,211,165,.25);display:flex;flex-direction:column;gap:14px}
+.effect .big-i{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:22px;background:rgba(95,211,165,.15);color:var(--mint)}
+.effect h3{font-size:19px}
+.effect p{font-size:14.5px;color:#d7e3dd}
+.effect ul{list-style:none;display:grid;gap:8px;font-size:13.5px;color:#cfe0d8}
+.effect li{display:flex;gap:9px}.effect li i{color:var(--mint);margin-top:6px;font-size:12px}
+.adm{position:relative;border-radius:22px;padding:22px;background:linear-gradient(160deg,rgba(123,63,242,.14),rgba(14,12,42,.6));border:1px solid var(--line);overflow:hidden}
+.adm .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.adm .hd b{font-family:'Noto Kufi Arabic';font-size:15px}
+.live{font-size:11px;color:var(--t2);display:inline-flex;align-items:center;gap:6px}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--t);animation:pulse 1.6s infinite}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.mini .z{background:rgba(0,0,0,.2);border-radius:12px;padding:8px}
+.mini .z small{font-size:10.5px;color:var(--muted);display:flex;justify-content:space-between}
+.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-top:6px}
+.mg i{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.07);transition:background .6s}
+.mg i.h1{background:rgba(255,192,102,.45)}.mg i.h2{background:rgba(255,122,138,.75)}.mg i.h3{background:#FF4D6A;box-shadow:0 0 8px rgba(255,77,106,.7)}
+.mkpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.mkpi div{background:rgba(255,255,255,.04);border-radius:12px;padding:8px 10px}
+.mkpi b{font-family:'Noto Kufi Arabic';font-size:17px;display:block;line-height:1.4}
+.mkpi span{font-size:10.5px;color:var(--muted)}
+.adm-feat{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.adm-feat span{font-size:11.5px;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid var(--line2);color:#d8d6f3}
+@media(max-width:900px){.qgrid{grid-template-columns:1fr}}
+@media(max-width:560px){.qi-arrow{display:none}}
+
+/* revenue */
+.streams{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:34px}
+.sm .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--grad);color:#fff;margin-bottom:12px;box-shadow:0 10px 24px -10px rgba(123,63,242,.8)}
+.sm h3{font-size:15.5px;margin-bottom:4px}
+.sm .type{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+.once{background:rgba(168,139,255,.15);color:var(--p2)}.rec{background:rgba(22,209,194,.13);color:var(--t)}
+.sm p{font-size:13px;color:var(--muted)}
+@media(max-width:960px){.streams{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.streams{grid-template-columns:1fr}}
+.calc{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}
+.ctrl{margin-bottom:18px}
+.ctrl .lb{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px;gap:10px}
+.ctrl .lb b{color:var(--t2);font-family:'Noto Kufi Arabic';font-size:14px;white-space:nowrap}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;outline:none;background:linear-gradient(90deg,var(--t) var(--v,50%),rgba(255,255,255,.09) var(--v,50%))}
+[dir=rtl] input[type=range]{background:linear-gradient(270deg,var(--t) 0,var(--p) var(--v,50%),rgba(255,255,255,.09) var(--v,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--p);box-shadow:0 0 0 4px rgba(123,63,242,.25);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:5px solid var(--p);cursor:pointer}
+.share-ctrl{padding:16px;border-radius:16px;background:rgba(31,69,55,.35);border:1px solid rgba(95,211,165,.3)}
+.res-top{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.big{padding:18px;border-radius:18px;background:var(--card2);border:1px solid var(--line2)}
+.big.g{background:linear-gradient(150deg,rgba(31,69,55,.75),rgba(22,209,194,.08));border-color:rgba(95,211,165,.45)}
+.big small{font-size:12px;color:var(--muted);display:block}
+.big b{font-family:'Noto Kufi Arabic';font-size:clamp(20px,2.6vw,30px);font-weight:900;display:block;line-height:1.5}
+.big.g b{color:var(--mint)}
+.big em{font-style:normal;font-size:12px;color:var(--muted)}
+.rows{display:grid;gap:7px;margin-bottom:18px}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.03)}
+.row span{display:flex;align-items:center;gap:9px}
+.row .sw{width:10px;height:10px;border-radius:3px}
+.bars{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:end;height:190px;padding-top:10px}
+.bcol{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.stack{width:100%;max-width:56px;display:flex;flex-direction:column-reverse;border-radius:8px 8px 3px 3px;overflow:hidden;transition:height .6s}
+.stack i{display:block;transition:height .6s}
+.bcol small{font-size:11px;color:var(--muted)}
+.bcol .v{font-size:11px;font-weight:700;color:var(--mint)}
+.assume{margin-top:16px;font-size:11.5px;color:var(--dim);line-height:1.8}
+@media(max-width:960px){.calc{grid-template-columns:1fr}}
+@media(max-width:420px){.res-top{grid-template-columns:1fr}}
+
+/* why */
+.why{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.gets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.get{display:flex;gap:12px;padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--line2);transition:.3s}
+.get:hover{border-color:var(--line);transform:translateY(-3px)}
+.get i{font-size:18px;color:var(--t);margin-top:4px;width:22px;text-align:center}
+.get h4{font-size:14.5px;margin-bottom:2px}
+.get p{font-size:12.5px;color:var(--muted);line-height:1.65}
+.pays{border-radius:24px;padding:26px;background:linear-gradient(165deg,#24543F,var(--nhc) 40%,#0d241c);border:1px solid rgba(95,211,165,.3);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.pays::after{content:"";position:absolute;width:260px;height:260px;inset-inline-end:-80px;top:-80px;background:url(nhc-logo-white.png) no-repeat center/contain;opacity:.05;pointer-events:none}
+.pays .zero{font-family:'Noto Kufi Arabic';font-size:64px;font-weight:900;color:var(--mint);line-height:1.2}
+.pays h3{font-size:18px;margin-bottom:12px}
+.pays ul{list-style:none;display:grid;gap:9px;font-size:14px;margin-bottom:18px}
+.pays li{display:flex;gap:10px}
+.pays li i{color:var(--mint);margin-top:6px}
+.ask{margin-top:auto;padding:14px;border-radius:14px;background:rgba(0,0,0,.25);font-size:13px;color:#cfe0d8}
+.ask b{color:#fff}
+@media(max-width:960px){.why{grid-template-columns:1fr}}
+@media(max-width:560px){.gets{grid-template-columns:1fr}}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ph{position:relative;padding-top:30px}
+.ph .d{font-size:12px;font-weight:700;color:var(--t);margin-bottom:6px}
+.ph h3{font-size:16px;margin-bottom:8px}
+.ph ul{list-style:none;font-size:13px;color:var(--muted);display:grid;gap:5px}
+.ph li::before{content:"◆";color:var(--p2);font-size:9px;margin-inline-end:7px;vertical-align:middle}
+.ph .pin{position:absolute;top:-1px;inset-inline-start:24px;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font-weight:900;font-size:13px;font-family:'Noto Kufi Arabic';box-shadow:0 0 0 5px var(--bg)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.kpi{text-align:center;padding:18px 12px}
+.kpi b{font-family:'Noto Kufi Arabic';font-size:26px;color:var(--t);display:block}
+.kpi span{font-size:12.5px;color:var(--muted)}
+@media(max-width:960px){.road,.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.road{grid-template-columns:1fr}}
+
+/* final */
+.final{border-radius:32px;padding:60px 30px;text-align:center;position:relative;overflow:hidden;
+  background:radial-gradient(600px 300px at 50% 0%,rgba(123,63,242,.4),transparent 70%),radial-gradient(500px 300px at 50% 110%,rgba(22,209,194,.25),transparent 70%),#0E0C2A;border:1px solid var(--line)}
+.final h2{font-size:clamp(24px,3.4vw,40px)}
+.final p{color:#cfcdee;max-width:660px;margin:0 auto 28px}
+.final .ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.final .logos{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:20px}
+.final .logos img{height:46px}
+.final .logos .nw{height:38px}
+footer{padding:34px 0;border-top:1px solid var(--line2);margin-top:60px;font-size:12.5px;color:var(--dim)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.float-cta{position:fixed;bottom:18px;inset-inline-start:18px;z-index:60;opacity:0;transform:translateY(20px);pointer-events:none;transition:.35s}
+.float-cta.show{opacity:1;transform:none;pointer-events:auto}
+.prog{position:fixed;top:0;inset-inline-start:0;height:3px;background:var(--grad);z-index:70;width:0}
+@media(max-width:600px){.btn{white-space:normal;justify-content:center;text-align:center;width:100%}.nav .btn,.float-cta{width:auto}.stat b{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}#intro{display:none}.rv,.fade-in,.hero h1 .ln>span{opacity:1!important;transform:none!important}}
+</style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-black">
+<body>
+<div id="intro">
+  <div class="intro-in">
+    <div class="intro-logos"><img class="a" src="dhamn-icon.png" alt="الضامن"><span class="intro-x">✕</span><img class="b" src="nhc-logo-white.png" alt="NHC"></div>
+    <div class="intro-line"></div>
+    <div class="intro-t">شراكة تبدأ من الوحدة الأولى</div>
+  </div>
+  <button class="skip" onclick="endIntro()">تخطي</button>
+</div>
 
-    <header class="fixed top-0 left-0 right-0 h-16 bg-brand-navyBg/90 backdrop-blur-md border-b border-purple-900/40 px-4 md:px-8 flex items-center justify-between z-50">
-        <div class="flex items-center gap-3">
-            <div class="flex items-center gap-2 bg-purple-950/80 px-3 py-1.5 rounded-full border border-purple-500/30">
-                <div class="w-7 h-7 rounded-lg gradient-purple-teal flex items-center justify-center text-white text-xs font-bold shadow">
-                    <i class="fa-solid fa-shield-halved text-cyan-300"></i>
-                </div>
-                <span class="font-extrabold text-white text-sm md:text-base tracking-wide">الضــامـن</span>
-                <span class="text-purple-400 text-xs">✕</span>
-                <span class="font-black text-xs md:text-sm text-cyan-400">NHC</span>
-            </div>
-            <span class="hidden md:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-purple-900/40 text-purple-200 border border-purple-700/50">
-                شراكة استراتيجية وتطوير الأعمال
-            </span>
-        </div>
+<canvas id="sky"></canvas><div class="aura"></div><div class="spot" id="spot"></div>
+<div class="prog" id="prog"></div>
 
-        <!-- QUICK NAV BUTTONS -->
-        <div class="flex items-center gap-2">
-            <a href="#calculator" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-700 to-cyan-600 text-white text-xs font-bold hover:opacity-90 transition flex items-center gap-1.5 shadow">
-                <i class="fa-solid fa-calculator"></i>
-                <span class="hidden sm:inline">حاسبة الإيرادات</span>
-            </a>
-            <a href="#simulator" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-semibold transition flex items-center gap-1.5">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <span class="hidden sm:inline">المحاكي</span>
-            </a>
-        </div>
-    </header>
-
-    <nav class="fixed right-3 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-2 p-2 bg-brand-cardBg/80 backdrop-blur-md rounded-2xl border border-purple-800/40 shadow-xl text-xs">
-        <a href="#hero" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="الرئيسية">
-            <i class="fa-solid fa-house w-4 text-center"></i>
-            <span class="hidden xl:inline">الرئيسية</span>
-        </a>
-        <a href="#challenges" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="التحديات">
-            <i class="fa-solid fa-triangle-exclamation w-4 text-center"></i>
-            <span class="hidden xl:inline">التحديات</span>
-        </a>
-        <a href="#solution" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="الحل المقترح">
-            <i class="fa-solid fa-shield-cat w-4 text-center"></i>
-            <span class="hidden xl:inline">منصة الضامن</span>
-        </a>
-        <a href="#calculator" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="الحاسبة المالية">
-            <i class="fa-solid fa-coins w-4 text-center"></i>
-            <span class="hidden xl:inline">مصادر الدخل</span>
-        </a>
-        <a href="#marketplace" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="السوق المفتوح">
-            <i class="fa-solid fa-store w-4 text-center"></i>
-            <span class="hidden xl:inline">Marketplace</span>
-        </a>
-        <a href="#simulator" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="محاكي المنصة">
-            <i class="fa-solid fa-mobile-button w-4 text-center"></i>
-            <span class="hidden xl:inline">تطبيق المستفيد</span>
-        </a>
-        <a href="#roadmap" class="nav-link p-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2" title="خطة التنفيذ">
-            <i class="fa-solid fa-map-location-dot w-4 text-center"></i>
-            <span class="hidden xl:inline">المشروع التجريبي</span>
-        </a>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="brands">
+      <div class="dh"><img src="dhamn-icon.png" alt=""><span>الضامن</span></div>
+      <span class="x">✕</span>
+      <img class="nhc-w" src="nhc-logo-white.png" alt="NHC Innovation">
+    </div>
+    <nav class="navlinks">
+      <a href="#gap">الفجوة</a><a href="#solution">الحل</a><a href="#quality">ذكاء الجودة</a><a href="#revenue">الإيراد المشترك</a><a href="#why">لماذا الآن</a><a href="#pilot">التجربة</a>
     </nav>
-
-    <!-- MAIN CONTENT CONTAINER WITH NATURAL SCROLL -->
-    <main class="flex-1 pt-16">
-
-        <section id="hero" class="min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
-            <!-- Glow Background Effect -->
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-12">
-                
-                <div class="lg:col-span-7 space-y-6 text-right">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold">
-                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
-                        شراكة استراتيجية مبتكرة لحوكمة البيع على الخريطة
-                    </div>
-
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
-                        منظومة الضامن الذكية وتكاملها مع <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-cyan-400">
-                            الشركة الوطنية للإسكان (NHC)
-                        </span>
-                    </h1>
-
-                    <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-                        منصة موحدة تحول أصول وضمانات ضواحي الإسكان (مثل ضاحية الفرسان والخزامى) إلى **منظومة رقمية متكاملة ما بعد الاستلام**، تضمن حقوق المستفيد وتصنع **مصادر دخل جديدة مستدامة (New Revenue Streams)** للوزارة وNHC.
-                    </p>
-
-                    <!-- Feature Badges -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                        <div class="glass-card p-3.5 rounded-xl flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-purple-900/60 flex items-center justify-center text-cyan-300 text-lg">
-                                <i class="fa-solid fa-sack-dollar"></i>
-                            </div>
-                            <div>
-                                <div class="text-[11px] text-slate-400">إيرادات إضافية</div>
-                                <div class="text-xs font-bold text-white">New Revenue Streams</div>
-                            </div>
-                        </div>
-
-                        <div class="glass-card p-3.5 rounded-xl flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-cyan-950/80 flex items-center justify-center text-cyan-300 text-lg">
-                                <i class="fa-solid fa-house-circle-check"></i>
-                            </div>
-                            <div>
-                                <div class="text-[11px] text-slate-400">حماية المستفيد</div>
-                                <div class="text-xs font-bold text-white">Post-Handover Safety</div>
-                            </div>
-                        </div>
-
-                        <div class="glass-card p-3.5 rounded-xl flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-purple-950/80 flex items-center justify-center text-purple-300 text-lg">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </div>
-                            <div>
-                                <div class="text-[11px] text-slate-400">سوق خدمات</div>
-                                <div class="text-xs font-bold text-white">Marketplace Ecosystem</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 flex flex-wrap items-center gap-4">
-                        <a href="#calculator" class="px-6 py-3 rounded-xl gradient-purple-teal text-white font-bold shadow-lg glow-purple hover:opacity-90 transition flex items-center gap-2 text-sm">
-                            <span>استكشف نموذج الإيرادات</span>
-                            <i class="fa-solid fa-arrow-down"></i>
-                        </a>
-                        <a href="#simulator" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 font-semibold transition flex items-center gap-2 text-sm">
-                            <span>معاينة محاكي التطبيق</span>
-                            <i class="fa-solid fa-mobile-screen"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="relative w-full max-w-sm">
-                        <div class="glass-card rounded-2xl p-6 space-y-4 glow-teal">
-                            <div class="flex justify-between items-center border-b border-purple-900/60 pb-3">
-                                <span class="text-sm font-bold text-cyan-300"><i class="fa-solid fa-award ml-1"></i> أهداف الشراكة الوطنية</span>
-                                <span class="text-[10px] text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-700">NHC Partner</span>
-                            </div>
-
-                            <ul class="space-y-3 text-xs md:text-sm text-slate-300">
-                                <li class="flex items-start gap-2.5">
-                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
-                                    <span>تحويل رخص البناء والفسوح لـ <strong>سجل أصول رقمي حي</strong> لكل وحدة.</span>
-                                </li>
-                                <li class="flex items-start gap-2.5">
-                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
-                                    <span>تحصيل 1,000 ريال عن كل وحدة من المطور مقابل الأرشفة والضمان.</span>
-                                </li>
-                                <li class="flex items-start gap-2.5">
-                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
-                                    <span>تنبيهات استباقية للساكن قبل انقضاء مهلة ضمان التشطيبات.</span>
-                                </li>
-                                <li class="flex items-start gap-2.5">
-                                    <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
-                                    <span>إتاحة سوق فحص المباني والأثاث لزيادة الإيرادات المستمرة.</span>
-                                </li>
-                            </ul>
-
-                            <div class="pt-3 border-t border-purple-900/60 flex justify-between items-center text-xs text-slate-400">
-                                <span>الربط البرمجي: <strong class="text-cyan-300">API جاهز</strong></span>
-                                <span>نطاق البدء: <strong class="text-purple-300">الفرسان / الخزامى</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="challenges" class="py-16 px-4 md:px-8 border-t border-purple-950 bg-brand-navyBg/60">
-            <div class="max-w-6xl mx-auto space-y-8">
-                
-                <div class="text-center max-w-3xl mx-auto space-y-2">
-                    <span class="text-xs font-bold text-red-400 bg-red-950/80 px-3 py-1 rounded-full border border-red-800">التحديات الواقعية</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">فجوة ما بعد الاستلام وتشتت البيانات</h2>
-                    <p class="text-slate-400 text-xs md:text-sm">المشاكل الجوهرية التي يواجهها المستفيد بعد استلام المفتاح في البيع على الخريطة</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <div class="glass-card p-6 rounded-2xl border-t-4 border-t-red-500 space-y-3">
-                        <div class="w-12 h-12 rounded-xl bg-red-950/60 flex items-center justify-center text-red-400 text-xl">
-                            <i class="fa-solid fa-phone-slash"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">تغير وتوقف أرقام الموردين</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            يسكن المستفيد غالباً بعد سنة أو سنتين من الاستلام، وعند ظهور عيوب في الصرف الصحي أو الكهرباء، يكتشف أن أرقام المقاولين بالملف الورقي مقفلة أو متغيرة.
-                        </p>
-                        <div class="bg-slate-950/60 p-2.5 rounded-lg text-[11px] text-slate-400 border border-slate-800">
-                            <strong class="text-red-400 block mb-0.5">الأثر:</strong> ضياع الدعم الفني وتضرر سمعة المشروع.
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-6 rounded-2xl border-t-4 border-t-amber-500 space-y-3">
-                        <div class="w-12 h-12 rounded-xl bg-amber-950/60 flex items-center justify-center text-amber-400 text-xl">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">انقضاء ضمان التشطيبات دون علم</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            الضمان الهيكلي 10 سنوات، لكن ضمان التشطيبات (انسداد الصرف، التصدعات) سنة واحدة غالباً تنتهي قبل السكن دون تنبيه المستفيد بفحص بيته مبكراً.
-                        </p>
-                        <div class="bg-slate-950/60 p-2.5 rounded-lg text-[11px] text-slate-400 border border-slate-800">
-                            <strong class="text-amber-400 block mb-0.5">الأثر:</strong> تحمل المستفيد تكاليف الإصلاح الباهظة.
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-6 rounded-2xl border-t-4 border-t-purple-500 space-y-3">
-                        <div class="w-12 h-12 rounded-xl bg-purple-950/60 flex items-center justify-center text-purple-300 text-xl">
-                            <i class="fa-solid fa-diagram-project"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">تشتت الحلول واقتصار الرسوم</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            تطبيقات منفصلة لكل مطور (مثل ريتال) تسبب تشتتاً للمستفيد. كما تقتصر عوائد الوزارة على رسوم الفسوح ورخص البناء الأولية دون عوائد مستمرة.
-                        </p>
-                        <div class="bg-slate-950/60 p-2.5 rounded-lg text-[11px] text-slate-400 border border-slate-800">
-                            <strong class="text-purple-300 block mb-0.5">الأثر:</strong> غياب تجربة موحدة وضياع فرص ربحية.
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <section id="solution" class="py-16 px-4 md:px-8 border-t border-purple-950">
-            <div class="max-w-6xl mx-auto space-y-8">
-                
-                <div class="text-center max-w-3xl mx-auto space-y-2">
-                    <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">الحل الشامل والموحد</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">منصة الضامن: تجربة سكنية آمنة ومحوكمة</h2>
-                    <p class="text-slate-400 text-xs md:text-sm">أرشفة رقمية، تنبيهات ذكية، وسوق خدمات يضمن جودة الاستثمار السكني</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    
-                    <div class="glass-card p-5 rounded-xl space-y-2">
-                        <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-base">1</div>
-                        <h3 class="text-base font-bold text-white">السجل الرقمي الموحد</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            أرشفة كاملة للمخططات الإنشائية، الفسوح، شهادات الضمان، وبيانات المقاولين مع تحديثها تلقائياً.
-                        </p>
-                    </div>
-
-                    <div class="glass-card p-5 rounded-xl space-y-2">
-                        <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-base">2</div>
-                        <h3 class="text-base font-bold text-white">التنبيهات الذكية للضمان</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            إشعارات آلية تتنبه المستفيد قبل انتهاء ضمان التشطيبات (بـ 60 و 30 يوماً) لإجراء الفحص قبل فوات الأوان.
-                        </p>
-                    </div>
-
-                    <div class="glass-card p-5 rounded-xl space-y-2">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-base">3</div>
-                        <h3 class="text-base font-bold text-white">سوق الفحص والصيانة</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            ربط المستفيد بشركات فحص المباني المعتمدة (Home Inspection) للكشف عن التصدعات والانسدادات.
-                        </p>
-                    </div>
-
-                    <div class="glass-card p-5 rounded-xl space-y-2">
-                        <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-base">4</div>
-                        <h3 class="text-base font-bold text-white">تفعيل الـ Vendors</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            إتاحة منظومة تجارية متاحة لمحلات الأثاث والتجهيزات تقدم عروضاً حصرياً لساكني الضواحي.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <section id="calculator" class="py-16 px-4 md:px-8 border-t border-purple-950 bg-brand-navyBg/80">
-            <div class="max-w-6xl mx-auto space-y-8">
-                
-                <div class="text-center max-w-3xl mx-auto space-y-2">
-                    <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">الاستدامة المالية</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">حاسبة مصادر الدخل التفاعلية (New Revenue Streams)</h2>
-                    <p class="text-slate-400 text-xs md:text-sm">حرك المؤشرات لتقدير العوائد المالية المتوقعة من تطبيق منصة الضامن بضواحي الإسكان</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    
-                    <!-- INPUT CONTROLS -->
-                    <div class="lg:col-span-6 space-y-6">
-                        
-                        <!-- SLIDER 1 -->
-                        <div class="glass-card p-5 rounded-2xl space-y-3">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-slate-200 font-bold">إجمالي عدد الوحدات السكنية المستهدفة:</span>
-                                <span id="unitsText" class="text-cyan-300 font-black text-sm">25,000 وحدة</span>
-                            </div>
-                            <input type="range" id="unitsInput" min="5000" max="100000" step="5000" value="25000" oninput="updateCalculator()" class="w-full">
-                            <div class="flex justify-between text-[10px] text-slate-500">
-                                <span>5,000 وحدة</span>
-                                <span>50,000 وحدة</span>
-                                <span>100,000 وحدة</span>
-                            </div>
-                        </div>
-
-                        <!-- SLIDER 2 -->
-                        <div class="glass-card p-5 rounded-2xl space-y-3">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-slate-200 font-bold">رسوم أرشفة وضمان الوحدة من المطور:</span>
-                                <span id="feeText" class="text-purple-300 font-black text-sm">1,000 ريال / وحدة</span>
-                            </div>
-                            <input type="range" id="feeInput" min="500" max="2500" step="100" value="1000" oninput="updateCalculator()" class="w-full">
-                        </div>
-
-                        <!-- SLIDER 3 -->
-                        <div class="glass-card p-5 rounded-2xl space-y-3">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-slate-200 font-bold">نسبة طلب فحص المباني والشراء من السوق:</span>
-                                <span id="conversionText" class="text-emerald-300 font-black text-sm">35% من السكان</span>
-                            </div>
-                            <input type="range" id="conversionInput" min="10" max="80" step="5" value="35" oninput="updateCalculator()" class="w-full">
-                        </div>
-
-                    </div>
-
-                    <!-- DYNAMIC DISPLAY RESULTS -->
-                    <div class="lg:col-span-6">
-                        <div class="glass-card p-6 md:p-8 rounded-3xl border border-cyan-500/40 relative overflow-hidden space-y-6 glow-teal">
-                            
-                            <div class="flex justify-between items-center border-b border-purple-900/60 pb-3">
-                                <span class="text-xs font-bold text-slate-300">صافي الإيرادات المالية المقدرة</span>
-                                <span class="text-[10px] bg-cyan-950 text-cyan-300 px-2.5 py-1 rounded-full border border-cyan-700">تقدير فوري</span>
-                            </div>
-
-                            <div class="text-center py-2">
-                                <div class="text-xs text-slate-400 mb-1">إجمالي المداخيل المباشرة للشركة والمنصة</div>
-                                <div id="totalRevenue" class="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-purple-300">
-                                    29,375,000
-                                </div>
-                                <div class="text-xs font-bold text-cyan-400 mt-1">ريال سعودي</div>
-                            </div>
-
-                            <div class="space-y-3 pt-2 border-t border-purple-900/60 text-xs">
-                                <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-950/70 border border-slate-800">
-                                    <span class="text-slate-300"><i class="fa-solid fa-building text-purple-400 ml-2"></i>رسوم إدراج المطورين المباشرة:</span>
-                                    <span id="devRevenue" class="font-bold text-white">25,000,000 ريال</span>
-                                </div>
-
-                                <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-950/70 border border-slate-800">
-                                    <span class="text-slate-300"><i class="fa-solid fa-magnifying-glass-chart text-cyan-400 ml-2"></i>عمولات فحص المباني (200 ريال/طلب):</span>
-                                    <span id="inspectRevenue" class="font-bold text-cyan-300">1,750,000 ريال</span>
-                                </div>
-
-                                <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-950/70 border border-slate-800">
-                                    <span class="text-slate-300"><i class="fa-solid fa-store text-emerald-400 ml-2"></i>اشتراكات وعمولات الـ Marketplace:</span>
-                                    <span id="marketRevenue" class="font-bold text-emerald-300">2,625,000 ريال</span>
-                                </div>
-                            </div>
-
-                            <p class="text-[11px] text-slate-400 text-center italic">
-                                * تعتمد رسوم المطور عند فتح ملف البيع على الخريطة، بينما تتكرر عوائد الفحص والـ Marketplace سنوياً.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <section id="marketplace" class="py-16 px-4 md:px-8 border-t border-purple-950">
-            <div class="max-w-6xl mx-auto space-y-8">
-                
-                <div class="text-center max-w-3xl mx-auto space-y-2">
-                    <span class="text-xs font-bold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800">السوق الرقمي المتكامل</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">منظومة الخدمات والـ Marketplace للساكن</h2>
-                    <p class="text-slate-400 text-xs md:text-sm">ربط المستفيد بأجود الشركات المعتمدة مع تحصيل عمولات ورسوم انضمام للمنصة</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <div class="glass-card p-6 rounded-2xl space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-cyan-950 text-cyan-300 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-clipboard-check"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">شركات فحص المباني</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            شركات معتمدة تقوم بفحص التصدعات الخرسانية، تسريبات الصرف، والأعمال الكهروميكانيكية برسوم (2,000 - 2,500 ريال) قبل انتهاء الضمان.
-                        </p>
-                        <div class="text-xs text-cyan-300 font-bold bg-cyan-950/50 p-2 rounded-lg">
-                            عمولة المنصة: 200 ريال لكل طلب فحص
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-6 rounded-2xl space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-950 text-purple-300 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-couch"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">متاجر الأثاث والديكور</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            خصومات موحدة وحصرية لساكني الضواحي (كالفرسان والخزامى) لشراء الأثاث والتكييف والتجهيزات مع تسهيلات دفع.
-                        </p>
-                        <div class="text-xs text-purple-300 font-bold bg-purple-950/50 p-2 rounded-lg">
-                            عمولة مبيعات + رسوم اشتراك سنوياً
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-6 rounded-2xl space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-950 text-emerald-300 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">عقود الصيانة والتشغيل</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            مزودو خدمات الصيانة الدورية لما بعد انتهاء فترة الضمانات للسباكة والكهرباء والتكييف بعقود سنوية محوكمة.
-                        </p>
-                        <div class="text-xs text-emerald-300 font-bold bg-emerald-950/50 p-2 rounded-lg">
-                            اشتراكات سنوية للشركات كـ Vendors
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <section id="simulator" class="py-16 px-4 md:px-8 border-t border-purple-950 bg-brand-navyBg/80">
-            <div class="max-w-6xl mx-auto space-y-8">
-                
-                <div class="text-center max-w-3xl mx-auto space-y-2">
-                    <span class="text-xs font-bold text-cyan-400 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800">محاكي الواجهة</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">تجربة المستفيد داخل تطبيق "الضامن"</h2>
-                    <p class="text-slate-400 text-xs md:text-sm">اضغط على التبويبات لاستعراض كيف يتفاعل الساكن مع ضماناته والخدمات</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    
-                    <!-- LEFT CONTROL INFO -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="glass-card p-5 rounded-2xl space-y-3">
-                            <h3 class="text-base font-bold text-white">مميزات الواجهة الموحدة:</h3>
-                            <ul class="space-y-2.5 text-xs text-slate-300">
-                                <li class="flex items-center gap-2">
-                                    <i class="fa-solid fa-check text-cyan-400"></i>
-                                    <span>عداد تنازلي آلي لضمان التشطيبات والضمان الهيكلي.</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <i class="fa-solid fa-check text-cyan-400"></i>
-                                    <span>سجل محدث للاتصال بالموردين المعتمدين بضغطة زر.</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <i class="fa-solid fa-check text-cyan-400"></i>
-                                    <span>حجز فوري لخدمات فحص المباني المعتمدة قبل السكن.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- TAB CONTROLS -->
-                        <div class="flex gap-2">
-                            <button onclick="setSimTab('tab-warranties')" id="btn-tab-warranties" class="flex-1 py-2.5 px-3 rounded-xl bg-purple-600 text-white font-bold text-xs transition shadow">
-                                الضمانات والموردين
-                            </button>
-                            <button onclick="setSimTab('tab-market')" id="btn-tab-market" class="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs hover:bg-slate-700 transition">
-                                سوق الخدمات Marketplace
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- MOCKUP DISPLAY -->
-                    <div class="lg:col-span-7 flex justify-center">
-                        <div class="w-full max-w-sm bg-slate-900 rounded-3xl border-4 border-slate-800 p-4 shadow-2xl space-y-4">
-                            
-                            <!-- APP HEADER -->
-                            <div class="bg-slate-950 p-3 rounded-2xl border border-purple-900/40 flex justify-between items-center text-xs">
-                                <div>
-                                    <div class="text-[10px] text-slate-400">الوحدة المسجلة</div>
-                                    <div class="font-bold text-cyan-300"><i class="fa-solid fa-location-dot ml-1"></i>ضاحية الفرسان - فيلا 204</div>
-                                </div>
-                                <span class="bg-cyan-950 text-cyan-300 text-[10px] px-2 py-0.5 rounded-full border border-cyan-800">مستلمة</span>
-                            </div>
-
-                            <!-- CONTENT TAB 1: WARRANTIES -->
-                            <div id="sim-content-warranties" class="space-y-3">
-                                
-                                <div class="bg-amber-950/70 border border-amber-500/40 p-2.5 rounded-xl flex items-center justify-between text-xs">
-                                    <div class="flex items-center gap-2">
-                                        <i class="fa-solid fa-triangle-exclamation text-amber-400 animate-bounce"></i>
-                                        <span class="text-[11px] text-slate-200">ينتهي ضمان السباكة خلال <strong>45 يوماً</strong></span>
-                                    </div>
-                                    <button onclick="setSimTab('tab-market')" class="text-[10px] bg-amber-500 text-black font-bold px-2 py-1 rounded hover:bg-amber-400">احجز فحص</button>
-                                </div>
-
-                                <div class="space-y-2 text-xs">
-                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-                                        <div>
-                                            <div class="font-bold text-white">الهيكل الإنشائي (10 سنوات)</div>
-                                            <div class="text-[10px] text-slate-400">شركة الإنشاءات المتقدمة</div>
-                                        </div>
-                                        <a href="tel:920000000" class="px-2.5 py-1 bg-purple-900/60 text-purple-200 rounded border border-purple-700 text-[10px] font-bold">
-                                            <i class="fa-solid fa-phone ml-1"></i>اتصال
-                                        </a>
-                                    </div>
-
-                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-                                        <div>
-                                            <div class="font-bold text-white">أعمال السباكة والصرف (سنة)</div>
-                                            <div class="text-[10px] text-amber-400">أرقام التواصل محدثة</div>
-                                        </div>
-                                        <a href="tel:920000000" class="px-2.5 py-1 bg-purple-900/60 text-purple-200 rounded border border-purple-700 text-[10px] font-bold">
-                                            <i class="fa-solid fa-phone ml-1"></i>اتصال
-                                        </a>
-                                    </div>
-
-                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-                                        <div>
-                                            <div class="font-bold text-white">التكييف والأجهزة الكهربائية</div>
-                                            <div class="text-[10px] text-cyan-300">ساري الضمان</div>
-                                        </div>
-                                        <a href="tel:920000000" class="px-2.5 py-1 bg-purple-900/60 text-purple-200 rounded border border-purple-700 text-[10px] font-bold">
-                                            <i class="fa-solid fa-phone ml-1"></i>اتصال
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- CONTENT TAB 2: MARKETPLACE -->
-                            <div id="sim-content-market" class="space-y-3 hidden">
-                                <div class="text-xs font-bold text-slate-300 flex justify-between items-center">
-                                    <span>شركات الفحص والصيانة المعتمدة</span>
-                                    <span class="text-[10px] text-cyan-400">خصومات NHC</span>
-                                </div>
-
-                                <div class="space-y-2 text-xs">
-                                    <div class="bg-slate-950 p-3 rounded-xl border border-cyan-500/30 flex justify-between items-center">
-                                        <div>
-                                            <div class="font-bold text-white">شركة الفحص الدقيق للمباني</div>
-                                            <div class="text-[10px] text-slate-400">فحص شامل للفيلا قبل السكن</div>
-                                            <div class="text-cyan-300 font-bold text-[11px] mt-0.5">2,100 ريال <span class="line-through text-slate-500 text-[9px]">2,500</span></div>
-                                        </div>
-                                        <button onclick="alert('تم حجز موعد الفحص بنجاح، سيتواصل معك المهندس خلال 24 ساعة.')" class="px-3 py-1.5 gradient-purple-teal text-white rounded-lg font-bold text-[10px]">
-                                            طلب فحص
-                                        </button>
-                                    </div>
-
-                                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-                                        <div>
-                                            <div class="font-bold text-white">مؤسسة الصيانة الشاملة</div>
-                                            <div class="text-[10px] text-slate-400">عقد صيانة سنوي للوحدة</div>
-                                            <div class="text-purple-300 font-bold text-[11px] mt-0.5">1,500 ريال / سنوياً</div>
-                                        </div>
-                                        <button onclick="alert('تفاصيل عقد الصيانة المعتمد من الضامن.')" class="px-3 py-1.5 bg-slate-800 text-slate-300 rounded-lg font-bold text-[10px]">
-                                            التفاصيل
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <section id="roadmap" class="py-16 px-4 md:px-8 border-t border-purple-950">
-            <div class="max-w-6xl mx-auto space-y-8">
-                
-                <div class="text-center max-w-3xl mx-auto space-y-2">
-                    <span class="text-xs font-bold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800">التطبيق الميداني</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white">خارطة طريق المشروع التجريبي (Pilot Roadmap)</h2>
-                    <p class="text-slate-400 text-xs md:text-sm">خطوات واضحة للبدء في ضاحية الفرسان وضاحية الخزامى كنموذج أولي</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    
-                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
-                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 1</span>
-                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-file-contract"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-white">الاتفاقية والتكامل البرمجي</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            توقيع الشراكة والاستئذان بالربط مع بوابات NHC لإتاحة رفع المستندات الموحدة.
-                        </p>
-                    </div>
-
-                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
-                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 2</span>
-                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-city"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-white">إطلاق الضاحية التجريبية</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            تفعيل المنصة في <strong>ضاحية الفرسان</strong> أو <strong>ضاحية الخزامى</strong> وإلزام المطورين بالرفع.
-                        </p>
-                    </div>
-
-                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
-                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 3</span>
-                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-store"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-white">تفعيل الـ Marketplace</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            دعوة الشركات المعتمدة لفحص المباني ومزودي خدمات الصيانة والأثاث للانضمام.
-                        </p>
-                    </div>
-
-                    <div class="glass-card p-5 rounded-xl space-y-3 relative">
-                        <span class="text-xs font-bold bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded border border-purple-700">المرحلة 4</span>
-                        <div class="w-10 h-10 rounded-lg bg-cyan-950 text-cyan-300 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-white">التوسع الشامل وتوزيع الأرباح</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            تعميم المنصة على كافة المشاريع وتحصيل العوائد المالية المستدامة بانتظام.
-                        </p>
-                    </div>
-
-                </div>
-
-                <!-- CALL TO ACTION BANNER -->
-                <div class="gradient-purple-teal p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 text-white glow-purple mt-8">
-                    <div class="space-y-1 text-center md:text-right">
-                        <h3 class="text-xl md:text-2xl font-black">جاهزون لإطلاق تجربة "الضامن" مع الوطنية للإسكان</h3>
-                        <p class="text-xs md:text-sm text-purple-100">فريق العمل مستعد للبدء المباشر وتنسيق ورشة العمل التنفيذية فوراً.</p>
-                    </div>
-                    <button onclick="alert('شكراً لكم! سيتم البدء في إجراءات التنسيق الفني والمالي فوراً.')" class="px-6 py-3.5 bg-brand-navyBg hover:bg-slate-900 text-cyan-300 font-bold text-xs md:text-sm rounded-xl border border-cyan-500/40 shadow-xl whitespace-nowrap">
-                        تأكيد خيار الشراكة التجريبية
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-brand-navyBg border-t border-purple-900/40 py-4 px-4 text-center text-xs text-slate-400">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div>
-                جميع الحقوق محفوظة © منصة الضامن وشراكة الشركة الوطنية للإسكان (NHC)
-            </div>
-            <div class="flex items-center gap-4 text-cyan-400 font-semibold">
-                <a href="#hero" class="hover:underline">الرئيسية</a>
-                <span>•</span>
-                <a href="#calculator" class="hover:underline">الحاسبة المالية</a>
-                <span>•</span>
-                <a href="#simulator" class="hover:underline">المحاكي</a>
-            </div>
+    <div class="nav-acts">
+      <a href="admin.html" class="btn btn-g btn-sm"><i class="fa-solid fa-chart-pie"></i><span>لوحة NHC</span></a>
+      <a href="app.html" class="btn btn-p btn-sm"><i class="fa-solid fa-mobile-screen-button"></i><span>جرّب المنصة</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow fade-in"><span class="dot"></span>مقترح شراكة بنموذج إيراد مشترك · تجربة أولى في ضاحية الخزامى</span>
+      <h1><span class="ln"><span>كل وحدة تُباع على الخريطة</span></span><span class="ln"><span>تتحول إلى <span class="gtxt">أصل رقمي يدرّ دخلاً</span></span></span><span class="ln"><span>ويحوكم الجودة</span></span></h1>
+      <p class="lead fade-in d1">منصة الضامن تمنح الشركة الوطنية للإسكان ما لا تمنحه الفسوح والرخص: دخلاً إضافياً ومتكرراً من كل وحدة، وبيانات موثقة ومحدثة طوال عمرها، وصوتاً مسموعاً للمستفيد يرفع جودة المطورين — <b style="color:var(--text)">دون أي تكلفة رأسمالية على NHC</b>.</p>
+      <div class="ctas fade-in d2">
+        <a href="app.html" class="btn btn-p"><i class="fa-solid fa-mobile-screen-button"></i>الانتقال إلى المنصة التجريبية لتجربة رحلة العميل</a>
+        <a href="admin.html" class="btn btn-g"><i class="fa-solid fa-chart-pie"></i>لوحة تحكم NHC</a>
+      </div>
+      <div class="stats fade-in d3">
+        <div class="stat"><b data-count="0" data-suf=" ﷼">0 ﷼</b><span>تكلفة رأسمالية على NHC</span></div>
+        <div class="stat"><b data-count="4">4</b><span>مصادر دخل جديدة</span></div>
+        <div class="stat"><b data-count="90" data-suf=" يوماً">90 يوماً</b><span>لإطلاق التجربة الأولى</span></div>
+        <div class="stat"><b data-count="100" data-suf="%">100%</b><span>ملكية البيانات لـ NHC</span></div>
+      </div>
+    </div>
+    <div class="core-wrap fade-in d4" id="coreWrap">
+      <div class="ring"></div><div class="ring sweep"></div><div class="ring r2"></div><div class="ring r3"></div>
+      <div class="orbit">
+        <div class="node n1"><div class="in"><i class="fa-solid fa-folder-open"></i><span>رسوم استضافة ملف الوحدة</span></div></div>
+        <div class="node n2"><div class="in"><i class="fa-solid fa-store"></i><span>عمولات سوق الخدمات</span></div></div>
+        <div class="node n3"><div class="in"><i class="fa-solid fa-id-badge"></i><span>اشتراكات مقدمي الخدمة</span></div></div>
+        <div class="node n4"><div class="in"><i class="fa-solid fa-chart-column"></i><span>بيانات الجودة والأدلة</span></div></div>
+      </div>
+      <div class="core"><img src="dhamn-icon.png" alt=""><b>قيمة مستمرة<br>من كل وحدة</b><small>منذ الفسح… وحتى آخر ضمان</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="marq"><div class="mtrack" id="mtrack"></div></div>
+
+<section class="s" id="gap">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag">الوضع الحالي مقابل الفرصة</span>
+      <h2>اليوم تنتهي علاقة NHC بالوحدة عند الفسح… والقيمة الحقيقية تبدأ بعده</h2>
+      <p>العائد الحالي من المطور يقتصر على رسوم الرخص والفسوح لمرة واحدة، بينما تبقى بيانات الوحدة وضماناتها وتجربة الساكن خارج المنظومة تماماً.</p>
+    </div>
+    <div class="compare">
+      <div class="cmp old rv">
+        <h3><i class="fa-solid fa-circle-xmark" style="color:var(--red)"></i>اليوم</h3>
+        <ul>
+          <li><i class="fa-solid fa-minus"></i><span><b>دخل محدود:</b> رسوم فسح ورخص بناء لمرة واحدة، ولا شيء جوهري بعدها.</span></li>
+          <li><i class="fa-solid fa-minus"></i><span><b>بيانات مشتتة:</b> ملفات ورقية وتطبيقات منفصلة لكل مطور، وأرقام موردين تتغير ولا تُحدَّث.</span></li>
+          <li><i class="fa-solid fa-minus"></i><span><b>ضمانات تنتهي بصمت:</b> ضمان التشطيبات سنة واحدة، وكثير من المستفيدين لا يسكنون قبل انتهائه.</span></li>
+          <li><i class="fa-solid fa-minus"></i><span><b>لا مؤشر موضوعي</b> لجودة المطور عند ترسية الزون القادم؛ الشكاوى فردية ولا تتحول لدليل.</span></li>
+        </ul>
+      </div>
+      <div class="cmp new rv">
+        <h3><i class="fa-solid fa-circle-check" style="color:var(--t)"></i>مع منصة الضامن</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i><span><b>دخل مضاعف ومستدام:</b> رسوم استضافة لكل وحدة + عمولات واشتراكات متكررة من السوق.</span></li>
+          <li><i class="fa-solid fa-check"></i><span><b>سجل رقمي موحد</b> لكل وحدة: المخططات، الفسح، الضمانات، الموردون، بأرقام موثقة ومحدثة.</span></li>
+          <li><i class="fa-solid fa-check"></i><span><b>رادار ضمانات</b> ينبّه الساكن قبل الانتهاء بـ 60 و30 و7 أيام، ويوجهه للفحص قبل الاستلام.</span></li>
+          <li><i class="fa-solid fa-check"></i><span><b>مؤشر جودة لكل مطور</b> مبني على بلاغات موثقة ومجمّعة — أداة حوكمة في يد NHC.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" style="padding-top:20px">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag">قصة مستفيد حقيقية تتكرر</span>
+      <h2>من استلام المفتاح… إلى ضمان منتهٍ ورقم مقفل</h2>
+    </div>
+    <div class="story" id="story">
+      <div class="track"><i></i></div>
+      <div class="st rv"><div class="ic"><i class="fa-solid fa-key" style="color:var(--t)"></i></div><div><div class="when">الشهر 0</div><h4>يستلم المفتاح</h4><p>يحصل على ملف ورقي وتطبيق المطور، وكل شيء يبدو مكتملاً.</p></div></div>
+      <div class="st rv"><div class="ic"><i class="fa-solid fa-couch" style="color:var(--amber)"></i></div><div><div class="when">الأشهر 1 – 12</div><h4>يؤثث على مهل</h4><p>لا يسكن مباشرة؛ يجهز البيت تدريجياً لسنة أو سنتين.</p></div></div>
+      <div class="st bad rv"><div class="ic"><i class="fa-solid fa-house-crack"></i></div><div><div class="when">بعد السكن</div><h4>تظهر العيوب</h4><p>تشققات في الجدران، وأسمنت وبقايا بناء داخل البالوعات والصرف.</p></div></div>
+      <div class="st bad rv"><div class="ic"><i class="fa-solid fa-phone-slash"></i></div><div><div class="when">يتصل</div><h4>الأرقام مقفلة</h4><p>أرقام الموردين في الملف والتطبيق متغيرة، ويعود للمطور ليطلبها من جديد.</p></div></div>
+      <div class="st bad rv"><div class="ic"><i class="fa-solid fa-hourglass-end"></i></div><div><div class="when">النهاية</div><h4>الضمان انتهى</h4><p>ضمان السنة للتشطيبات والسباكة انقضى دون أي تنبيه.</p></div></div>
+    </div>
+    <div class="verdict rv"><i class="fa-solid fa-triangle-exclamation"></i><span>النتيجة: مستفيد يتحمل تكلفة إصلاح ليست عليه، وسمعة ضاحية إسكانية تتأثر — بينما لا يدفع المطور ثمن ضعف الجودة.</span></div>
+  </div>
+</section>
+
+<section class="s" id="solution">
+  <div class="wrap">
+    <div class="s-head c rv">
+      <span class="tag">الحل</span>
+      <h2>منصة تشاركية واحدة لكل وحدات ضواحي الإسكان</h2>
+      <p>تطبيق موحد يحمل هوية NHC والضامن، يُلزَم فيه كل مطور برفع ملف كل وحدة يطورها في الزون الخاص به، ويرافق المستفيد من توقيع العقد حتى ما بعد الضمان.</p>
+    </div>
+    <div class="pillars">
+      <div class="card pl tilt rv"><span class="num">1</span><div class="ic"><i class="fa-solid fa-folder-tree"></i></div><h3>الملف الرقمي للوحدة</h3><p>الموقع، المساحات، المخططات، الفسح، نسبة الإنجاز، والملكية — في سجل واحد حي.</p></div>
+      <div class="card pl tilt rv"><span class="num">2</span><div class="ic"><i class="fa-solid fa-satellite-dish"></i></div><h3>رادار الضمانات</h3><p>كل ضمان بمدته وجهته وتاريخ انتهائه، مع تنبيهات استباقية قبل 60 و30 و7 أيام.</p></div>
+      <div class="card pl tilt rv"><span class="num">3</span><div class="ic"><i class="fa-solid fa-address-book"></i></div><h3>دليل موردين موثّق</h3><p>أرقام الإنشاء والسباكة والكهرباء والسلامة يتحقق منها دورياً، بلا أرقام مقفلة.</p></div>
+      <div class="card pl tilt rv"><span class="num">4</span><div class="ic"><i class="fa-solid fa-store"></i></div><h3>سوق الخدمات</h3><p>فحص قبل الاستلام، صيانة، تنظيف، تكييف، أثاث — مقدمو خدمة يدفعون للانضمام.</p></div>
+      <div class="card pl hl tilt rv"><span class="num">5</span><div class="ic"><i class="fa-solid fa-brain"></i></div><h3>ذكاء الجودة <span class="new-b">حصري لـ NHC</span></h3><p>بلاغات الساكنين واستبياناتهم تُجمّع حسب الضاحية والزون والمطور، فتتحول الشكوى الفردية إلى دليل.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="quality">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag">ذكاء الجودة</span>
+      <h2>صوت المستفيد… يتحول إلى دليل موثّق في يد NHC</h2>
+      <p>عندما يطلب ساكن صيانة سباكة فهي حالة فردية. لكن عندما يطلبها أغلب ساكني الزون نفسه لدى المطور نفسه، فهذه علامة استفهام كبيرة على التنفيذ — والمنصة تكشفها تلقائياً.</p>
+    </div>
+    <div class="qi-flow rv" id="qflow">
+      <span class="qf"><i class="fa-solid fa-user"></i>بلاغ ساكن</span><span class="qi-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+      <span class="qf"><i class="fa-solid fa-layer-group"></i>تجميع حسب الزون والمطور</span><span class="qi-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+      <span class="qf"><i class="fa-solid fa-magnifying-glass-chart"></i>اكتشاف نمط متكرر</span><span class="qi-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+      <span class="qf"><i class="fa-solid fa-bell"></i>إنذار لـ NHC</span><span class="qi-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+      <span class="qf"><i class="fa-solid fa-scale-balanced"></i>مؤشر جودة يؤثر في الترسية</span>
+    </div>
+    <div class="qgrid">
+      <div class="effect rv">
+        <div class="big-i"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h3>الأثر السلوكي هو الأهم</h3>
+        <p>حين يعلم المطور الذي يأخذ زوناً في ضواحي الإسكان أن صوت المستفيد مسموع عند NHC ومدعوم بأدلة، وأن مؤشر جودته يدخل في قرار ترسية المشاريع القادمة — سيبني بجودة من اليوم الأول، لأن سمعته وفرصه المستقبلية على المحك.</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>البلاغات مجهولة الهوية ومجمّعة — لا تشهير بالأفراد</li>
+          <li><i class="fa-solid fa-check"></i>استبيان رضا تلقائي بعد الاستلام وبعد كل إصلاح</li>
+          <li><i class="fa-solid fa-check"></i>تقرير جودة شهري لكل مطور وزون جاهز لصانع القرار</li>
+        </ul>
+      </div>
+      <a href="admin.html" class="adm rv tilt" aria-label="فتح لوحة تحكم NHC">
+        <div class="hd"><b><i class="fa-solid fa-chart-pie" style="color:var(--t)"></i> لوحة تحكم NHC</b><span class="live">بيانات حية</span></div>
+        <div class="mkpi"><div><b id="mk1">150</b><span>وحدة مسجلة</span></div><div><b id="mk2" style="color:var(--red)">63%</b><span>بلاغات سباكة · B</span></div><div><b id="mk3" style="color:var(--t)">14</b><span>مقدم خدمة</span></div></div>
+        <div class="mini" id="mini"></div>
+        <div class="adm-feat"><span>خريطة بلاغات الضاحية</span><span>وحدات كل مطور وملاكها</span><span>الصيانة والسوق لكل وحدة</span><span>الضمانات المتبقية</span><span>إدارة مقدمي الخدمة</span></div>
+        <span class="btn btn-p" style="width:100%;justify-content:center"><i class="fa-solid fa-arrow-up-left-from-square"></i>افتح لوحة التحكم الإدارية</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="revenue">
+  <div class="wrap">
+    <div class="s-head c rv">
+      <span class="tag">الإيراد المشترك</span>
+      <h2>من رسوم لمرة واحدة… إلى أربعة مصادر دخل</h2>
+      <p>الضامن يطوّر ويشغّل ويسوّق، وNHC تحصل على حصة من كل ريال تولده المنصة — منذ الوحدة الأولى.</p>
+    </div>
+    <div class="streams">
+      <div class="card sm tilt rv"><div class="ic"><i class="fa-solid fa-folder-open"></i></div><span class="type once">لمرة واحدة لكل وحدة</span><h3>رسوم استضافة ملف الوحدة</h3><p>إلزامية على المطور ضمن اشتراطات الزون، مقابل استضافة المخططات والضمانات والمستندات طوال عمر الوحدة.</p></div>
+      <div class="card sm tilt rv"><div class="ic"><i class="fa-solid fa-magnifying-glass"></i></div><span class="type rec">مع كل دفعة تسليم</span><h3>عمولة الفحص قبل الاستلام</h3><p>شركات فحص معتمدة تُعرض للمستفيد قبل استلام المفتاح، والمنصة تحصل على عمولة من كل فحص.</p></div>
+      <div class="card sm tilt rv"><div class="ic"><i class="fa-solid fa-store"></i></div><span class="type rec">متكرر سنوياً</span><h3>عمولة سوق الخدمات</h3><p>صيانة، تنظيف، تكييف، أثاث، منزل ذكي — عمولة على كل طلب من قاعدة ساكنين تتراكم كل عام.</p></div>
+      <div class="card sm tilt rv"><div class="ic"><i class="fa-solid fa-id-badge"></i></div><span class="type rec">اشتراك سنوي</span><h3>اشتراكات مقدمي الخدمة</h3><p>كل شركة تريد الظهور أمام ساكني الضواحي تدفع اشتراكاً سنوياً لتكون Vendor معتمداً.</p></div>
+    </div>
+    <div class="calc">
+      <div class="card rv">
+        <h3 style="font-size:16px;margin-bottom:18px"><i class="fa-solid fa-sliders" style="color:var(--t);margin-inline-end:8px"></i>حرّك الافتراضات</h3>
+        <div class="ctrl"><div class="lb"><span>وحدات جديدة تُرفع سنوياً</span><b id="uT"></b></div><input type="range" id="u" min="5000" max="60000" step="1000" value="20000"></div>
+        <div class="ctrl"><div class="lb"><span>رسوم استضافة ملف الوحدة (لمرة واحدة)</span><b id="fT"></b></div><input type="range" id="f" min="500" max="2500" step="100" value="1000"></div>
+        <div class="ctrl"><div class="lb"><span>نسبة المستفيدين الذين يطلبون فحصاً قبل الاستلام</span><b id="insT"></b></div><input type="range" id="ins" min="10" max="80" step="5" value="40"></div>
+        <div class="ctrl"><div class="lb"><span>نسبة الساكنين النشطين في سوق الخدمات</span><b id="actT"></b></div><input type="range" id="act" min="10" max="70" step="5" value="30"></div>
+        <div class="ctrl"><div class="lb"><span>مقدمو خدمة مشتركون (السنة الأولى)</span><b id="vT"></b></div><input type="range" id="v" min="30" max="500" step="10" value="150"></div>
+        <div class="ctrl share-ctrl" style="margin-bottom:0"><div class="lb"><span><i class="fa-solid fa-handshake" style="color:var(--mint)"></i> حصة NHC من الإيراد</span><b id="sT" style="color:var(--mint)"></b></div><input type="range" id="s" min="20" max="60" step="5" value="40"></div>
+      </div>
+      <div class="card rv" style="border-color:var(--line)">
+        <div class="res-top">
+          <div class="big"><small>إجمالي إيراد المنصة — السنة الأولى</small><b id="y1"></b><em>ريال سعودي</em></div>
+          <div class="big g"><small>حصة NHC — السنة الأولى</small><b id="n1"></b><em>ريال سعودي · دون أي تكلفة</em></div>
         </div>
-    </footer>
+        <div class="rows" id="rows"></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;flex-wrap:wrap;gap:6px">
+          <span style="font-size:13.5px;font-weight:600">التراكم خلال 5 سنوات</span>
+          <span style="font-size:13px;color:var(--muted)">حصة NHC التراكمية: <b id="n5" style="color:var(--mint);font-size:16px"></b></span>
+        </div>
+        <div class="bars" id="bars"></div>
+        <p class="assume">افتراضات ثابتة للعرض: متوسط سعر الفحص 2,200 ريال بعمولة 15% · متوسط إنفاق الساكن النشط في السوق 1,800 ريال سنوياً بعمولة 10% · اشتراك مقدم الخدمة 6,000 ريال سنوياً بنمو 20% في عدد المشتركين · قاعدة الساكنين تتراكم سنوياً. الأرقام تقديرية وتُعتمد نهائياً في جلسة العمل المالية المشتركة.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // REVENUE CALCULATOR FUNCTION
-        function updateCalculator() {
-            const units = parseInt(document.getElementById('unitsInput').value);
-            const fee = parseInt(document.getElementById('feeInput').value);
-            const conversion = parseInt(document.getElementById('conversionInput').value);
+<section class="s" id="why">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag">لماذا توقّع NHC الآن</span>
+      <h2>كل المكاسب لـ NHC… وكل الأعباء علينا</h2>
+    </div>
+    <div class="why">
+      <div class="gets">
+        <div class="get rv"><i class="fa-solid fa-sack-dollar"></i><div><h4>دخل جديد من اليوم الأول</h4><p>حصة من رسوم كل وحدة تُرفع، ثم دخل متكرر يكبر مع كل ضاحية تُسلَّم.</p></div></div>
+        <div class="get rv"><i class="fa-solid fa-database"></i><div><h4>بيانات موثقة تملكها NHC</h4><p>سجل حي ومحدث لكل وحدة ومطور ومورد وضمان — أصل معلوماتي وطني.</p></div></div>
+        <div class="get rv"><i class="fa-solid fa-gavel"></i><div><h4>أداة حوكمة على المطورين</h4><p>مؤشر جودة قائم على الأدلة يُستخدم في الترسية والتأهيل للمشاريع القادمة.</p></div></div>
+        <div class="get rv"><i class="fa-solid fa-heart-circle-check"></i><div><h4>رضا المستفيد وسمعة الضواحي</h4><p>تجربة ما بعد الاستلام تُحسب لـ NHC، لا لمطور بعينه ولا تُترك للصدفة.</p></div></div>
+        <div class="get rv"><i class="fa-solid fa-bolt"></i><div><h4>سرعة دون مخاطرة</h4><p>منصة جاهزة للتخصيص بهوية NHC، وتجربة محددة بزون واحد قبل أي توسع.</p></div></div>
+        <div class="get rv"><i class="fa-solid fa-people-group"></i><div><h4>تمكين القطاع الخاص</h4><p>سوق خدمات يفتح فرصاً لمنشآت الفحص والصيانة المحلية في كل ضاحية.</p></div></div>
+      </div>
+      <div class="pays rv">
+        <span style="font-size:13px;color:#a9c7ba">ما تتحمله NHC</span>
+        <div class="zero">0 ﷼</div>
+        <h3>لا تطوير · لا تشغيل · لا توظيف</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>الضامن يبني المنصة ويخصصها بهوية NHC</li>
+          <li><i class="fa-solid fa-check"></i>الضامن يشغّل الدعم ويستقطب مقدمي الخدمة</li>
+          <li><i class="fa-solid fa-check"></i>الضامن يتحقق دورياً من أرقام الموردين</li>
+          <li><i class="fa-solid fa-check"></i>لوحة تحكم وتقارير جودة شهرية جاهزة لصانع القرار</li>
+        </ul>
+        <div class="ask"><b>المطلوب من NHC فقط:</b> اعتماد رفع ملف الوحدة على المنصة كاشتراط على المطورين في الزون التجريبي، وتسمية فريق تواصل للتكامل.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Update Labels
-            document.getElementById('unitsText').innerText = units.toLocaleString('ar-SA') + ' وحدة';
-            document.getElementById('feeText').innerText = fee.toLocaleString('ar-SA') + ' ريال / وحدة';
-            document.getElementById('conversionText').innerText = conversion + '% من السكان';
+<section class="s" id="pilot">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag">المشروع التجريبي</span>
+      <h2>90 يوماً في ضاحية الخزامى تثبت القيمة بالأرقام</h2>
+      <p>تجربة محددة النطاق والمؤشرات، ولا التزام بالتوسع إلا بعد تحقق النتائج.</p>
+    </div>
+    <div class="road">
+      <div class="card ph rv"><span class="pin">1</span><div class="d">الأسابيع 1 – 3</div><h3>الاتفاقية والتخصيص</h3><ul><li>توقيع مذكرة الإيراد المشترك</li><li>تخصيص المنصة بهوية NHC</li><li>تحديد الزون والمطورين</li></ul></div>
+      <div class="card ph rv"><span class="pin">2</span><div class="d">الأسابيع 4 – 7</div><h3>رفع ملفات الوحدات</h3><ul><li>المطورون يرفعون ملف كل وحدة</li><li>تحقق من أرقام الموردين</li><li>تفعيل حسابات الملاك</li></ul></div>
+      <div class="card ph rv"><span class="pin">3</span><div class="d">الأسابيع 8 – 10</div><h3>تشغيل السوق</h3><ul><li>انضمام شركات الفحص والصيانة</li><li>حملة "افحص قبل الاستلام"</li><li>تفعيل التنبيهات والبلاغات</li></ul></div>
+      <div class="card ph rv"><span class="pin">4</span><div class="d">الأسابيع 11 – 13</div><h3>التقييم وقرار التوسع</h3><ul><li>تقرير جودة المطورين الأول</li><li>تقرير الإيراد الفعلي</li><li>خطة التعميم على الضواحي</li></ul></div>
+    </div>
+    <div class="kpis">
+      <div class="card kpi rv"><b data-count="100" data-suf="%">100%</b><span>من وحدات الزون مرفوعة بملفاتها</span></div>
+      <div class="card kpi rv"><b data-count="60" data-pre="≥ " data-suf="%">≥ 60%</b><span>من الملاك فعّلوا حساباتهم</span></div>
+      <div class="card kpi rv"><b data-count="30" data-pre="≥ " data-suf="%">≥ 30%</b><span>طلبوا فحصاً قبل الاستلام</span></div>
+      <div class="card kpi rv"><b data-count="72" data-pre="&lt; " data-suf=" س">&lt; 72 س</b><span>متوسط الاستجابة لبلاغ الضمان</span></div>
+    </div>
+  </div>
+</section>
 
-            // Calculations
-            const devRev = units * fee; // Developer onboarding revenue
-            const inspectCount = units * (conversion / 100);
-            const inspectRev = inspectCount * 200; // 200 SAR commission per inspection
-            const marketRev = units * 105; // Estimated 105 SAR annual avg vendor fee/commission per unit
+<section class="s" style="padding-top:20px">
+  <div class="wrap">
+    <div class="final rv">
+      <div class="logos"><img src="dhamn-icon.png" alt="الضامن"><span class="x">✕</span><img class="nw" src="nhc-logo-white.png" alt="NHC"></div>
+      <h2>جرّب المنصة بعين المستفيد… وبعين صانع القرار<br><span class="gtxt">ثم لنوقّع التجربة</span></h2>
+      <p>محاكاة كاملة لرحلة مالك وحدة في ضاحية الخزامى، ولوحة تحكم إدارية تعرض لـ NHC كل وحدة ومطور وبلاغ وضمان، وتدير مقدمي الخدمة في السوق.</p>
+      <div class="ctas">
+        <a href="app.html" class="btn btn-p"><i class="fa-solid fa-mobile-screen-button"></i>الانتقال إلى المنصة التجريبية لتجربة رحلة العميل</a>
+        <a href="admin.html" class="btn btn-n"><i class="fa-solid fa-chart-pie"></i>لوحة تحكم NHC الإدارية</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
 
-            const total = devRev + inspectRev + marketRev;
+<footer>
+  <div class="wrap">
+    <div class="brands"><div class="dh"><img src="dhamn-icon.png" alt=""><span>الضامن</span></div><span class="x">✕</span><img class="nhc-w" src="nhc-logo-white.png" alt="NHC"></div>
+    <span>مقترح شراكة سري مقدم من منصة الضامن · إنترسكت القابضة · 2026</span>
+  </div>
+</footer>
 
-            // Render Output Text
-            document.getElementById('devRevenue').innerText = devRev.toLocaleString('en-US') + ' ريال';
-            document.getElementById('inspectRevenue').innerText = Math.round(inspectRev).toLocaleString('en-US') + ' ريال';
-            document.getElementById('marketRevenue').innerText = Math.round(marketRev).toLocaleString('en-US') + ' ريال';
-            document.getElementById('totalRevenue').innerText = Math.round(total).toLocaleString('en-US');
-        }
+<a href="app.html" class="btn btn-p btn-sm float-cta" id="floatCta"><i class="fa-solid fa-mobile-screen-button"></i>جرّب المنصة</a>
 
-        // SIMULATOR TAB SWITCHER
-        function setSimTab(tabName) {
-            const tabWarranties = document.getElementById('sim-content-warranties');
-            const tabMarket = document.getElementById('sim-content-market');
-            const btnWarranties = document.getElementById('btn-tab-warranties');
-            const btnMarket = document.getElementById('btn-tab-market');
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const fmtM=n=>n>=1e6?(n/1e6).toFixed(n>=1e8?0:1)+' مليون':fmt(n);
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            if (tabName === 'tab-warranties') {
-                tabWarranties.classList.remove('hidden');
-                tabMarket.classList.add('hidden');
-                btnWarranties.className = 'flex-1 py-2.5 px-3 rounded-xl bg-purple-600 text-white font-bold text-xs transition shadow';
-                btnMarket.className = 'flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs hover:bg-slate-700 transition';
-            } else {
-                tabWarranties.classList.add('hidden');
-                tabMarket.classList.remove('hidden');
-                btnMarket.className = 'flex-1 py-2.5 px-3 rounded-xl bg-cyan-600 text-white font-bold text-xs transition shadow';
-                btnWarranties.className = 'flex-1 py-2.5 px-3 rounded-xl bg-slate-800 text-slate-400 font-bold text-xs hover:bg-slate-700 transition';
-            }
-        }
+/* intro */
+let introDone=false;
+function endIntro(){if(introDone)return;introDone=true;$('intro').classList.add('done');document.body.classList.add('ready');countAll(document.querySelectorAll('.hero [data-count]'))}
+let seen=false;try{seen=sessionStorage.getItem('dh_intro')==='1';sessionStorage.setItem('dh_intro','1')}catch(e){}
+if(RM||seen){$('intro').style.display='none';endIntro()}else setTimeout(endIntro,2500);
 
-        // HIGHLIGHT ACTIVE SIDEBAR LINK ON SCROLL
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (pageYOffset >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
+/* counters */
+function countAll(els){els.forEach(el=>{if(el._c)return;el._c=1;const to=+el.dataset.count,pre=el.dataset.pre||'',suf=el.dataset.suf||'';if(RM||!to){return}
+  const t0=performance.now(),d=1400;(function step(t){const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.innerHTML=pre+Math.round(to*e)+suf;if(k<1)requestAnimationFrame(step)})(t0)})}
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+/* scroll */
+addEventListener('scroll',()=>{
+  $('nav').classList.toggle('scrolled',scrollY>30);
+  $('floatCta').classList.toggle('show',scrollY>innerHeight*.9);
+  const h=document.documentElement.scrollHeight-innerHeight;$('prog').style.width=(scrollY/h*100)+'%';
+},{passive:true});
 
-        // INIT ON LOAD
-        window.onload = function() {
-            updateCalculator();
-        };
-    </script>
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');countAll(e.target.querySelectorAll('[data-count]'));if(e.target.matches('[data-count]'))countAll([e.target]);io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.rv,#story').forEach((el,i)=>{el.style.transitionDelay=(el.classList.contains('rv')?((i%5)*70):0)+'ms';io.observe(el)});
+
+/* spotlight + tilt */
+const spot=$('spot');
+if(!RM&&matchMedia('(hover:hover)').matches){
+  addEventListener('pointermove',e=>{spot.style.left=e.clientX+'px';spot.style.top=e.clientY+'px'},{passive:true});
+  document.querySelectorAll('.tilt').forEach(el=>{
+    el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      el.style.transform=`perspective(800px) rotateX(${(.5-y)*6}deg) rotateY(${(x-.5)*6}deg) translateY(-3px)`;el.style.setProperty('--mx',x*100+'%');el.style.setProperty('--my',y*100+'%')});
+    el.addEventListener('pointerleave',()=>{el.style.transform=''});
+  });
+}else spot.style.display='none';
+
+/* constellation sky */
+(function(){const c=$('sky'),x=c.getContext('2d');let W,H,P=[];const N=innerWidth<700?34:70;
+  function rs(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px'}
+  rs();addEventListener('resize',rs);
+  for(let i=0;i<N;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.6+.4,t:Math.random()<.5});
+  const D=140*devicePixelRatio;
+  function f(){x.clearRect(0,0,W,H);
+    for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      x.beginPath();x.arc(p.x,p.y,p.r*devicePixelRatio,0,7);x.fillStyle=p.t?'rgba(22,209,194,.7)':'rgba(168,139,255,.7)';x.fill()}
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const a=P[i],b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<D){x.strokeStyle=`rgba(140,118,255,${(1-d/D)*.16})`;x.lineWidth=devicePixelRatio*.7;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+    if(!RM)requestAnimationFrame(f)}
+  f();})();
+
+/* marquee */
+(function(){const items=[['fa-house-chimney','ملف رقمي لكل وحدة'],['fa-shield-halved','رادار الضمانات'],['fa-magnifying-glass','الفحص قبل الاستلام'],['fa-store','سوق خدمات معتمد'],['fa-brain','ذكاء الجودة'],['fa-plug','جاهز للتكامل مع منظومة سكني وبلدي وإيجار'],['fa-chart-line','إيراد مشترك مستدام'],['fa-leaf','مجتمعات مستدامة']];
+  const h=items.map(i=>`<span><i class="fa-solid ${i[0]}"></i>${i[1]}</span>`).join('');$('mtrack').innerHTML=h+h})();
+
+/* quality flow sequential glow */
+(function(){const q=[...document.querySelectorAll('#qflow .qf')];let k=0;setInterval(()=>{q.forEach((e,i)=>e.classList.toggle('on',i<=k));k=(k+1)%(q.length+1)},900)})();
+
+/* mini admin preview */
+(function(){const Z=[['A','الواحة',.1],['B','الثلاثي',.5],['C','الأفق',.12]];
+  $('mini').innerHTML=Z.map(z=>`<div class="z"><small><span>المرحلة ${z[0]}</span><span>${z[1]}</span></small><div class="mg">${'<i></i>'.repeat(24)}</div></div>`).join('');
+  const gs=[...document.querySelectorAll('#mini .mg')];
+  function tick(){gs.forEach((g,zi)=>{const rate=Z[zi][2];[...g.children].forEach(c=>{const r=Math.random();c.className=r<rate*.35?'h3':r<rate?'h2':r<rate*1.6?'h1':''})})}
+  tick();setInterval(tick,1800)})();
+
+/* revenue calculator */
+const COL={host:'#7B3FF2',insp:'#4F6BFF',mkt:'#16D1C2',ven:'#5FD3A5'};
+const NAMES={host:'رسوم استضافة ملفات الوحدات',insp:'عمولات الفحص قبل الاستلام',mkt:'عمولات سوق الخدمات',ven:'اشتراكات مقدمي الخدمة'};
+function paint(el){const v=(el.value-el.min)/(el.max-el.min)*100;el.style.setProperty('--v',v+'%')}
+function calc(){
+  const U=+$('u').value,F=+$('f').value,ins=$('ins').value/100,act=$('act').value/100,V=+$('v').value,S=$('s').value/100;
+  $('uT').textContent=fmt(U)+' وحدة';$('fT').textContent=fmt(F)+' ريال';$('insT').textContent=Math.round(ins*100)+'%';
+  $('actT').textContent=Math.round(act*100)+'%';$('vT').textContent=fmt(V)+' مزود';$('sT').textContent=Math.round(S*100)+'%';
+  const Y=[];let cum=0,t5=0;
+  for(let n=1;n<=5;n++){cum+=U;const o={host:U*F,insp:U*ins*2200*.15,mkt:cum*act*1800*.10,ven:Math.round(V*Math.pow(1.2,n-1))*6000};o.t=o.host+o.insp+o.mkt+o.ven;Y.push(o);t5+=o.t}
+  const y=Y[0];
+  $('y1').textContent=fmt(y.t);$('n1').textContent=fmt(y.t*S);$('n5').textContent=fmtM(t5*S)+' ريال';
+  $('rows').innerHTML=['host','insp','mkt','ven'].map(k=>`<div class="row"><span><i class="sw" style="background:${COL[k]}"></i>${NAMES[k]}</span><b>${fmt(y[k])}</b></div>`).join('');
+  const mx=Math.max(...Y.map(o=>o.t));
+  $('bars').innerHTML=Y.map((o,i)=>`<div class="bcol"><span class="v">${fmtM(o.t*S)}</span><div class="stack" style="height:${Math.max(8,o.t/mx*130)}px">${['host','insp','mkt','ven'].map(k=>`<i style="height:${o[k]/o.t*100}%;background:${COL[k]}"></i>`).join('')}</div><small>السنة ${i+1}</small></div>`).join('');
+  document.querySelectorAll('input[type=range]').forEach(paint);
+}
+['u','f','ins','act','v','s'].forEach(id=>$(id).addEventListener('input',calc));
+calc();
+</script>
 </body>
 </html>
