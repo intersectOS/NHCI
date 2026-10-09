@@ -387,7 +387,7 @@ tbody tr.fresh{animation:fresh 1.2s}
           </div>
         </div>
         <div class="card" style="margin-top:16px">
-          <div class="ch"><h3><i class="fa-solid fa-coins"></i>إيراد المنصة من الضاحية</h3><span class="pill c-n"><i class="fa-solid fa-handshake"></i>حصة NHC 40%</span></div>
+          <div class="ch"><h3><i class="fa-solid fa-coins"></i>إيراد المنصة من الضاحية</h3><span class="pill c-n"><i class="fa-solid fa-coins"></i>إجمالي قبل التقسيم</span></div>
           <div class="rev" id="rev"></div>
         </div>
       </section>
@@ -685,7 +685,7 @@ function renderTrend(){
 function renderRev(){
   const host=U.length*1000,insp=U.reduce((a,u)=>a+u.orders.filter(o=>o.c==='inspection').reduce((s,o)=>s+o.amt*.15,0),0),mkt=U.reduce((a,u)=>a+u.orders.filter(o=>o.c!=='inspection').reduce((s,o)=>s+o.amt*.10,0),0),ven=V.filter(v=>v.active).reduce((a,v)=>a+(PLANS[v.plan]||PLANS.basic).fee,0),tot=host+insp+mkt+ven;
   $('rev').innerHTML=[['رسوم استضافة ملفات الوحدات',host],['عمولات الفحص قبل الاستلام',insp],['عمولات سوق الخدمات',mkt],['اشتراكات مقدمي الخدمة',ven]].map(x=>`<div><small>${x[0]}</small><b>${fmt(x[1])} ﷼</b></div>`).join('')+
-  `<div style="grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;background:linear-gradient(120deg,var(--nhcl),var(--tl))"><span style="font-size:13px">إجمالي الإيراد من ضاحية الخزامى: <b class="kufi">${fmt(tot)} ﷼</b></span><span style="font-size:13px">حصة NHC: <b class="kufi" style="color:var(--ok);font-size:20px">${fmt(tot*.4)} ﷼</b></span></div>`;
+  `<div style="grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;background:linear-gradient(120deg,var(--nhcl),var(--tl))"><span style="font-size:13px">إجمالي الدخل من ضاحية الخزامى</span><b class="kufi" style="color:var(--ok);font-size:20px">${fmt(tot)} ﷼</b></div>`;
 }
 
 /* ============ DEVELOPERS ============ */
